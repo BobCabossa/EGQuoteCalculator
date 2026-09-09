@@ -15,3 +15,4 @@ global using System.Windows.Shapes;
 global using System.IO;
 
 global using GordonFancyTool.Pages;
+global using GordonFancyTool.Components;
