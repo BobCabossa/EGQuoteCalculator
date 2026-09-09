@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GordonFancyTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized">
-    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized"
+        Background="WhiteSmoke">
+    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" 
+           ScrollViewer.HorizontalScrollBarVisibility="Auto"
+           ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" />
 </Window>
