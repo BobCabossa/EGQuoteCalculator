@@ -1,0 +1,28 @@
+﻿<Page x:Class="GordonFancyTool.Pages.ProjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GordonFancyTool.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProjectPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button Click="Button_Click">Vælg excel fil</Button>
+        <Button Click="Button_Click" Grid.Column="1">Open excel fil</Button>
+        <TextBlock x:Name="block" Grid.Row="1">hey</TextBlock>
+        <DataGrid x:Name="DataGrid" Grid.Column="1" Grid.Row="1" Margin="10,10,10,10"
+              d:ItemsSource="{d:SampleData ItemCount=120}" ItemsSource="{Binding ExcelRows}" AutoGenerateColumns="True" />
+
+
+    </Grid>
+</Page>
