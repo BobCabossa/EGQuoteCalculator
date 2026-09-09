@@ -1,8 +1,5 @@
 ﻿namespace GordonFancyTool.Pages;
 
-/// <summary>
-/// Interaction logic for ElementPage.xaml
-/// </summary>
 public partial class ElementPage : Page
 {
     public ElementPage()
