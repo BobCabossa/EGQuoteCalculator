@@ -9,20 +9,6 @@
       Title="ProjectPage">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Button Click="Button_Click">Vælg excel fil</Button>
-        <Button Click="Button_Click" Grid.Column="1">Open excel fil</Button>
-        <TextBlock x:Name="block" Grid.Row="1">hey</TextBlock>
-        <DataGrid x:Name="DataGrid" Grid.Column="1" Grid.Row="1" Margin="10,10,10,10"
-              d:ItemsSource="{d:SampleData ItemCount=120}" ItemsSource="{Binding ExcelRows}" AutoGenerateColumns="True" />
-
-
+        <Button Click="Button_Click">click</Button>
     </Grid>
 </Page>
