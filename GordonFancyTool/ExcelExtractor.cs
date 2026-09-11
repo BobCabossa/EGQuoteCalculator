@@ -1,6 +1,6 @@
 ﻿namespace GordonFancyTool;
 
-internal class ExcelExtractor
+public class ExcelExtractor
 {
     public static string? ChooseFile()
     {
@@ -44,6 +44,7 @@ internal class ExcelExtractor
 
         int ProduktnavnColumn = GetCellId(headerRow, "Produktnavn");
         int Indkøbspris = GetCellId(headerRow, "Indkøbspris");
+        int EAN = GetCellId(headerRow, "Ean");
 
         List<ExcelData> data = [];
         foreach (var row in worksheet.RowsUsed().Skip(1))
@@ -51,7 +52,8 @@ internal class ExcelExtractor
             data.Add(new ExcelData
             (
                 row.Cell(ProduktnavnColumn).GetString(),
-                row.Cell(Indkøbspris).GetString()
+                row.Cell(Indkøbspris).GetString(),
+                row.Cell(EAN).GetString()
             ));
         }
 

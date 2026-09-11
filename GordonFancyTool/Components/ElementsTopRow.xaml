@@ -10,34 +10,53 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition MinWidth="180" />
+            <ColumnDefinition />
+            <ColumnDefinition MinWidth="175" />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition MinWidth="140" />
             <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition MinWidth="155" />
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" Text="{Binding Title, ElementName=MyControl}"  />
-        <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" Text="{Binding Staffing, ElementName=MyControl}"  />
-        <TextBlock Grid.Column="2" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" Text="{Binding HourlyRate, ElementName=MyControl}" />
-        <local:DoubleTextBox x:Name="Hours" Grid.Column="3" ValueChanged="HourChanged" Grid.Row="1" />
-        <TextBlock Grid.Column="4" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" Text="{Binding SocialCost, ElementName=MyControl}" Visibility="{Binding Show, ElementName=MyControl}" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="5" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" Text="{Binding SalaryIncrease, ElementName=MyControl}"  Visibility="{Binding Show, ElementName=MyControl}" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="6" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" Text="{Binding RiskFactor, ElementName=MyControl}"  Visibility="{Binding Show, ElementName=MyControl}" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="7" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" Text="{Binding CompanyProfitPercentage, ElementName=MyControl}" />
-        <TextBlock x:Name="Sale" Grid.Column="8" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" />
-        <TextBlock x:Name="PercentageOfOffers" Grid.Column="9" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" />
-        <TextBlock x:Name="CompanyProfit" Grid.Column="10" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" />
-        <TextBlock x:Name="SocialSecurityCosts" Grid.Column="11" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" />
-        <TextBlock x:Name="AmountForSalaryIncrease" Grid.Column="12" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" />
-        <TextBlock x:Name="AmountForRiskRate" Grid.Column="13" TextWrapping="WrapWithOverflow" Margin="3,1,3,1" />
+        <TextBlock Grid.Column="0" Text="{Binding Title, ElementName=MyControl}"  />
+        <TextBlock Grid.Column="1" Text="{Binding Staffing, ElementName=MyControl}"  />
+        <TextBlock Grid.Column="2" Text="{Binding HourlyRate, ElementName=MyControl}" />
+        <local:DoubleTextBox Grid.Column="3" ValueChanged="HourChanged" x:Name="Hours" />
+        
+        <TextBlock 
+            Grid.Column="4" 
+            Text="{Binding SocialCost, ElementName=MyControl}" 
+            Visibility="{Binding Show, ElementName=MyControl}" 
+            HorizontalAlignment="Center" />
+        
+        <TextBlock 
+            Grid.Column="5" 
+            Text="{Binding SalaryIncrease, ElementName=MyControl}"  
+            Visibility="{Binding Show, ElementName=MyControl}" 
+            HorizontalAlignment="Center" />
+        
+        <TextBlock 
+            Grid.Column="6" 
+            Text="{Binding RiskFactor, ElementName=MyControl}"  
+            Visibility="{Binding Show, ElementName=MyControl}" 
+            HorizontalAlignment="Center" />
+        
+        <TextBlock 
+            Grid.Column="7" 
+            Text="{Binding CompanyProfitPercentage, ElementName=MyControl}" />
+        
+        <TextBlock Grid.Column="8" x:Name="Sale" />
+        <TextBlock Grid.Column="9" x:Name="PercentageOfOffers" />
+        <TextBlock Grid.Column="10" x:Name="CompanyProfit" />
+        <TextBlock Grid.Column="11" x:Name="SocialSecurityCosts" />
+        <TextBlock Grid.Column="12" x:Name="AmountForSalaryIncrease" />
+        <TextBlock Grid.Column="13" x:Name="AmountForRiskRate" />
     </Grid>
 </UserControl>

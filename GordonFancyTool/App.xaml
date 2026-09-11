@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:GordonFancyTool"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        </Style>
     </Application.Resources>
 </Application>

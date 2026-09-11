@@ -103,6 +103,8 @@ public partial class ElementsTopRow : UserControl
         get => (string)GetValue(ShowProperty);
     }
 
+    public event EventHandler<string>? HoursChanged;
+
     public void HourChanged(object sender, string newValue)
     {
         double? hours = Hours.Value;
@@ -131,23 +133,24 @@ public partial class ElementsTopRow : UserControl
 
         double costPerHour = hourlyRate * hours.Value;
 
-        double socialSecurityCosts = double.Round(costPerHour * socialCost, 2);
-        double amountForSalaryIncrease = double.Round((costPerHour + socialSecurityCosts) * salaryIncrease, 2);
-        double amountForRiskRate = double.Round((costPerHour + socialSecurityCosts + amountForSalaryIncrease) * riskFactor, 2);
+        double socialSecurityCosts = DoubleCal.Round(costPerHour * socialCost);
+        double amountForSalaryIncrease = DoubleCal.Round((costPerHour + socialSecurityCosts) * salaryIncrease);
+        double amountForRiskRate = DoubleCal.Round((costPerHour + socialSecurityCosts + amountForSalaryIncrease) * riskFactor);
 
-        double companyProfit = double.Round((costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate) * companyProfitPercentage, 2);
+        double companyProfit = DoubleCal.Round((costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate) * companyProfitPercentage);
 
-        double sale = double.Round(costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate + companyProfit, 2);
+        double sale = DoubleCal.Round(costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate + companyProfit);
 
         SocialSecurityCosts.Text = socialSecurityCosts.ToString();
         AmountForSalaryIncrease.Text = amountForSalaryIncrease.ToString();
         AmountForRiskRate.Text = amountForRiskRate.ToString();
         CompanyProfit.Text = companyProfit.ToString();
         Sale.Text = sale.ToString();
+        HoursChanged?.Invoke(sender, newValue);
         CalculateHoursPercentage();
     }
     
-    private void CalculateHoursPercentage()
+    public void CalculateHoursPercentage()
     {
         _ = double.TryParse(Sale.Text, out double hoursPrice);
     }
