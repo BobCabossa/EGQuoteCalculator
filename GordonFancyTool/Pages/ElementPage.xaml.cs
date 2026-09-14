@@ -2,9 +2,57 @@
 
 public partial class ElementPage : Page
 {
+    public ObservableCollection<ExcelData> ExcelDatas { get; } = new()
+    {
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Hej", "10", "101"),
+        new ExcelData("Farvel", "20", "102"),
+        new ExcelData("Hej med dig", "30", "103"),
+        new ExcelData("Goodbye farvel hej", "40", "104")
+    };
+
     public ElementPage()
     {
         InitializeComponent();
+    }
+
+    private ExcelData? _selectedExcelData;
+
+    public ExcelData? SelectedExcelData
+    {
+        get => _selectedExcelData;
+        set
+        {
+            _selectedExcelData = value;
+
+            // Do whatever you want here when the user selects something.
+            if (value != null)
+            {
+                // Example:
+                MessageBox.Show(value.ProductName);
+                AddItem(value);
+            }
+        }
     }
 
     public static readonly DependencyProperty TotalHoursProperty =
@@ -56,14 +104,12 @@ public partial class ElementPage : Page
         TotalHoursPay = totalSale.ToString();
     }
 
-    private void AddItem(object sender, RoutedEventArgs e)
+    private void AddItem(ExcelData excelData)
     {
         Items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        int newIndex = Items.RowDefinitions.Count - 1;
+        int newIndex = Items.RowDefinitions.Count;
 
-        ExcelData fakeData = new("Fake item", "146,25", "7321677185634");
-
-        ElementItem newItem = new(fakeData)
+        ElementItem newItem = new(excelData)
         {
             Index = newIndex.ToString()
         };

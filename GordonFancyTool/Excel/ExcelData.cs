@@ -12,5 +12,6 @@ public class ExcelData
     {
         this.ProductName = ProductName;
         this.PurchasePrice = PurchasePrice;
+        this.EAN = EAN;
     }
 }

@@ -12,6 +12,7 @@ public partial class DoubleTextBox : UserControl
             return null;
         }
     }
+
     public event EventHandler<string>? ValueChanged;
 
     public DoubleTextBox()
