@@ -11,9 +11,6 @@
     <Grid>
         <!-- SEARCH BOX -->
         <TextBox x:Name="SearchTextBox"
-                 Width="300"
-                 Height="35"
-                 Padding="8,5"
                  Text="{Binding SearchText,
                                 ElementName=root,
                                 UpdateSourceTrigger=PropertyChanged}"
