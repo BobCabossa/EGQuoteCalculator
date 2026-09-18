@@ -36,25 +36,6 @@ public partial class ElementPage : Page
         InitializeComponent();
     }
 
-    private ExcelData? _selectedExcelData;
-
-    public ExcelData? SelectedExcelData
-    {
-        get => _selectedExcelData;
-        set
-        {
-            _selectedExcelData = value;
-
-            // Do whatever you want here when the user selects something.
-            if (value != null)
-            {
-                // Example:
-                MessageBox.Show(value.ProductName);
-                AddItem(value);
-            }
-        }
-    }
-
     public static readonly DependencyProperty TotalHoursProperty =
        DependencyProperty.Register(
            nameof(TotalHours),
@@ -66,7 +47,25 @@ public partial class ElementPage : Page
            nameof(TotalHoursPay),
            typeof(string),
            typeof(ElementPage));
-    
+
+    public static readonly DependencyProperty TotalPartPirceProperty =
+       DependencyProperty.Register(
+           nameof(TotalPartPirce),
+           typeof(string),
+           typeof(ElementPage));
+
+    public static readonly DependencyProperty TotalPartPercentageProperty =
+       DependencyProperty.Register(
+           nameof(TotalPartPercentage),
+           typeof(string),
+           typeof(ElementPage));
+
+    public static readonly DependencyProperty TotalPartProfitProperty =
+       DependencyProperty.Register(
+           nameof(TotalPartProfit),
+           typeof(string),
+           typeof(ElementPage));
+
     public string TotalHours
     {
         set => SetValue(TotalHoursProperty, value);
@@ -77,6 +76,24 @@ public partial class ElementPage : Page
     {
         set => SetValue(TotalHoursPayProperty, value);
         get => (string)GetValue(TotalHoursPayProperty);
+    }
+
+    public string TotalPartPirce
+    {
+        set => SetValue(TotalPartPirceProperty, value);
+        get => (string)GetValue(TotalPartPirceProperty);
+    }
+
+    public string TotalPartPercentage
+    {
+        set => SetValue(TotalPartPercentageProperty, value);
+        get => (string)GetValue(TotalPartPercentageProperty);
+    }
+
+    public string TotalPartProfit
+    {
+        set => SetValue(TotalPartProfitProperty, value);
+        get => (string)GetValue(TotalPartProfitProperty);
     }
 
     public void BackToProject(object sender, RoutedEventArgs e)
@@ -104,18 +121,54 @@ public partial class ElementPage : Page
         TotalHoursPay = totalSale.ToString();
     }
 
-    private void AddItem(ExcelData excelData)
+    public void AddItem(object? sender, ExcelData excelData)
     {
         Items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         int newIndex = Items.RowDefinitions.Count;
 
-        ElementItem newItem = new(excelData)
+        ElementItem newItem = new(excelData, SomeValuesChanged)
         {
-            Index = newIndex.ToString()
+            Index = newIndex.ToString(),
         };
 
-        Grid.SetRow(newItem, newIndex);
+        Grid.SetRow(newItem, newIndex - 1);
 
         Items.Children.Add(newItem);
+    }
+
+    private void SomeValuesChanged(object? sender, string newValue)
+    {
+        double totalPartPirce = 0;
+        double totalPartPercentage = 0;
+        double totalPartProfit = 0;
+        foreach (var item in Items.Children)
+        {
+            if (item is not ElementItem itemValue)
+                continue;
+
+            _ = double.TryParse(itemValue.FullPrice, out double priceForPart);
+            _ = double.TryParse(itemValue.PercentageOfOffers, out double percentgeOfOffer);
+            _ = double.TryParse(itemValue.CompanyProfit, out double companyProfit);
+
+            totalPartPirce += priceForPart;
+            totalPartPercentage += percentgeOfOffer;
+            totalPartProfit += companyProfit;
+        }
+
+        TotalPartPirce = totalPartPirce.ToString();
+        TotalPartPercentage = totalPartPercentage.ToString();
+        TotalPartProfit = totalPartProfit.ToString();
+
+        Normal.CalculateHoursPercentage();
+        Student.CalculateHoursPercentage();
+        AdultStudent.CalculateHoursPercentage();
+        BottomPart.CalculateEverything();
+        foreach (var item in Items.Children)
+        {
+            if (item is not ElementItem itemValue)
+                continue;
+
+            itemValue.CalculateProcentageOfOffer();
+        }
     }
 }

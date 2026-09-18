@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="GordonFancyTool.Components.ElementBottom"
+             x:Name="MyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GordonFancyTool.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1920">
+    <Grid Background="Gold">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="35" MaxWidth="50" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0">Y1.1</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0">Y1.2</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0">Y1.3</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0">Y2.1</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0">Y2.2</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0">Y2.3</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="0">Y2.4</TextBlock>
+
+        <TextBlock Grid.Row="0" Grid.Column="1">Befæstigelse regnes med mindst 1%</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1">Materiale svind samt fejlberegning regnes med 10%</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1">Materiale prisstigning</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1">Fast bil på byggeplads/stedet med fast pris</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="1">Bortskaffelse af affald (fast miljø afgift pr. opgave/ordre i Minuba)</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="1">Faste energi tillæg (OBS beløb stiger i takt med bestiling hos Solar/LM)</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="1">Faste emballagebidrag (OBS beløb stiger i takt med bestilling hos Solar/LM)</TextBlock>
+
+        <TextBlock Grid.Row="0" Grid.Column="2">1%</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="2">10</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2">3,60</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2">50,00</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2">52,00</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2">85,00</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="2">13,00</TextBlock>
+
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Fastening, ElementName=MyControl}" />
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Miscalculation, ElementName=MyControl}" />
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding MaterialCostsIncrease, ElementName=MyControl}" />
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding VehicleOnConstructionSite, ElementName=MyControl}" />
+        <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding EnvironmentalTax, ElementName=MyControl}" />
+        <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding FixedEnergySurcharges, ElementName=MyControl}" />
+        <TextBlock Grid.Row="6" Grid.Column="3" Text="{Binding FixedPackagingContributions, ElementName=MyControl}" />
+
+        <TextBlock Grid.Row="0" Grid.Column="4" Text="0" />
+        <TextBlock Grid.Row="1" Grid.Column="4" Text="0" />
+
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding FasteningConstituting, ElementName=MyControl}" />
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding MiscalculationConstituting, ElementName=MyControl}" />
+        <TextBlock Grid.Row="2" Grid.Column="5" Text="{Binding MaterialCostsIncreaseConstituting, ElementName=MyControl}" />
+        <TextBlock Grid.Row="3" Grid.Column="5" Text="{Binding VehicleOnConstructionSiteConstituting, ElementName=MyControl}" />
+        <TextBlock Grid.Row="4" Grid.Column="5" Text="{Binding EnvironmentalTaxConstituting, ElementName=MyControl}" />
+        <TextBlock Grid.Row="5" Grid.Column="5" Text="{Binding FixedEnergySurchargesConstituting, ElementName=MyControl}" />
+        <TextBlock Grid.Row="6" Grid.Column="5" Text="{Binding FixedPackagingContributionsConstituting, ElementName=MyControl}" />
+    </Grid>
+</UserControl>

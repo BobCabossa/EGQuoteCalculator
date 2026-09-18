@@ -6,10 +6,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1900">
     <Grid Margin="0, 1, 0, 1">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250"/>
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
@@ -29,7 +29,7 @@
         <local:DoubleTextBox Grid.Column="5" Margin="1" ValueChanged="PriceUpdated" x:Name="Length" />
         <TextBlock Grid.Column="6" Margin="1" x:Name="EAN" />
         <TextBlock Grid.Column="7" Margin="1" Text="{Binding FullPrice, ElementName=MyControl}" />
-        <TextBlock Grid.Column="8" Margin="1" x:Name="PercentageOfOffers" />
-        <TextBlock Grid.Column="9" Margin="1" x:Name="CompanyProfit" />
+        <TextBlock Grid.Column="8" Margin="1" Text="{Binding PercentageOfOffers, ElementName=MyControl}" />
+        <TextBlock Grid.Column="9" Margin="1" Text="{Binding CompanyProfit, ElementName=MyControl}" />
     </Grid>
 </UserControl>

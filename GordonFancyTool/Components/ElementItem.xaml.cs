@@ -2,9 +2,11 @@
 
 public partial class ElementItem : UserControl
 {
-    private ExcelData excelData;
+    private readonly ExcelData excelData;
 
-    public ElementItem(ExcelData excelData)
+    public event EventHandler<string> ValuesChanged;
+
+    public ElementItem(ExcelData excelData, EventHandler<string> ValuesChanged)
     {
         InitializeComponent();
 
@@ -12,6 +14,7 @@ public partial class ElementItem : UserControl
         Price.Text = excelData.PurchasePrice;
         EAN.Text = excelData.EAN;
         this.excelData = excelData;
+        this.ValuesChanged += ValuesChanged;
     }
 
     public static readonly DependencyProperty IndexProperty =
@@ -26,6 +29,18 @@ public partial class ElementItem : UserControl
            typeof(string),
            typeof(ElementItem));
 
+    public static readonly DependencyProperty PercentageOfOffersProperty =
+       DependencyProperty.Register(
+           nameof(PercentageOfOffers),
+           typeof(string),
+           typeof(ElementItem));
+
+    public static readonly DependencyProperty CompanyProfitProperty =
+       DependencyProperty.Register(
+           nameof(CompanyProfit),
+           typeof(string),
+           typeof(ElementItem));
+
     public string Index
     {
         set => SetValue(IndexProperty, value);
@@ -36,6 +51,18 @@ public partial class ElementItem : UserControl
     {
         set => SetValue(FullPriceProperty, value);
         get => (string)GetValue(FullPriceProperty);
+    }
+    
+    public string PercentageOfOffers
+    {
+        set => SetValue(PercentageOfOffersProperty, value);
+        get => (string)GetValue(PercentageOfOffersProperty);
+    }
+
+    public string CompanyProfit
+    {
+        set => SetValue(CompanyProfitProperty, value);
+        get => (string)GetValue(CompanyProfitProperty);
     }
 
     public void PriceUpdated(object sender, string e)
@@ -51,6 +78,15 @@ public partial class ElementItem : UserControl
         double profit = DoubleCal.Round(fullPrice - priceForUnits);
 
         FullPrice = fullPrice.ToString();
-        CompanyProfit.Text = profit.ToString();
+        CompanyProfit = profit.ToString();
+
+        CalculateProcentageOfOffer();
+
+        ValuesChanged.Invoke(this, e);
+    }
+
+    public void CalculateProcentageOfOffer()
+    {
+        PercentageOfOffers = "0";
     }
 }

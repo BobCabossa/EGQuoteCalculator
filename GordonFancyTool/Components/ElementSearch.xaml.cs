@@ -34,21 +34,6 @@ public partial class ElementSearch : UserControl
             typeof(ElementSearch),
             new PropertyMetadata(string.Empty));
 
-    public ExcelData? SelectedItem
-    {
-        get => (ExcelData?)GetValue(SelectedItemProperty);
-        set => SetValue(SelectedItemProperty, value);
-    }
-
-    public static readonly DependencyProperty SelectedItemProperty =
-        DependencyProperty.Register(
-            nameof(SelectedItem),
-            typeof(ExcelData),
-            typeof(ElementSearch),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
     public bool IsDropDownOpen
     {
         get => (bool)GetValue(IsDropDownOpenProperty);
@@ -61,6 +46,8 @@ public partial class ElementSearch : UserControl
             typeof(bool),
             typeof(ElementSearch),
             new PropertyMetadata(false));
+
+    public event EventHandler<ExcelData>? ValueSelected;
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -126,7 +113,7 @@ public partial class ElementSearch : UserControl
         if (item == null)
             return;
 
-        SelectedItem = item;
+        ValueSelected?.Invoke(this, item);
         SearchText = "";
 
         IsDropDownOpen = false;
