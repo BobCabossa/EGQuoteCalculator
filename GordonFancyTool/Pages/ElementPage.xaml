@@ -19,6 +19,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Grid Grid.ColumnSpan="2" Background="LightGray" />
+
         <Button Click="BackToProject" Margin="3">Tilbage</Button>
 
         <!-- Element name -->
@@ -35,105 +37,104 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="5">
             <StackPanel>
                 <!--Top part-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition MinWidth="180" />
-                        <ColumnDefinition />
-                        <ColumnDefinition MinWidth="175" />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition MinWidth="140" />
-                        <ColumnDefinition />
-                        <ColumnDefinition MinWidth="155" />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition MinWidth="180" />
+                            <ColumnDefinition />
+                            <ColumnDefinition MinWidth="175" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition MinWidth="140" />
+                            <ColumnDefinition />
+                            <ColumnDefinition MinWidth="155" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Column="0"></TextBlock>
-                    <TextBlock Grid.Column="1">Bemanding</TextBlock>
-                    <TextBlock Grid.Column="2">kr./time</TextBlock>
-                    <TextBlock Grid.Column="3">Forventning af tid i [timer]</TextBlock>
-                    <TextBlock Grid.Column="4">Social-omkost. Fast</TextBlock>
-                    <TextBlock Grid.Column="5">Løn-stigning fast</TextBlock>
-                    <TextBlock Grid.Column="6">Risiko faktor fast</TextBlock>
-                    <TextBlock Grid.Column="7">EG El Fortjenst</TextBlock>
-                    <TextBlock Grid.Column="8">Salg uden moms</TextBlock>
-                    <TextBlock Grid.Column="9">Procent udgør af tilbud</TextBlock>
-                    <TextBlock Grid.Column="10">EG El fortjenest</TextBlock>
-                    <TextBlock Grid.Column="11">Beløb for Socialomkostning</TextBlock>
-                    <TextBlock Grid.Column="12">Beløb for lønstigning</TextBlock>
-                    <TextBlock Grid.Column="13">Beløb for risiko sats</TextBlock>
+                        <TextBlock Grid.Column="0"></TextBlock>
+                        <TextBlock Grid.Column="1">Bemanding</TextBlock>
+                        <TextBlock Grid.Column="2">kr./time</TextBlock>
+                        <TextBlock Grid.Column="3">Forventning af tid i [timer]</TextBlock>
+                        <TextBlock Grid.Column="4">Social-omkost. Fast</TextBlock>
+                        <TextBlock Grid.Column="5">Løn-stigning fast</TextBlock>
+                        <TextBlock Grid.Column="6">Risiko faktor fast</TextBlock>
+                        <TextBlock Grid.Column="7">EG El Fortjenst</TextBlock>
+                        <TextBlock Grid.Column="8">Salg uden moms</TextBlock>
+                        <TextBlock Grid.Column="9">Procent udgør af tilbud</TextBlock>
+                        <TextBlock Grid.Column="10">EG El fortjenest</TextBlock>
+                        <TextBlock Grid.Column="11">Beløb for Socialomkostning</TextBlock>
+                        <TextBlock Grid.Column="12">Beløb for lønstigning</TextBlock>
+                        <TextBlock Grid.Column="13">Beløb for risiko sats</TextBlock>
 
-                    <local:ElementsTopRow 
-                        x:Name="Normal"
-                        Margin="1"
-                        Grid.Row="1" 
-                        Grid.ColumnSpan="14" 
-                        Title="B1.1"
-                        Staffing="Elektriker-Faglært"
-                        HourlyRate="225"
-                        SocialCost="58"
-                        SalaryIncrease="3"
-                        RiskFactor="10"
-                        CompanyProfitPercentage="39,033"
-                        Show="Hidden"
-                        HoursChanged="HoursChanged"
-                    />
+                        <local:ElementsTopRow 
+                            x:Name="Normal"
+                            Margin="1"
+                            Grid.Row="1" 
+                            Grid.ColumnSpan="14" 
+                            Title="B1.1"
+                            Staffing="Elektriker-Faglært"
+                            HourlyRate="225"
+                            SocialCost="58"
+                            SalaryIncrease="3"
+                            RiskFactor="10"
+                            CompanyProfitPercentage="39,033"
+                            Show="Hidden"
+                            HoursChanged="HoursChanged" />
 
-                    <local:ElementsTopRow 
-                        x:Name="Student"
-                        Margin="1"
-                        Grid.Row="2" 
-                        Grid.ColumnSpan="14" 
-                        Title="B1.1"
-                        Staffing="Elektriker-Lærling"
-                        HourlyRate="136"
-                        SocialCost="58"
-                        SalaryIncrease="3"
-                        RiskFactor="10"
-                        CompanyProfitPercentage="60,19"
-                        Show="Show"
-                        HoursChanged="HoursChanged"
-                    />
+                        <local:ElementsTopRow 
+                            x:Name="Student"
+                            Margin="1"
+                            Grid.Row="2" 
+                            Grid.ColumnSpan="14" 
+                            Title="B1.1"
+                            Staffing="Elektriker-Lærling"
+                            HourlyRate="136"
+                            SocialCost="58"
+                            SalaryIncrease="3"
+                            RiskFactor="10"
+                            CompanyProfitPercentage="60,19"
+                            Show="Show"
+                            HoursChanged="HoursChanged" />
 
-                    <local:ElementsTopRow 
-                        x:Name="AdultStudent"
-                        Margin="1"
-                        Grid.Row="3" 
-                        Grid.ColumnSpan="14" 
-                        Title="B1.1"
-                        Staffing="Elektriker-Lærling Voksen +25år"
-                        HourlyRate="146,9"
-                        SocialCost="58"
-                        SalaryIncrease="3"
-                        RiskFactor="10"
-                        CompanyProfitPercentage="48,305"
-                        Show="Hidden"
-                        HoursChanged="HoursChanged"
-                    />
+                        <local:ElementsTopRow 
+                            x:Name="AdultStudent"
+                            Margin="1"
+                            Grid.Row="3" 
+                            Grid.ColumnSpan="14" 
+                            Title="B1.1"
+                            Staffing="Elektriker-Lærling Voksen +25år"
+                            HourlyRate="146,9"
+                            SocialCost="58"
+                            SalaryIncrease="3"
+                            RiskFactor="10"
+                            CompanyProfitPercentage="48,305"
+                            Show="Hidden"
+                            HoursChanged="HoursChanged" />
 
-                    <!-- The grid need to be above the text to be rendered correct -->
-                    <Grid Grid.Row="4" Grid.ColumnSpan="14" Background="Yellow" Height="20" />
+                        <!-- The grid need to be above the text to be rendered correct -->
+                        <Grid Grid.Row="4" Grid.ColumnSpan="14" Background="Yellow" Height="20" />
 
-                    <TextBlock Grid.Column="3" Grid.Row="4" HorizontalAlignment="Right" Margin="3,0,3,0">Bemanding samlet</TextBlock>
-                    <TextBlock Grid.Column="4" Grid.Row="4" HorizontalAlignment="Center" Margin="3,0,3,0" Text="{Binding TotalHours, ElementName=MyControl}"/>
-                    <TextBlock Grid.Column="5" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0">timer</TextBlock>
-                    <TextBlock Grid.Column="7" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0">Bemanding salg</TextBlock>
-                    <TextBlock Grid.Column="7" Grid.Row="4" HorizontalAlignment="Right" Margin="3,0,3,0">kr.</TextBlock>
-                    <TextBlock Grid.Column="8" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0" Text="{Binding TotalHoursPay, ElementName=MyControl}"/>
-                </Grid>
-
+                        <TextBlock Grid.Column="3" Grid.Row="4" HorizontalAlignment="Right" Margin="3,0,3,0">Bemanding samlet</TextBlock>
+                        <TextBlock Grid.Column="4" Grid.Row="4" HorizontalAlignment="Center" Margin="3,0,3,0" Text="{Binding TotalHours, ElementName=MyControl}"/>
+                        <TextBlock Grid.Column="5" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0">timer</TextBlock>
+                        <TextBlock Grid.Column="7" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0">Bemanding salg</TextBlock>
+                        <TextBlock Grid.Column="7" Grid.Row="4" HorizontalAlignment="Right" Margin="3,0,3,0">kr.</TextBlock>
+                        <TextBlock Grid.Column="8" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0" Text="{Binding TotalHoursPay, ElementName=MyControl}"/>
+                    </Grid>
+                </Border>
+                
                 <!--Middel part-->
                 <Grid>
                     <Grid.RowDefinitions>
@@ -145,7 +146,7 @@
                     
                     <Grid Margin="0, 0, 0, 5" Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250" />
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -193,9 +194,9 @@
                 </Grid>
 
                 <!--Bottom part-->
-                <Grid>
+                <Border>
                     <local:ElementBottom x:Name="BottomPart" />
-                </Grid>
+                </Border>
             </StackPanel>
         </ScrollViewer>
     </Grid>

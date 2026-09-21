@@ -107,18 +107,17 @@ public partial class ElementPage : Page
         double normal = Normal.Hours.Value ?? 0;
         double student = Student.Hours.Value ?? 0;
         double adultStudent = AdultStudent.Hours.Value ?? 0;
+        
         double hours = normal + student + adultStudent;
-        TotalHours = hours.ToString();
 
         // Total pay the company gets for their man power.
-        string normalSaleText = Normal.Sale.Text;
-        string studentSaleText = Student.Sale.Text;
+        double normalSale = DoubleCal.TryParse(Normal.Sale.Text);
+        double studentSale = DoubleCal.TryParse(Student.Sale.Text);
 
-        _ = double.TryParse(normalSaleText, out double normalSale);
-        _ = double.TryParse(studentSaleText, out double studentSale);
         double totalSale = DoubleCal.Round(normalSale + studentSale);
 
         TotalHoursPay = totalSale.ToString();
+        TotalHours = hours.ToString();
     }
 
     public void AddItem(object? sender, ExcelData excelData)
@@ -139,36 +138,35 @@ public partial class ElementPage : Page
     private void SomeValuesChanged(object? sender, string newValue)
     {
         double totalPartPirce = 0;
-        double totalPartPercentage = 0;
         double totalPartProfit = 0;
         foreach (var item in Items.Children)
         {
             if (item is not ElementItem itemValue)
                 continue;
 
-            _ = double.TryParse(itemValue.FullPrice, out double priceForPart);
-            _ = double.TryParse(itemValue.PercentageOfOffers, out double percentgeOfOffer);
-            _ = double.TryParse(itemValue.CompanyProfit, out double companyProfit);
-
-            totalPartPirce += priceForPart;
-            totalPartPercentage += percentgeOfOffer;
-            totalPartProfit += companyProfit;
+            totalPartPirce += DoubleCal.TryParse(itemValue.FullPrice);
+            totalPartProfit += DoubleCal.TryParse(itemValue.CompanyProfit);
         }
 
         TotalPartPirce = totalPartPirce.ToString();
-        TotalPartPercentage = totalPartPercentage.ToString();
         TotalPartProfit = totalPartProfit.ToString();
 
         Normal.CalculateHoursPercentage();
         Student.CalculateHoursPercentage();
         AdultStudent.CalculateHoursPercentage();
-        BottomPart.CalculateEverything();
+        BottomPart.CalculateEverything(totalPartPirce);
+
+        double totalPartPercentage = 0;
         foreach (var item in Items.Children)
         {
             if (item is not ElementItem itemValue)
                 continue;
 
             itemValue.CalculateProcentageOfOffer();
+
+            totalPartPercentage += DoubleCal.TryParse(itemValue.PercentageOfOffers);
         }
+
+        TotalPartPercentage = totalPartPercentage.ToString();
     }
 }

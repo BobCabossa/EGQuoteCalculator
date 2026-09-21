@@ -7,7 +7,8 @@
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1920">
-    <Grid Background="Gold">
+
+    <Grid Margin="1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="35" MaxWidth="50" />
             <ColumnDefinition Width="2*" />
@@ -42,13 +43,13 @@
         <TextBlock Grid.Row="5" Grid.Column="1">Faste energi tillæg (OBS beløb stiger i takt med bestiling hos Solar/LM)</TextBlock>
         <TextBlock Grid.Row="6" Grid.Column="1">Faste emballagebidrag (OBS beløb stiger i takt med bestilling hos Solar/LM)</TextBlock>
 
-        <TextBlock Grid.Row="0" Grid.Column="2">1%</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="2">10</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="2">3,60</TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="2">50,00</TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="2">52,00</TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="2">85,00</TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="2">13,00</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="2" x:Name="FasteningPercentage">1</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="MiscalculationPercentage">10</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" x:Name="MaterialCostsIncreasePercentage">3,60</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2" x:Name="VehicleOnConstructionSitePrice">50,00</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2" x:Name="EnvironmentalTaxPrice">52,00</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2" x:Name="FixedEnergySurchargesPrice">85,00</TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="2" x:Name="FixedPackagingContributionsPrice">13,00</TextBlock>
 
         <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Fastening, ElementName=MyControl}" />
         <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Miscalculation, ElementName=MyControl}" />

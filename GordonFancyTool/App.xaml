@@ -16,5 +16,9 @@
             <Setter Property="MinHeight" Value="30" />
             <Setter Property="Padding" Value="8, 5" />
         </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="0.5" />
+        </Style>
     </Application.Resources>
 </Application>
