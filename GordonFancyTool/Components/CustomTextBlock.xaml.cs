@@ -6,6 +6,7 @@ public partial class CustomTextBlock : UserControl
     {
         Default,
         None,
+        NoneStay,
         Currency,
         Percentage,
     }
@@ -66,11 +67,17 @@ public partial class CustomTextBlock : UserControl
                 Grid.SetColumnSpan(control.ValueBlock, 2);
                 control.TypeBlock.Text = "";
                 break;
+            case ValueType.NoneStay:
+                control.TypeBlock.Text = "";
+                break;
             case ValueType.Currency:
                 control.TypeBlock.Text = "kr.";
                 break;
             case ValueType.Percentage:
                 control.TypeBlock.Text = "%";
+                break;
+
+            default:
                 break;
         }
     }

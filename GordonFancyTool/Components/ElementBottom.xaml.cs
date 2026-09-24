@@ -2,20 +2,49 @@
 
 public partial class ElementBottom : UserControl
 {
+    public static readonly DependencyProperty ProjectValueProperty =
+       DependencyProperty.Register(
+           nameof(ProjectValue),
+           typeof(ProjectValues),
+           typeof(ElementBottom),
+           new PropertyMetadata(
+                new ProjectValues(),
+                OnProjectValueChanged));
+
+    public ProjectValues ProjectValue
+    {
+        set => SetValue(ProjectValueProperty, value);
+        get => (ProjectValues)GetValue(ProjectValueProperty);
+    }
+
     public ElementBottom()
     {
         InitializeComponent();
     }
 
+    private static void OnProjectValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var control = (ElementBottom)d;
+        ProjectValues projectValue = (ProjectValues)e.NewValue;
+
+        control.FasteningPercentage.Value = projectValue.FasteningPercentage;
+        control.MiscalculationPercentage.Value = projectValue.MiscalculationPercentage;
+        control.MaterialCostsIncreasePercentage.Value = projectValue.MaterialCostsIncreasePercentage;
+        control.VehicleOnConstructionSitePrice.Value = projectValue.VehicleOnConstructionSitePrice;
+        control.EnvironmentalTaxPrice.Value = projectValue.EnvironmentalTaxPrice;
+        control.FixedEnergySurchargesPrice.Value = projectValue.FixedEnergySurchargesPrice;
+        control.FixedPackagingContributionsPrice.Value = projectValue.FixedPackagingContributionsPrice;
+    }
+
     public void CalculateEverything(double totalPartPrice)
     {
-        double fasteningPercentage = DoubleCal.TryParse(FasteningPercentage.Text);
-        double miscalculationPercentage = DoubleCal.TryParse(MiscalculationPercentage.Text);
-        double materialCostsIncreasePercentage = DoubleCal.TryParse(MaterialCostsIncreasePercentage.Text);
-        double vehicleOnConstructionSitePrice = DoubleCal.TryParse(VehicleOnConstructionSitePrice.Text);
-        double environmentalTaxPrice = DoubleCal.TryParse(EnvironmentalTaxPrice.Text);
-        double fixedEnergySurchargesPrice = DoubleCal.TryParse(FixedEnergySurchargesPrice.Text);
-        double fixedPackagingContributionsPrice = DoubleCal.TryParse(FixedPackagingContributionsPrice.Text);
+        double fasteningPercentage = FasteningPercentage.Value;
+        double miscalculationPercentage = MiscalculationPercentage.Value;
+        double materialCostsIncreasePercentage = MaterialCostsIncreasePercentage.Value;
+        double vehicleOnConstructionSitePrice = VehicleOnConstructionSitePrice.Value;
+        double environmentalTaxPrice = EnvironmentalTaxPrice.Value;
+        double fixedEnergySurchargesPrice = FixedEnergySurchargesPrice.Value;
+        double fixedPackagingContributionsPrice = FixedPackagingContributionsPrice.Value;
 
         fasteningPercentage /= 100;
         miscalculationPercentage /= 100;

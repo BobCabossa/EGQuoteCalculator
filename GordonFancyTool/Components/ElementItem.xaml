@@ -28,8 +28,8 @@
         <local:DoubleTextBox Grid.Column="4" Margin="1" ValueChanged="PriceUpdated" x:Name="Units" />
         <local:DoubleTextBox Grid.Column="5" Margin="1" ValueChanged="PriceUpdated" x:Name="Length" />
         <TextBlock Grid.Column="6" Margin="1" x:Name="EAN" />
-        <local:CustomTextBlock Grid.Column="7" Margin="1" x:Name="FullPrice" Type="None" />
-        <local:CustomTextBlock Grid.Column="8" Margin="1" x:Name="PercentageOfOffers" Type="None" />
-        <local:CustomTextBlock Grid.Column="9" Margin="1" x:Name="CompanyProfit" Type="None" />
+        <local:CustomTextBlock Grid.Column="7" Margin="1" x:Name="FullPrice" Type="NoneStay" ValueAlignment="Right" />
+        <local:CustomTextBlock Grid.Column="8" Margin="1" x:Name="PercentageOfOffers" Type="None" ValueAlignment="Left" />
+        <local:CustomTextBlock Grid.Column="9" Margin="1" x:Name="CompanyProfit" Type="None" ValueAlignment="Left" />
     </Grid>
 </UserControl>

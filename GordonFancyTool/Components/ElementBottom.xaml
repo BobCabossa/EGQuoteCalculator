@@ -43,15 +43,15 @@
         <TextBlock Grid.Row="5" Grid.Column="1">Faste energi tillæg (OBS beløb stiger i takt med bestiling hos Solar/LM)</TextBlock>
         <TextBlock Grid.Row="6" Grid.Column="1">Faste emballagebidrag (OBS beløb stiger i takt med bestilling hos Solar/LM)</TextBlock>
 
-        <TextBlock Grid.Row="0" Grid.Column="2" x:Name="FasteningPercentage">1</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="MiscalculationPercentage">10</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="2" x:Name="MaterialCostsIncreasePercentage">3,60</TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="2" x:Name="VehicleOnConstructionSitePrice">50,00</TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="2" x:Name="EnvironmentalTaxPrice">52,00</TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="2" x:Name="FixedEnergySurchargesPrice">85,00</TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="2" x:Name="FixedPackagingContributionsPrice">13,00</TextBlock>
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="2" x:Name="FasteningPercentage" Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="1" Grid.Column="2" x:Name="MiscalculationPercentage" Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="2" Grid.Column="2" x:Name="MaterialCostsIncreasePercentage" Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="3" Grid.Column="2" x:Name="VehicleOnConstructionSitePrice" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="4" Grid.Column="2" x:Name="EnvironmentalTaxPrice" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="5" Grid.Column="2" x:Name="FixedEnergySurchargesPrice" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="6" Grid.Column="2" x:Name="FixedPackagingContributionsPrice" Type="Currency" />
 
-        <local:CustomTextBlock Grid.Row="0" Grid.Column="3" x:Name="Fastening"  Type="Currency" />
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="3" x:Name="Fastening" Type="Currency" />
         <local:CustomTextBlock Grid.Row="1" Grid.Column="3" x:Name="Miscalculation" Type="Currency" />
         <local:CustomTextBlock Grid.Row="2" Grid.Column="3" x:Name="MaterialCostsIncrease" Type="Currency" />
         <local:CustomTextBlock Grid.Row="3" Grid.Column="3" x:Name="VehicleOnConstructionSite" Type="Currency" />
@@ -59,10 +59,10 @@
         <local:CustomTextBlock Grid.Row="5" Grid.Column="3" x:Name="FixedEnergySurcharges" Type="Currency" />
         <local:CustomTextBlock Grid.Row="6" Grid.Column="3" x:Name="FixedPackagingContributions" Type="Currency" />
 
-        <TextBlock Grid.Row="0" Grid.Column="4" Text="0" />
-        <TextBlock Grid.Row="1" Grid.Column="4" Text="0" />
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="4"  Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="1" Grid.Column="4"  Type="Percentage" />
 
-        <local:CustomTextBlock Grid.Row="0" Grid.Column="5" x:Name="FasteningConstituting"  Type="Currency" />
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="5" x:Name="FasteningConstituting" Type="Currency" />
         <local:CustomTextBlock Grid.Row="1" Grid.Column="5" x:Name="MiscalculationConstituting" Type="Currency" />
         <local:CustomTextBlock Grid.Row="2" Grid.Column="5" x:Name="MaterialCostsIncreaseConstituting" Type="Currency" />
         <local:CustomTextBlock Grid.Row="3" Grid.Column="5" x:Name="VehicleOnConstructionSiteConstituting" Type="Currency" />
