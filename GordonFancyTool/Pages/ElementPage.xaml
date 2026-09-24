@@ -7,7 +7,8 @@
       xmlns:local="clr-namespace:GordonFancyTool.Components"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="ElementPage">
+      Title="ElementPage"
+      Loaded="PageLoaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,7 +41,7 @@
                 <Border>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition MinWidth="35" MaxWidth="50" />
                             <ColumnDefinition MinWidth="220" />
                             <ColumnDefinition />
                             <ColumnDefinition MinWidth="175" />
@@ -120,9 +121,9 @@
                         <!-- The grid need to be above the text to be rendered correct -->
                         <Grid Grid.Row="4" Grid.ColumnSpan="14" Background="Yellow" Height="20" />
 
-                        <TextBlock Grid.Column="3" Grid.Row="4" HorizontalAlignment="Right" Margin="3,0,3,0">Bemanding samlet</TextBlock>
-                        <local:CustomTextBlock x:Name="TotalHours" Grid.Column="4" Grid.Row="4" Type="None" ValueAlignment="Center" />
-                        <TextBlock Grid.Column="5" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0">timer</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Right" Margin="3,0,3,0">Bemanding samlet</TextBlock>
+                        <local:CustomTextBlock x:Name="TotalHours" Grid.Column="3" Grid.Row="4" Type="None" ValueAlignment="Center" />
+                        <TextBlock Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0">timer</TextBlock>
                         <TextBlock Grid.Column="7" Grid.Row="4" HorizontalAlignment="Left" Margin="3,0,3,0">Bemanding salg</TextBlock>
                         <local:CustomTextBlock x:Name="TotalHoursPay" Grid.Column="8" Grid.Row="4" Type="None" />
                     </Grid>
@@ -188,7 +189,7 @@
 
                 <!-- Bottom part -->
                 <Border>
-                    <local:ElementBottom x:Name="BottomPart" />
+                    <local:ElementBottom x:Name="BottomPart" ProjectValue="{Binding projectValues, ElementName=MyControl}" />
                 </Border>
 
                 <!-- Final numbers -->

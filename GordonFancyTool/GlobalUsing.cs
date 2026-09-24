@@ -1,6 +1,7 @@
 ﻿global using ClosedXML.Excel;
 global using Microsoft.Win32;
 
+global using System.IO;
 global using System.Collections.ObjectModel;
 global using System.Text;
 global using System.Windows;
@@ -12,7 +13,7 @@ global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
 global using System.Windows.Navigation;
 global using System.Windows.Shapes;
-global using System.IO;
+global using System.Windows.Threading;
 
 global using GordonFancyTool.Pages;
 global using GordonFancyTool.Components;

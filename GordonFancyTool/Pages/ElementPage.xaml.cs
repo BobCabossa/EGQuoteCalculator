@@ -46,6 +46,14 @@ public partial class ElementPage : Page
         }
     }
 
+    private void PageLoaded(object sender, RoutedEventArgs e)
+    {
+        Dispatcher.BeginInvoke(() =>
+        {
+            HoursChanged(sender, "");
+        }, DispatcherPriority.Render);
+    }
+
     public void BackToProject(object sender, RoutedEventArgs e)
     {
         NavigationService.Navigate(new ProjectPage());
@@ -54,20 +62,20 @@ public partial class ElementPage : Page
     public void HoursChanged(object sender, string newValue)
     {
         // Total hours their workers need to complete the task.
-        //double normal = Normal.Hours.Value ?? 0;
-        //double student = Student.Hours.Value ?? 0;
-        //double adultStudent = AdultStudent.Hours.Value ?? 0;
+        double normal = Normal.Hours.Value ?? 0;
+        double student = Student.Hours.Value ?? 0;
+        double adultStudent = AdultStudent.Hours.Value ?? 0;
 
-        //double hours = normal + student + adultStudent;
+        double hours = normal + student + adultStudent;
 
         // Total pay the company gets for their man power.
-        //double normalSale = Normal.Sale.Value;
-        //double studentSale = Student.Sale.Value;
+        double normalSale = Normal.Sale.Value;
+        double studentSale = Student.Sale.Value;
 
-        //double totalSale = normalSale + studentSale;
+        double totalSale = normalSale + studentSale;
 
-        //TotalHoursPay.Value = totalSale;
-        //TotalHours.Value = hours;
+        TotalHoursPay.Value = totalSale;
+        TotalHours.Value = hours;
         SomeValuesChanged(sender, newValue);
     }
 
@@ -102,9 +110,9 @@ public partial class ElementPage : Page
         BottomPart.CalculateEverything(totalPartPirce);
         FinalResults.CalculateResults(TotalHoursPay.Value, BottomPart.MaterialCostsIncrease.Value, projectValues);
 
-        //Normal.CalculateHoursContributions();
-        //Student.CalculateHoursContributions();
-        //AdultStudent.CalculateHoursContributions();
+        Normal.CalculateHoursContributions();
+        Student.CalculateHoursContributions();
+        AdultStudent.CalculateHoursContributions();
         BottomPart.CalculateContributions();
 
         double totalPartPercentage = 0;
