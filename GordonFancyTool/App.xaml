@@ -7,7 +7,7 @@
         <Style TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="WrapWithOverflow" />
             <Setter Property="FontSize" Value="15" />
-            <Setter Property="Margin" Value="1" />
+            <Setter Property="Margin" Value="2,1,2,1" />
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="15" />

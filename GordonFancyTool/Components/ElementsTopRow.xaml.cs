@@ -12,48 +12,39 @@ public partial class ElementsTopRow : UserControl
             nameof(Title),
             typeof(string),
             typeof(ElementsTopRow));
-    
+
     public static readonly DependencyProperty StaffingProperty =
         DependencyProperty.Register(
             nameof(Staffing),
             typeof(string),
             typeof(ElementsTopRow));
-    
+
     public static readonly DependencyProperty HourlyRateProperty =
         DependencyProperty.Register(
             nameof(HourlyRate),
-            typeof(string),
-            typeof(ElementsTopRow));
-
-    public static readonly DependencyProperty SocialCostProperty =
-        DependencyProperty.Register(
-            nameof(SocialCost), 
-            typeof(string), 
-            typeof(ElementsTopRow));
-
-    public static readonly DependencyProperty SalaryIncreaseProperty =
-        DependencyProperty.Register(
-            nameof(SalaryIncrease), 
-            typeof(string),
-            typeof(ElementsTopRow));
-
-    public static readonly DependencyProperty RiskFactorProperty =
-        DependencyProperty.Register(
-            nameof(RiskFactor),
-            typeof(string),
+            typeof(double),
             typeof(ElementsTopRow));
 
     public static readonly DependencyProperty CompanyProfitPercentageProperty =
-        DependencyProperty.Register(
-            nameof(CompanyProfitPercentage),
-            typeof(string),
-            typeof(ElementsTopRow));
+      DependencyProperty.Register(
+          nameof(CompanyProfitPercentage),
+          typeof(double),
+          typeof(ElementsTopRow));
 
     public static readonly DependencyProperty ShowProperty =
        DependencyProperty.Register(
            nameof(Show),
            typeof(string),
            typeof(ElementsTopRow));
+
+    public static readonly DependencyProperty ProjectValueProperty =
+       DependencyProperty.Register(
+           nameof(ProjectValue),
+           typeof(ProjectValues),
+           typeof(ElementsTopRow),
+           new PropertyMetadata(
+                new ProjectValues(),
+                OnProjectValueChanged));
 
     public string Title
     {
@@ -67,34 +58,16 @@ public partial class ElementsTopRow : UserControl
         get => (string)GetValue(StaffingProperty);
     }
 
-    public string HourlyRate
+    public double HourlyRate
     {
         set => SetValue(HourlyRateProperty, value);
-        get => (string)GetValue(HourlyRateProperty);
+        get => (double)GetValue(HourlyRateProperty);
     }
 
-    public string SocialCost
-    {
-        set => SetValue(SocialCostProperty, value);
-        get => (string)GetValue(SocialCostProperty);
-    }
-
-    public string SalaryIncrease
-    {
-        set => SetValue(SalaryIncreaseProperty, value);
-        get => (string)GetValue(SalaryIncreaseProperty);
-    }
-
-    public string RiskFactor
-    {
-        set => SetValue(RiskFactorProperty, value);
-        get => (string)GetValue(RiskFactorProperty);
-    }
-
-    public string CompanyProfitPercentage
+    public double CompanyProfitPercentage
     {
         set => SetValue(CompanyProfitPercentageProperty, value);
-        get => (string)GetValue(CompanyProfitPercentageProperty);
+        get => (double)GetValue(CompanyProfitPercentageProperty);
     }
 
     public string Show
@@ -103,27 +76,42 @@ public partial class ElementsTopRow : UserControl
         get => (string)GetValue(ShowProperty);
     }
 
+    public ProjectValues ProjectValue
+    {
+        set => SetValue(ProjectValueProperty, value);
+        get => (ProjectValues)GetValue(ProjectValueProperty);
+    }
+
     public event EventHandler<string>? HoursChanged;
+
+    private static void OnProjectValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var control = (ElementsTopRow)d;
+        ProjectValues projectValue = (ProjectValues)e.NewValue;
+
+        control.SocialCost.Value = projectValue.SocialCost;
+        control.SalaryIncrease.Value = projectValue.SalaryIncrease;
+        control.RiskFactor.Value = projectValue.RiskFactor;
+    }
 
     public void HourChanged(object sender, string newValue)
     {
         double? hours = Hours.Value;
         if (!hours.HasValue)
         {
-            Sale.Text = string.Empty;
-            PercentageOfOffers.Text = string.Empty;
-            CompanyProfit.Text = string.Empty;
-            SocialSecurityCosts.Text = string.Empty;
-            AmountForSalaryIncrease.Text = string.Empty;
-            AmountForRiskRate.Text = string.Empty;
+            Sale.Value = 0;
+            PercentageOfOffers.Value = 0;
+            CompanyProfit.Value = 0;
+            SocialSecurityCosts.Value = 0;
+            AmountForSalaryIncrease.Value = 0;
+            AmountForRiskRate.Value = 0;
             return;
         }
 
-        _ = double.TryParse(HourlyRate, out double hourlyRate);
-        _ = double.TryParse(SocialCost, out double socialCost);
-        _ = double.TryParse(SalaryIncrease, out double salaryIncrease);
-        _ = double.TryParse(RiskFactor, out double riskFactor);
-        _ = double.TryParse(CompanyProfitPercentage, out double companyProfitPercentage);
+        double companyProfitPercentage = CompanyProfitPercentage;
+        double socialCost = SocialCost.Value;
+        double salaryIncrease = SalaryIncrease.Value;
+        double riskFactor = RiskFactor.Value;
 
         // From 50% to 0.5 to calculate with
         socialCost /= 100;
@@ -131,7 +119,7 @@ public partial class ElementsTopRow : UserControl
         riskFactor /= 100;
         companyProfitPercentage /= 100;
 
-        double costPerHour = hourlyRate * hours.Value;
+        double costPerHour = HourlyRate * hours.Value;
 
         double socialSecurityCosts = DoubleCal.Round(costPerHour * socialCost);
         double amountForSalaryIncrease = DoubleCal.Round((costPerHour + socialSecurityCosts) * salaryIncrease);
@@ -141,17 +129,17 @@ public partial class ElementsTopRow : UserControl
 
         double sale = DoubleCal.Round(costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate + companyProfit);
 
-        SocialSecurityCosts.Text = socialSecurityCosts.ToString();
-        AmountForSalaryIncrease.Text = amountForSalaryIncrease.ToString();
-        AmountForRiskRate.Text = amountForRiskRate.ToString();
-        CompanyProfit.Text = companyProfit.ToString();
-        Sale.Text = sale.ToString();
+        SocialSecurityCosts.Value = socialSecurityCosts;
+        AmountForSalaryIncrease.Value = amountForSalaryIncrease;
+        AmountForRiskRate.Value = amountForRiskRate;
+        CompanyProfit.Value = companyProfit;
+        Sale.Value = sale;
         HoursChanged?.Invoke(sender, newValue);
         CalculateHoursContributions();
     }
-    
+
     public void CalculateHoursContributions()
     {
-        _ = double.TryParse(Sale.Text, out double hoursPrice);
+
     }
 }

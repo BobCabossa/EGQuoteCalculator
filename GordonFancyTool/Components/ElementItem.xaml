@@ -20,16 +20,16 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Column="0" Margin="1" Text="{Binding Index, ElementName=MyControl}" />
+
+        <TextBlock Grid.Column="0" Margin="1" x:Name="Index" />
         <TextBlock Grid.Column="1" Margin="1" x:Name="Product" />
         <TextBlock Grid.Column="2" Margin="1" x:Name="Wholesaler">Grosist</TextBlock>
         <TextBlock Grid.Column="3" Margin="1" x:Name="Price" />
         <local:DoubleTextBox Grid.Column="4" Margin="1" ValueChanged="PriceUpdated" x:Name="Units" />
         <local:DoubleTextBox Grid.Column="5" Margin="1" ValueChanged="PriceUpdated" x:Name="Length" />
         <TextBlock Grid.Column="6" Margin="1" x:Name="EAN" />
-        <TextBlock Grid.Column="7" Margin="1" Text="{Binding FullPrice, ElementName=MyControl}" />
-        <TextBlock Grid.Column="8" Margin="1" Text="{Binding PercentageOfOffers, ElementName=MyControl}" />
-        <TextBlock Grid.Column="9" Margin="1" Text="{Binding CompanyProfit, ElementName=MyControl}" />
+        <local:CustomTextBlock Grid.Column="7" Margin="1" x:Name="FullPrice" Type="None" />
+        <local:CustomTextBlock Grid.Column="8" Margin="1" x:Name="PercentageOfOffers" Type="None" />
+        <local:CustomTextBlock Grid.Column="9" Margin="1" x:Name="CompanyProfit" Type="None" />
     </Grid>
 </UserControl>

@@ -6,11 +6,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="50" d:DesignWidth="1900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition MinWidth="180" />
+            <ColumnDefinition MinWidth="220" />
             <ColumnDefinition />
             <ColumnDefinition MinWidth="175" />
             <ColumnDefinition />
@@ -29,34 +29,40 @@
         <TextBlock Grid.Column="1" Text="{Binding Staffing, ElementName=MyControl}"  />
         <TextBlock Grid.Column="2" Text="{Binding HourlyRate, ElementName=MyControl}" />
         <local:DoubleTextBox Grid.Column="3" ValueChanged="HourChanged" x:Name="Hours" />
-        
-        <TextBlock 
+
+        <local:CustomTextBlock 
+            x:Name="SocialCost" 
             Grid.Column="4" 
-            Text="{Binding SocialCost, ElementName=MyControl}" 
-            Visibility="{Binding Show, ElementName=MyControl}" 
-            HorizontalAlignment="Center" />
-        
-        <TextBlock 
-            Grid.Column="5" 
-            Text="{Binding SalaryIncrease, ElementName=MyControl}"  
-            Visibility="{Binding Show, ElementName=MyControl}" 
-            HorizontalAlignment="Center" />
-        
-        <TextBlock 
-            Grid.Column="6" 
-            Text="{Binding RiskFactor, ElementName=MyControl}"  
-            Visibility="{Binding Show, ElementName=MyControl}" 
-            HorizontalAlignment="Center" />
-        
-        <TextBlock 
-            Grid.Column="7" 
-            Text="{Binding CompanyProfitPercentage, ElementName=MyControl}" />
-        
-        <TextBlock Grid.Column="8" x:Name="Sale" />
-        <TextBlock Grid.Column="9" x:Name="PercentageOfOffers" />
-        <TextBlock Grid.Column="10" x:Name="CompanyProfit" />
-        <TextBlock Grid.Column="11" x:Name="SocialSecurityCosts" />
-        <TextBlock Grid.Column="12" x:Name="AmountForSalaryIncrease" />
-        <TextBlock Grid.Column="13" x:Name="AmountForRiskRate" />
+            Type="Percentage" 
+            ValueAlignment="Center" 
+            Visibility="{Binding Show, ElementName=MyControl}" />
+
+        <local:CustomTextBlock
+            x:Name="SalaryIncrease"
+            Grid.Column="5"
+            Type="Percentage"
+            ValueAlignment="Center"
+            Visibility="{Binding Show, ElementName=MyControl}" />
+
+        <local:CustomTextBlock
+            x:Name="RiskFactor"
+            Grid.Column="6"
+            Type="Percentage"
+            ValueAlignment="Center"
+            Visibility="{Binding Show, ElementName=MyControl}" />
+
+        <local:CustomTextBlock
+            x:Name="CompanyProfitPercentageBlock"
+            Grid.Column="7"
+            Type="Percentage"
+            Value="{Binding CompanyProfitPercentage, ElementName=MyControl}"
+            ValueAlignment="Center" />
+
+        <local:CustomTextBlock Grid.Column="8" x:Name="Sale" Type="Currency" />
+        <local:CustomTextBlock Grid.Column="9" x:Name="PercentageOfOffers" Type="Percentage" />
+        <local:CustomTextBlock Grid.Column="10" x:Name="CompanyProfit" Type="Currency" />
+        <local:CustomTextBlock Grid.Column="11" x:Name="SocialSecurityCosts" Type="Currency" />
+        <local:CustomTextBlock Grid.Column="12" x:Name="AmountForSalaryIncrease" Type="Currency" />
+        <local:CustomTextBlock Grid.Column="13" x:Name="AmountForRiskRate" Type="Currency" />
     </Grid>
 </UserControl>

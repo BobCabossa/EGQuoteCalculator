@@ -51,23 +51,23 @@
         <TextBlock Grid.Row="5" Grid.Column="2" x:Name="FixedEnergySurchargesPrice">85,00</TextBlock>
         <TextBlock Grid.Row="6" Grid.Column="2" x:Name="FixedPackagingContributionsPrice">13,00</TextBlock>
 
-        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Fastening, ElementName=MyControl}" />
-        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Miscalculation, ElementName=MyControl}" />
-        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding MaterialCostsIncrease, ElementName=MyControl}" />
-        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding VehicleOnConstructionSite, ElementName=MyControl}" />
-        <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding EnvironmentalTax, ElementName=MyControl}" />
-        <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding FixedEnergySurcharges, ElementName=MyControl}" />
-        <TextBlock Grid.Row="6" Grid.Column="3" Text="{Binding FixedPackagingContributions, ElementName=MyControl}" />
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="3" x:Name="Fastening"  Type="Currency" />
+        <local:CustomTextBlock Grid.Row="1" Grid.Column="3" x:Name="Miscalculation" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="2" Grid.Column="3" x:Name="MaterialCostsIncrease" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="3" Grid.Column="3" x:Name="VehicleOnConstructionSite" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="4" Grid.Column="3" x:Name="EnvironmentalTax" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="5" Grid.Column="3" x:Name="FixedEnergySurcharges" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="6" Grid.Column="3" x:Name="FixedPackagingContributions" Type="Currency" />
 
         <TextBlock Grid.Row="0" Grid.Column="4" Text="0" />
         <TextBlock Grid.Row="1" Grid.Column="4" Text="0" />
 
-        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding FasteningConstituting, ElementName=MyControl}" />
-        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding MiscalculationConstituting, ElementName=MyControl}" />
-        <TextBlock Grid.Row="2" Grid.Column="5" Text="{Binding MaterialCostsIncreaseConstituting, ElementName=MyControl}" />
-        <TextBlock Grid.Row="3" Grid.Column="5" Text="{Binding VehicleOnConstructionSiteConstituting, ElementName=MyControl}" />
-        <TextBlock Grid.Row="4" Grid.Column="5" Text="{Binding EnvironmentalTaxConstituting, ElementName=MyControl}" />
-        <TextBlock Grid.Row="5" Grid.Column="5" Text="{Binding FixedEnergySurchargesConstituting, ElementName=MyControl}" />
-        <TextBlock Grid.Row="6" Grid.Column="5" Text="{Binding FixedPackagingContributionsConstituting, ElementName=MyControl}" />
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="5" x:Name="FasteningConstituting"  Type="Currency" />
+        <local:CustomTextBlock Grid.Row="1" Grid.Column="5" x:Name="MiscalculationConstituting" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="2" Grid.Column="5" x:Name="MaterialCostsIncreaseConstituting" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="3" Grid.Column="5" x:Name="VehicleOnConstructionSiteConstituting" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="4" Grid.Column="5" x:Name="EnvironmentalTaxConstituting" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="5" Grid.Column="5" x:Name="FixedEnergySurchargesConstituting" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="6" Grid.Column="5" x:Name="FixedPackagingContributionsConstituting" Type="Currency" />
     </Grid>
 </UserControl>

@@ -6,7 +6,7 @@ public partial class ElementItem : UserControl
 
     public event EventHandler<string> ValuesChanged;
 
-    public ElementItem(ExcelData excelData, EventHandler<string> ValuesChanged)
+    public ElementItem(ExcelData excelData, EventHandler<string> ValuesChanged, int number)
     {
         InitializeComponent();
 
@@ -15,54 +15,7 @@ public partial class ElementItem : UserControl
         EAN.Text = excelData.EAN;
         this.excelData = excelData;
         this.ValuesChanged += ValuesChanged;
-    }
-
-    public static readonly DependencyProperty IndexProperty =
-       DependencyProperty.Register(
-           nameof(Index),
-           typeof(string),
-           typeof(ElementItem));
-
-    public static readonly DependencyProperty FullPriceProperty =
-       DependencyProperty.Register(
-           nameof(FullPrice),
-           typeof(string),
-           typeof(ElementItem));
-
-    public static readonly DependencyProperty PercentageOfOffersProperty =
-       DependencyProperty.Register(
-           nameof(PercentageOfOffers),
-           typeof(string),
-           typeof(ElementItem));
-
-    public static readonly DependencyProperty CompanyProfitProperty =
-       DependencyProperty.Register(
-           nameof(CompanyProfit),
-           typeof(string),
-           typeof(ElementItem));
-
-    public string Index
-    {
-        set => SetValue(IndexProperty, value);
-        get => (string)GetValue(IndexProperty);
-    }
-
-    public string FullPrice
-    {
-        set => SetValue(FullPriceProperty, value);
-        get => (string)GetValue(FullPriceProperty);
-    }
-    
-    public string PercentageOfOffers
-    {
-        set => SetValue(PercentageOfOffersProperty, value);
-        get => (string)GetValue(PercentageOfOffersProperty);
-    }
-
-    public string CompanyProfit
-    {
-        set => SetValue(CompanyProfitProperty, value);
-        get => (string)GetValue(CompanyProfitProperty);
+        Index.Text = number.ToString();
     }
 
     public void PriceUpdated(object sender, string e)
@@ -77,8 +30,8 @@ public partial class ElementItem : UserControl
         double fullPrice = DoubleCal.Round(priceForUnits + (priceForUnits * length.Value / 100));
         double profit = DoubleCal.Round(fullPrice - priceForUnits);
 
-        FullPrice = fullPrice.ToString();
-        CompanyProfit = profit.ToString();
+        FullPrice.Value = fullPrice;
+        CompanyProfit.Value = profit;
 
         CalculateProcentageOfOffer();
 
@@ -87,6 +40,6 @@ public partial class ElementItem : UserControl
 
     public void CalculateProcentageOfOffer()
     {
-        PercentageOfOffers = "0";
+        PercentageOfOffers.Value = 0;
     }
 }

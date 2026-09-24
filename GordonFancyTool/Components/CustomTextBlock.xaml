@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="GordonFancyTool.Components.CustomTextBlock"
+             x:Name="CustomText"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GordonFancyTool.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition MaxWidth="50" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock 
+            x:Name="ValueBlock" 
+            Text="{Binding Value, ElementName=CustomText}" 
+            HorizontalAlignment="{Binding ValueAlignment, ElementName=CustomText}" 
+            Margin="3,0,3,0" 
+            Width="auto" />
+
+        <TextBlock x:Name="TypeBlock" Text="kr." Grid.Column="1" />
+
+    </Grid>
+</UserControl>

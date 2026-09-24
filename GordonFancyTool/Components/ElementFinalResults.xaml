@@ -31,17 +31,17 @@
         <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">Total tilbud eksklusiv moms</TextBlock>
 
         <TextBlock Grid.Row="3" Grid.Column="2">Total tilbud eksklusiv moms</TextBlock>
-        
-        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding TotalPriceForStaffing, ElementName=MyControl}" />
-        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding TotalPriceForMaterial, ElementName=MyControl}" />
-        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding TotalPriceForFixedPrices, ElementName=MyControl}" />
-        <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding TotalPriceExclusiveVAT, ElementName=MyControl}" />
+
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="3" x:Name="TotalPriceForStaffing" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="1" Grid.Column="3" x:Name="TotalPriceForMaterial" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="2" Grid.Column="3" x:Name="TotalPriceForFixedPrices" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="3" Grid.Column="3" x:Name="TotalPriceExclusiveVAT" Type="Currency" />
 
         <TextBlock Grid.Row="4" Grid.Column="1">Moms</TextBlock>
         <TextBlock x:Name="VATValue" Grid.Row="4" Grid.Column="2" />
-        <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding VAT, ElementName=MyControl}" />
+        <local:CustomTextBlock Grid.Row="4" Grid.Column="3" x:Name="VAT" Type="Currency" />
 
         <TextBlock Grid.Row="5" Grid.Column="2">Total pris inklusiv moms :</TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding FullPrice, ElementName=MyControl}" />
+        <local:CustomTextBlock Grid.Row="5" Grid.Column="3" x:Name="FullPrice" Type="Currency" />
     </Grid>
 </UserControl>

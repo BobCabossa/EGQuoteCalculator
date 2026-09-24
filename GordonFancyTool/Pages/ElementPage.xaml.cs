@@ -2,7 +2,7 @@
 
 public partial class ElementPage : Page
 {
-    private ProjectValues projectValues;
+    public ProjectValues projectValues { get; set; }
     public ObservableCollection<ExcelData> ExcelDatas { get; } = new()
     {
         new ExcelData("Hej", "10", "10000"),
@@ -46,66 +46,6 @@ public partial class ElementPage : Page
         }
     }
 
-    public static readonly DependencyProperty TotalHoursProperty =
-       DependencyProperty.Register(
-           nameof(TotalHours),
-           typeof(string),
-           typeof(ElementPage));
-
-    public static readonly DependencyProperty TotalHoursPayProperty =
-       DependencyProperty.Register(
-           nameof(TotalHoursPay),
-           typeof(string),
-           typeof(ElementPage));
-
-    public static readonly DependencyProperty TotalPartPirceProperty =
-       DependencyProperty.Register(
-           nameof(TotalPartPirce),
-           typeof(string),
-           typeof(ElementPage));
-
-    public static readonly DependencyProperty TotalPartPercentageProperty =
-       DependencyProperty.Register(
-           nameof(TotalPartPercentage),
-           typeof(string),
-           typeof(ElementPage));
-
-    public static readonly DependencyProperty TotalPartProfitProperty =
-       DependencyProperty.Register(
-           nameof(TotalPartProfit),
-           typeof(string),
-           typeof(ElementPage));
-
-    public string TotalHours
-    {
-        set => SetValue(TotalHoursProperty, value);
-        get => (string)GetValue(TotalHoursProperty);
-    }
-
-    public string TotalHoursPay
-    {
-        set => SetValue(TotalHoursPayProperty, value);
-        get => (string)GetValue(TotalHoursPayProperty);
-    }
-
-    public string TotalPartPirce
-    {
-        set => SetValue(TotalPartPirceProperty, value);
-        get => (string)GetValue(TotalPartPirceProperty);
-    }
-
-    public string TotalPartPercentage
-    {
-        set => SetValue(TotalPartPercentageProperty, value);
-        get => (string)GetValue(TotalPartPercentageProperty);
-    }
-
-    public string TotalPartProfit
-    {
-        set => SetValue(TotalPartProfitProperty, value);
-        get => (string)GetValue(TotalPartProfitProperty);
-    }
-
     public void BackToProject(object sender, RoutedEventArgs e)
     {
         NavigationService.Navigate(new ProjectPage());
@@ -114,20 +54,20 @@ public partial class ElementPage : Page
     public void HoursChanged(object sender, string newValue)
     {
         // Total hours their workers need to complete the task.
-        double normal = Normal.Hours.Value ?? 0;
-        double student = Student.Hours.Value ?? 0;
-        double adultStudent = AdultStudent.Hours.Value ?? 0;
-        
-        double hours = normal + student + adultStudent;
+        //double normal = Normal.Hours.Value ?? 0;
+        //double student = Student.Hours.Value ?? 0;
+        //double adultStudent = AdultStudent.Hours.Value ?? 0;
+
+        //double hours = normal + student + adultStudent;
 
         // Total pay the company gets for their man power.
-        double normalSale = DoubleCal.TryParse(Normal.Sale.Text);
-        double studentSale = DoubleCal.TryParse(Student.Sale.Text);
+        //double normalSale = Normal.Sale.Value;
+        //double studentSale = Student.Sale.Value;
 
-        double totalSale = DoubleCal.Round(normalSale + studentSale);
+        //double totalSale = normalSale + studentSale;
 
-        TotalHoursPay = totalSale.ToString();
-        TotalHours = hours.ToString();
+        //TotalHoursPay.Value = totalSale;
+        //TotalHours.Value = hours;
         SomeValuesChanged(sender, newValue);
     }
 
@@ -136,10 +76,7 @@ public partial class ElementPage : Page
         Items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         int newIndex = Items.RowDefinitions.Count;
 
-        ElementItem newItem = new(excelData, SomeValuesChanged)
-        {
-            Index = newIndex.ToString(),
-        };
+        ElementItem newItem = new(excelData, SomeValuesChanged, newIndex);
 
         Grid.SetRow(newItem, newIndex - 1);
 
@@ -155,19 +92,19 @@ public partial class ElementPage : Page
             if (item is not ElementItem itemValue)
                 continue;
 
-            totalPartPirce += DoubleCal.TryParse(itemValue.FullPrice);
-            totalPartProfit += DoubleCal.TryParse(itemValue.CompanyProfit);
+            totalPartPirce += itemValue.FullPrice.Value;
+            totalPartProfit += itemValue.CompanyProfit.Value;
         }
 
-        TotalPartPirce = totalPartPirce.ToString();
-        TotalPartProfit = totalPartProfit.ToString();
+        TotalPartPirce.Value = totalPartPirce;
+        TotalPartProfit.Value = totalPartProfit;
 
         BottomPart.CalculateEverything(totalPartPirce);
-        FinalResults.CalculateResults(TotalHoursPay, BottomPart.MaterialCostsIncrease, projectValues);
+        FinalResults.CalculateResults(TotalHoursPay.Value, BottomPart.MaterialCostsIncrease.Value, projectValues);
 
-        Normal.CalculateHoursContributions();
-        Student.CalculateHoursContributions();
-        AdultStudent.CalculateHoursContributions();
+        //Normal.CalculateHoursContributions();
+        //Student.CalculateHoursContributions();
+        //AdultStudent.CalculateHoursContributions();
         BottomPart.CalculateContributions();
 
         double totalPartPercentage = 0;
@@ -178,9 +115,9 @@ public partial class ElementPage : Page
 
             itemValue.CalculateProcentageOfOffer();
 
-            totalPartPercentage += DoubleCal.TryParse(itemValue.PercentageOfOffers);
+            totalPartPercentage += itemValue.PercentageOfOffers.Value;
         }
 
-        TotalPartPercentage = totalPartPercentage.ToString();
+        TotalPartPercentage.Value = totalPartPercentage;
     }
 }
