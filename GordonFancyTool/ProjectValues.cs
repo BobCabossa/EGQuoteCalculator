@@ -4,13 +4,13 @@ public class ProjectValues
 {
     public double VAT = 25;
 
-    public double fasteningPercentage { get; set; } = 1;
-    public double miscalculationPercentage { get; set; } = 10;
-    public double materialCostsIncreasePercentage { get; set; } = 3.6;
-    public double vehicleOnConstructionSitePrice { get; set; } = 50;
-    public double environmentalTaxPrice { get; set; } = 52;
-    public double fixedEnergySurchargesPrice { get; set; } = 85;
-    public double fixedPackagingContributionsPrice { get; set; } = 13;
+    public double FasteningPercentage { get; set; } = 1;
+    public double MiscalculationPercentage { get; set; } = 10;
+    public double MaterialCostsIncreasePercentage { get; set; } = 3.6;
+    public double VehicleOnConstructionSitePrice { get; set; } = 50;
+    public double EnvironmentalTaxPrice { get; set; } = 52;
+    public double FixedEnergySurchargesPrice { get; set; } = 85;
+    public double FixedPackagingContributionsPrice { get; set; } = 13;
 
     public double NormalHourlyRate { get; set; } = 225;
     public double StudentHourlyRate { get; set; } = 136;

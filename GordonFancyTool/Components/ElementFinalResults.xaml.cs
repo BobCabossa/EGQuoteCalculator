@@ -9,10 +9,10 @@ public partial class ElementFinalResults : UserControl
 
     public void CalculateResults(double totalHoursPay, double materialCostsIncrease, ProjectValues projectValues)
     {
-        double vehicleOnConstructionSitePrice = projectValues.vehicleOnConstructionSitePrice;
-        double environmentalTaxPrice = projectValues.environmentalTaxPrice;
-        double fixedEnergySurchargesPrice = projectValues.fixedEnergySurchargesPrice;
-        double fixedPackagingContributionsPrice = projectValues.fixedPackagingContributionsPrice;
+        double vehicleOnConstructionSitePrice = projectValues.VehicleOnConstructionSitePrice;
+        double environmentalTaxPrice = projectValues.EnvironmentalTaxPrice;
+        double fixedEnergySurchargesPrice = projectValues.FixedEnergySurchargesPrice;
+        double fixedPackagingContributionsPrice = projectValues.FixedPackagingContributionsPrice;
 
         double totalFixedPrices = vehicleOnConstructionSitePrice + environmentalTaxPrice + fixedEnergySurchargesPrice + fixedPackagingContributionsPrice;
 
