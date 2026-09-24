@@ -12,6 +12,6 @@ public partial class ProjectPage : Page
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        NavigationService.Navigate(new ElementPage());
+        NavigationService.Navigate(new ElementPage(new()));
     }
 }

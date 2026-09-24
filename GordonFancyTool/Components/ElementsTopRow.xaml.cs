@@ -147,10 +147,10 @@ public partial class ElementsTopRow : UserControl
         CompanyProfit.Text = companyProfit.ToString();
         Sale.Text = sale.ToString();
         HoursChanged?.Invoke(sender, newValue);
-        CalculateHoursPercentage();
+        CalculateHoursContributions();
     }
     
-    public void CalculateHoursPercentage()
+    public void CalculateHoursContributions()
     {
         _ = double.TryParse(Sale.Text, out double hoursPrice);
     }

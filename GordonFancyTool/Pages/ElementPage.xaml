@@ -193,9 +193,14 @@
                     </Grid>
                 </Grid>
 
-                <!--Bottom part-->
+                <!-- Bottom part -->
                 <Border>
                     <local:ElementBottom x:Name="BottomPart" />
+                </Border>
+
+                <!-- Final numbers -->
+                <Border>
+                    <local:ElementFinalResults x:Name="FinalResults" />
                 </Border>
             </StackPanel>
         </ScrollViewer>

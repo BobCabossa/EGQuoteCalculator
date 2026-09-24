@@ -2,8 +2,13 @@
 
 public partial class ElementPage : Page
 {
+    private ProjectValues projectValues;
     public ObservableCollection<ExcelData> ExcelDatas { get; } = new()
     {
+        new ExcelData("Hej", "10", "10000"),
+        new ExcelData("Farvel", "20", "10001"),
+        new ExcelData("Goodbye farvel hej", "40", "10002"),
+        new ExcelData("Hej med dig", "30", "10003"),
         new ExcelData("Hej", "10", "101"),
         new ExcelData("Farvel", "20", "102"),
         new ExcelData("Hej med dig", "30", "103"),
@@ -25,15 +30,20 @@ public partial class ElementPage : Page
         new ExcelData("Hej", "10", "101"),
         new ExcelData("Farvel", "20", "102"),
         new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Goodbye farvel hej", "40", "104")
     };
 
-    public ElementPage()
+    public ElementPage(ProjectValues projectValues)
     {
+        this.projectValues = projectValues;
         InitializeComponent();
+        FinalResults.VATValue.Text = projectValues.VAT.ToString();
+
+        Random random = new();
+        foreach (var item in ExcelDatas.Skip(4))
+        {
+            item.PurchasePrice = random.Next(1, 5000).ToString();
+            item.EAN = random.Next(10000, 99999).ToString();
+        }
     }
 
     public static readonly DependencyProperty TotalHoursProperty =
@@ -118,6 +128,7 @@ public partial class ElementPage : Page
 
         TotalHoursPay = totalSale.ToString();
         TotalHours = hours.ToString();
+        SomeValuesChanged(sender, newValue);
     }
 
     public void AddItem(object? sender, ExcelData excelData)
@@ -151,10 +162,13 @@ public partial class ElementPage : Page
         TotalPartPirce = totalPartPirce.ToString();
         TotalPartProfit = totalPartProfit.ToString();
 
-        Normal.CalculateHoursPercentage();
-        Student.CalculateHoursPercentage();
-        AdultStudent.CalculateHoursPercentage();
         BottomPart.CalculateEverything(totalPartPirce);
+        FinalResults.CalculateResults(TotalHoursPay, BottomPart.MaterialCostsIncrease, projectValues);
+
+        Normal.CalculateHoursContributions();
+        Student.CalculateHoursContributions();
+        AdultStudent.CalculateHoursContributions();
+        BottomPart.CalculateContributions();
 
         double totalPartPercentage = 0;
         foreach (var item in Items.Children)

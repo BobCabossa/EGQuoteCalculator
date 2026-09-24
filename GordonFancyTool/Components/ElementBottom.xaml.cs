@@ -221,4 +221,9 @@ public partial class ElementBottom : UserControl
         FixedEnergySurchargesConstituting = fixedEnergySurchargesPrice.ToString();
         FixedPackagingContributionsConstituting = fixedPackagingContributionsPrice.ToString();
     }
+
+    public void CalculateContributions()
+    {
+
+    }
 }
