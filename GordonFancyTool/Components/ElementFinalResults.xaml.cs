@@ -23,6 +23,11 @@ public partial class ElementFinalResults : UserControl
 
         double fullPrice = totalPriceExclusiveVAT + VAT;
 
+        double staffingContributionsPercentage = DoubleCal.Round(totalHoursPay / totalPriceExclusiveVAT * 100);
+        double materialContributionsPercentage = DoubleCal.Round(materialCostsIncrease / totalPriceExclusiveVAT * 100);
+        double fixedPricesContributionsPercentage = DoubleCal.Round(totalFixedPrices / totalPriceExclusiveVAT * 100);
+        double totalPercentage = (int)(staffingContributionsPercentage + materialContributionsPercentage + fixedPricesContributionsPercentage);
+
         TotalPriceForStaffing.Value = totalHoursPay;
         TotalPriceForMaterial.Value = materialCostsIncrease;
         TotalPriceForFixedPrices.Value = totalFixedPrices;
@@ -30,5 +35,10 @@ public partial class ElementFinalResults : UserControl
         TotalPriceExclusiveVAT.Value = totalPriceExclusiveVAT;
         FullPrice.Value = fullPrice;
         this.VAT.Value = VAT;
+
+        StaffingContributionsPercentage.Value = staffingContributionsPercentage;
+        MaterialContributionsPercentage.Value = materialContributionsPercentage;
+        FixedPricesContributionsPercentage.Value = fixedPricesContributionsPercentage;
+        TotalPercentage.Value = totalPercentage;
     }
 }

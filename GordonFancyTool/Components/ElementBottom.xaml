@@ -59,8 +59,8 @@
         <local:CustomTextBlock Grid.Row="5" Grid.Column="3" x:Name="FixedEnergySurcharges" Type="Currency" />
         <local:CustomTextBlock Grid.Row="6" Grid.Column="3" x:Name="FixedPackagingContributions" Type="Currency" />
 
-        <local:CustomTextBlock Grid.Row="0" Grid.Column="4"  Type="Percentage" />
-        <local:CustomTextBlock Grid.Row="1" Grid.Column="4"  Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="4" x:Name="FasteningConstitutngPercentage" Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="1" Grid.Column="4" x:Name="MiscalculationConstitutngPercentage" Type="Percentage" />
 
         <local:CustomTextBlock Grid.Row="0" Grid.Column="5" x:Name="FasteningConstituting" Type="Currency" />
         <local:CustomTextBlock Grid.Row="1" Grid.Column="5" x:Name="MiscalculationConstituting" Type="Currency" />

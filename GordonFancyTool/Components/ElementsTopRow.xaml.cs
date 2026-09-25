@@ -83,6 +83,7 @@ public partial class ElementsTopRow : UserControl
     }
 
     public event EventHandler<string>? HoursChanged;
+    public Func<double>? GetFullPrice { get; set; }
 
     private static void OnProjectValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -95,6 +96,11 @@ public partial class ElementsTopRow : UserControl
     }
 
     public void HourChanged(object sender, string newValue)
+    {
+        HoursChanged?.Invoke(sender, newValue);
+    }
+
+    public void CalculateHours()
     {
         double? hours = Hours.Value;
         if (!hours.HasValue)
@@ -134,12 +140,13 @@ public partial class ElementsTopRow : UserControl
         AmountForRiskRate.Value = amountForRiskRate;
         CompanyProfit.Value = companyProfit;
         Sale.Value = sale;
-        HoursChanged?.Invoke(sender, newValue);
-        CalculateHoursContributions();
     }
 
     public void CalculateHoursContributions()
     {
+        double fullPrice = GetFullPrice?.Invoke() ?? 0;
 
+        double percentageOfOffers = DoubleCal.Round(Sale.Value / fullPrice * 100);
+        PercentageOfOffers.Value = percentageOfOffers;
     }
 }

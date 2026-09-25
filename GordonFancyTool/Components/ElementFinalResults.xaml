@@ -37,6 +37,11 @@
         <local:CustomTextBlock Grid.Row="2" Grid.Column="3" x:Name="TotalPriceForFixedPrices" Type="Currency" />
         <local:CustomTextBlock Grid.Row="3" Grid.Column="3" x:Name="TotalPriceExclusiveVAT" Type="Currency" />
 
+        <local:CustomTextBlock Grid.Row="0" Grid.Column="4" x:Name="StaffingContributionsPercentage" Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="1" Grid.Column="4" x:Name="MaterialContributionsPercentage" Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="2" Grid.Column="4" x:Name="FixedPricesContributionsPercentage" Type="Percentage" />
+        <local:CustomTextBlock Grid.Row="3" Grid.Column="4" x:Name="TotalPercentage" Type="Percentage" />
+
         <TextBlock Grid.Row="4" Grid.Column="1">Moms</TextBlock>
         <TextBlock x:Name="VATValue" Grid.Row="4" Grid.Column="2" />
         <local:CustomTextBlock Grid.Row="4" Grid.Column="3" x:Name="VAT" Type="Currency" />

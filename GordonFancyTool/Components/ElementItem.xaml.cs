@@ -2,25 +2,26 @@
 
 public partial class ElementItem : UserControl
 {
-    private readonly ExcelData excelData;
-
     public event EventHandler<string> ValuesChanged;
+    public Func<double> GetFullPrice;
 
-    public ElementItem(ExcelData excelData, EventHandler<string> ValuesChanged, int number)
+    public ElementItem(ExcelData excelData, int number, EventHandler<string> ValuesChanged, Func<double> getFullPrice)
     {
         InitializeComponent();
 
         Product.Text = excelData.ProductName;
         Price.Text = excelData.PurchasePrice;
         EAN.Text = excelData.EAN;
-        this.excelData = excelData;
-        this.ValuesChanged += ValuesChanged;
+        
         Index.Text = number.ToString();
+
+        this.ValuesChanged += ValuesChanged;
+        GetFullPrice = getFullPrice;
     }
 
     public void PriceUpdated(object sender, string e)
     {
-        _ = double.TryParse(excelData.PurchasePrice, out double pricePerUnit);
+        _ = double.TryParse(Price.Text, out double pricePerUnit);
         double? units = Units.Value;
         double? length = Length.Value;
 
@@ -40,6 +41,9 @@ public partial class ElementItem : UserControl
 
     public void CalculateProcentageOfOffer()
     {
-        PercentageOfOffers.Value = 0;
+        double totalFullPrice = GetFullPrice.Invoke();
+        double percentageOfOffers = DoubleCal.Round(FullPrice.Value / totalFullPrice * 100);
+        
+        PercentageOfOffers.Value = percentageOfOffers;
     }
 }

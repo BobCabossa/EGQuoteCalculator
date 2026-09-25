@@ -38,6 +38,10 @@ public partial class ElementPage : Page
         InitializeComponent();
         FinalResults.VATValue.Text = projectValues.VAT.ToString();
 
+        Normal.GetFullPrice = GetTotalPrice;
+        Student.GetFullPrice = GetTotalPrice;
+        AdultStudent.GetFullPrice = GetTotalPrice;
+
         Random random = new();
         foreach (var item in ExcelDatas.Skip(4))
         {
@@ -45,6 +49,8 @@ public partial class ElementPage : Page
             item.EAN = random.Next(10000, 99999).ToString();
         }
     }
+
+    public double GetTotalPrice() => FinalResults.TotalPriceExclusiveVAT.Value;
 
     private void PageLoaded(object sender, RoutedEventArgs e)
     {
@@ -61,6 +67,10 @@ public partial class ElementPage : Page
 
     public void HoursChanged(object sender, string newValue)
     {
+        Normal.CalculateHours();
+        Student.CalculateHours();
+        AdultStudent.CalculateHours();
+
         // Total hours their workers need to complete the task.
         double normal = Normal.Hours.Value ?? 0;
         double student = Student.Hours.Value ?? 0;
@@ -84,7 +94,7 @@ public partial class ElementPage : Page
         Items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         int newIndex = Items.RowDefinitions.Count;
 
-        ElementItem newItem = new(excelData, SomeValuesChanged, newIndex);
+        ElementItem newItem = new(excelData, newIndex, SomeValuesChanged, GetTotalPrice);
 
         Grid.SetRow(newItem, newIndex - 1);
 
@@ -113,7 +123,6 @@ public partial class ElementPage : Page
         Normal.CalculateHoursContributions();
         Student.CalculateHoursContributions();
         AdultStudent.CalculateHoursContributions();
-        BottomPart.CalculateContributions();
 
         double totalPartPercentage = 0;
         foreach (var item in Items.Children)
