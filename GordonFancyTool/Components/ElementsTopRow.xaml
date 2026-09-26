@@ -27,7 +27,8 @@
 
         <TextBlock Grid.Column="0" Text="{Binding Title, ElementName=MyControl}"  />
         <TextBlock Grid.Column="1" Text="{Binding Staffing, ElementName=MyControl}"  />
-        <TextBlock Grid.Column="2" Text="{Binding HourlyRate, ElementName=MyControl}" />
+
+        <local:CustomTextBlock Grid.Column="2" Type="Currency" Value="{Binding HourlyRate, ElementName=MyControl}" />
         <local:DoubleTextBox Grid.Column="3" ValueChanged="HourChanged" x:Name="Hours" />
 
         <local:CustomTextBlock 

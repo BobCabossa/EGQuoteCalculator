@@ -23,4 +23,6 @@ public class ProjectValues
     public double SocialCost { get; set; } = 58;
     public double SalaryIncrease { get; set; } = 3;
     public double RiskFactor { get; set; } = 10;
+
+    public double AdditionalStoppageTimePercentage { get; set; } = 10;
 }
