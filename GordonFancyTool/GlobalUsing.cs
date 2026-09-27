@@ -19,3 +19,4 @@ global using System.Windows.Threading;
 global using GordonFancyTool.Pages;
 global using GordonFancyTool.Components;
 global using GordonFancyTool.Excel;
+global using GordonFancyTool.Popups;

@@ -8,27 +8,6 @@ public partial class ProjectPage : Page
     public ProjectPage()
     {
         elementValues = FileController.LoadElements();
-        elementValues.Add(new()
-        {
-            Id = 0,
-            Title = "Something i want to do?",
-            NormalHours = 1,
-            StudentHours = 2,
-            AdultStudentHours = 3,
-            ElementItemValues = [
-                new(1, new("Flit", "12", "ean123"))
-                {
-                    Length = 1,
-                    Units = 1,
-                },
-                new(2, new("MC", "888", "ean31123"))
-                {
-                    Length = 11,
-                    Units= 10,
-                }
-            ]
-        });
-        FileController.SaveElements(elementValues);
         InitializeComponent();
     }
 
@@ -45,13 +24,69 @@ public partial class ProjectPage : Page
         InitializeComponent();
     }
 
+    private void PageLoaded(object sender, RoutedEventArgs e)
+    {
+        foreach (var item in elementValues)
+        {
+            CreateElementItem(item);
+        }
+    }
+
     private void AddExcelData(object sender, RoutedEventArgs e)
     {
         ExcelExtractor.OverrideExcelData();
     }
 
-    private void OpenElementView(object sender, RoutedEventArgs e)
+    private void OpenElementView(object? sender, string newValue)
     {
-        NavigationService.Navigate(new ElementPage(_projectValues, elementValues.Last()));
+        if (sender is not ProjectItem item) return;
+
+        NavigationService.Navigate(new ElementPage(_projectValues, item.ElementValue));
+    }
+
+    private void AddElement(object sender, RoutedEventArgs e)
+    {
+        string? newTitle = GetNewElementTitle();
+        if (newTitle == null) return;
+
+        ElementValue elementValue = new()
+        {
+            Id = items.RowDefinitions.Count,
+            Title = newTitle,
+        };
+
+        CreateElementItem(elementValue);
+        elementValues.Add(elementValue);
+        FileController.SaveElements(elementValues);
+    }
+
+    private void CreateElementItem(ElementValue newElement)
+    {
+        items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        int newIndex = items.RowDefinitions.Count - 1;
+
+        ProjectItem newItem = new(newElement, OpenElementView);
+
+        Grid.SetRow(newItem, newIndex - 1);
+        Grid.SetRow(AddElementButton, newIndex);
+
+        items.Children.Add(newItem);
+        
+        FileController.SaveElements(elementValues);
+    }
+
+    private string? GetNewElementTitle()
+    {
+        var dialog = new NewElementPopup()
+        {
+            Owner = Window.GetWindow(this)
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            return dialog.Result;
+        }
+
+        return null;
     }
 }
