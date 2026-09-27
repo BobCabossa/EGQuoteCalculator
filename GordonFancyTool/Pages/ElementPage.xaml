@@ -22,7 +22,7 @@
 
         <Grid Grid.ColumnSpan="2" Background="LightGray" />
 
-        <Button Click="BackToProject" Margin="3">Tilbage</Button>
+        <Button Click="BackToProject" Margin="3">Tilbage/Gem</Button>
 
         <!-- Element name -->
         <Grid Grid.Column="1" Margin="3">

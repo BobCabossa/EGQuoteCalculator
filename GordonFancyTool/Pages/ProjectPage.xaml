@@ -5,10 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GordonFancyTool.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="ProjectPage">
 
     <Grid>
-        <Button Click="Button_Click">click</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Button Click="AddExcelData">Add Excel data</Button>
+        <Button Click="OpenElementView" Grid.Row="1" Grid.Column="1">click me</Button>
     </Grid>
 </Page>

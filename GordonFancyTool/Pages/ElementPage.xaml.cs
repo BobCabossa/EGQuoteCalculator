@@ -7,37 +7,11 @@ public partial class ElementPage : Page
     private readonly ElementValue _elementValues;
 
     public ProjectValues projectValues { get; set; }
-    public ObservableCollection<ExcelData> ExcelDatas { get; } = new()
-    {
-        new ExcelData("Hej", "10", "10000"),
-        new ExcelData("Farvel", "20", "10001"),
-        new ExcelData("Goodbye farvel hej", "40", "10002"),
-        new ExcelData("Hej med dig", "30", "10003"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-        new ExcelData("Hej", "10", "101"),
-        new ExcelData("Farvel", "20", "102"),
-        new ExcelData("Hej med dig", "30", "103"),
-    };
+    public ObservableCollection<ExcelData> ExcelDatas { get; }
 
     public ElementPage(ProjectValues projectValues, ElementValue elementValue)
     {
+        ExcelDatas = FileController.LoadExcelData();
         _elementValues = elementValue;
         this.projectValues = projectValues;
         InitializeComponent();
@@ -86,8 +60,7 @@ public partial class ElementPage : Page
 
     public void BackToProject(object sender, RoutedEventArgs e)
     {
-        ProjectPage projectPage = new();
-
+        ProjectPage projectPage = new(_elementValues);
 
         NavigationService.Navigate(projectPage);
     }

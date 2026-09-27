@@ -1,30 +1,41 @@
 ﻿namespace GordonFancyTool.Excel;
 
-public class ExcelExtractor
+public static class ExcelExtractor
 {
-    public static string? ChooseFile()
+    public static void OverrideExcelData()
+    {
+        string? file = ChooseFile();
+        if (string.IsNullOrEmpty(file))
+            return;
+
+        List<ExcelData>? loadedData = LoadData(file);
+
+        if (loadedData == null) return;
+
+        FileController.SaveExcelData(loadedData);
+        MessageBox.Show("Excel data blev succesfuld indskreven.");
+    }
+
+    private static string? ChooseFile()
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Choose Excel file",
+            Title = "Vælg Excel filen",
             Filter = "Excel files (*.xlsx;*.xltx)|*.xlsx;*.xltx|All files (*.*)|*.*",
             Multiselect = false
         };
 
         if (dialog.ShowDialog() == true)
         {
-            // Do something with the file
-            MessageBox.Show(dialog.FileName);
-
             return dialog.FileName;
         }
 
         return null;
     }
 
-    public static ExcelData[]? LoadData(string filePath)
+    private static List<ExcelData>? LoadData(string filePath)
     {
-        string excelFile = string.IsNullOrEmpty(filePath) ? "E:\\Downloads\\be0ea9e7f9df4669953e073c636648f4.xlsx" : filePath;
+        string excelFile = filePath;
 
         if (!File.Exists(excelFile))
         {
@@ -57,7 +68,7 @@ public class ExcelExtractor
             ));
         }
 
-        return data.ToArray();
+        return data;
     }
 
     private static int GetCellId(IXLRow headerRow, string columnName)

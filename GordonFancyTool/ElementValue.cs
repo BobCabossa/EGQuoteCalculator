@@ -2,6 +2,7 @@
 
 public class ElementValue
 {
+    public int Id { get; set; } = -1;
     public string Title { get; set; } = string.Empty;
     public double NormalHours { get; set; }
     public double StudentHours { get; set; }

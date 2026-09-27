@@ -2,14 +2,15 @@
 
 public partial class ProjectPage : Page
 {
-    private ProjectValues _projectValues = new();
-    private List<ElementValue> elementValues = [];
+    private readonly ProjectValues _projectValues = new();
+    private readonly List<ElementValue> elementValues;
 
     public ProjectPage()
     {
-        InitializeComponent();
+        elementValues = FileController.LoadElements();
         elementValues.Add(new()
         {
+            Id = 0,
             Title = "Something i want to do?",
             NormalHours = 1,
             StudentHours = 2,
@@ -27,9 +28,29 @@ public partial class ProjectPage : Page
                 }
             ]
         });
+        FileController.SaveElements(elementValues);
+        InitializeComponent();
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    public ProjectPage(ElementValue updatedValues)
+    {
+        elementValues = FileController.LoadElements();
+        int index = elementValues.FindIndex(e => e.Id == updatedValues.Id);
+        if (index > -1)
+        {
+            elementValues[index] = updatedValues;
+            FileController.SaveElements(elementValues);
+        }
+
+        InitializeComponent();
+    }
+
+    private void AddExcelData(object sender, RoutedEventArgs e)
+    {
+        ExcelExtractor.OverrideExcelData();
+    }
+
+    private void OpenElementView(object sender, RoutedEventArgs e)
     {
         NavigationService.Navigate(new ElementPage(_projectValues, elementValues.Last()));
     }
