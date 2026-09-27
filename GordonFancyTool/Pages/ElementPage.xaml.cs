@@ -2,6 +2,10 @@
 
 public partial class ElementPage : Page
 {
+    private const string stringValue = "Don'tContinue";
+
+    private readonly ElementValue _elementValues;
+
     public ProjectValues projectValues { get; set; }
     public ObservableCollection<ExcelData> ExcelDatas { get; } = new()
     {
@@ -32,16 +36,26 @@ public partial class ElementPage : Page
         new ExcelData("Hej med dig", "30", "103"),
     };
 
-    public ElementPage(ProjectValues projectValues)
+    public ElementPage(ProjectValues projectValues, ElementValue elementValue)
     {
+        _elementValues = elementValue;
         this.projectValues = projectValues;
         InitializeComponent();
+        ElementName.Text = elementValue.Title;
         FinalResults.VATValue.Text = projectValues.VAT.ToString();
         HourlyPayStoppageTimePercentage.Value = projectValues.AdditionalStoppageTimePercentage;
 
         Normal.GetFullPrice = GetTotalPrice;
         Student.GetFullPrice = GetTotalPrice;
         AdultStudent.GetFullPrice = GetTotalPrice;
+
+        foreach (var item in elementValue.ElementItemValues)
+        {
+            ElementItem newItem = CreateItem(item, item.ExcelData);
+            newItem.Units.Value = item.Units;
+            newItem.Length.Value = item.Length;
+            newItem.PriceUpdated(this, "");
+        }
 
         Random random = new();
         foreach (var item in ExcelDatas.Skip(4))
@@ -57,13 +71,25 @@ public partial class ElementPage : Page
     {
         Dispatcher.BeginInvoke(() =>
         {
+            Normal.Hours.Value = _elementValues.NormalHours;
+            Student.Hours.Value = _elementValues.StudentHours;
+            AdultStudent.Hours.Value = _elementValues.AdultStudentHours;
+
             HoursChanged(sender, "");
+            foreach (var item in Items.Children)
+            {
+                ItemValueChanged(item, stringValue);
+            }
+
         }, DispatcherPriority.Render);
     }
 
     public void BackToProject(object sender, RoutedEventArgs e)
     {
-        NavigationService.Navigate(new ProjectPage());
+        ProjectPage projectPage = new();
+
+
+        NavigationService.Navigate(projectPage);
     }
 
     public void HoursChanged(object sender, string newValue)
@@ -96,14 +122,39 @@ public partial class ElementPage : Page
 
     public void AddItem(object? sender, ExcelData excelData)
     {
+        ElementItem item = CreateItem(null, excelData);
+        _elementValues.ElementItemValues.Add(item.ElementItemValue);
+    }
+
+    private ElementItem CreateItem(ElementItemValue? itemValue, ExcelData excelData)
+    {
         Items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         int newIndex = Items.RowDefinitions.Count;
 
-        ElementItem newItem = new(excelData, newIndex, SomeValuesChanged, GetTotalPrice);
+        itemValue ??= new(newIndex, excelData);
+
+        ElementItem newItem = new(itemValue, ItemValueChanged, GetTotalPrice);
 
         Grid.SetRow(newItem, newIndex - 1);
 
         Items.Children.Add(newItem);
+
+        return newItem;
+    }
+
+    private void ItemValueChanged(object? sender, string newValue)
+    {
+        if (sender is ElementItem item)
+        {
+            ElementItemValue? itemValue = _elementValues.ElementItemValues.FirstOrDefault(i => i.Number == item.ElementItemValue.Number);
+            if (itemValue == null) return;
+
+            itemValue.Length = item.ElementItemValue.Length;
+            itemValue.Units = item.ElementItemValue.Units;
+        }
+
+        if (newValue != stringValue)
+            SomeValuesChanged(sender, newValue);
     }
 
     private void SomeValuesChanged(object? sender, string newValue)

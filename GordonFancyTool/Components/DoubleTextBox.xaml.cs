@@ -4,7 +4,10 @@ namespace GordonFancyTool.Components;
 
 public partial class DoubleTextBox : UserControl
 {
-    public double? Value { get
+    public double? Value 
+    { 
+        set => textBox.Text = value.ToString();
+        get
         {
             if (double.TryParse(textBox.Text, out var value)) {
                 return value;

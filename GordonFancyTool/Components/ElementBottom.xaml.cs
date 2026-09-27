@@ -51,18 +51,18 @@ public partial class ElementBottom : UserControl
         materialCostsIncreasePercentage /= 100;
 
         double fasteningPrice = DoubleCal.Round(totalPartPrice * fasteningPercentage);
-        double fasteningFullPrice = totalPartPrice + fasteningPrice;
+        double fasteningFullPrice = DoubleCal.Round(totalPartPrice + fasteningPrice);
 
         double miscalculationPrice = DoubleCal.Round(fasteningFullPrice * miscalculationPercentage);
-        double miscalculationFullPrice = fasteningFullPrice + miscalculationPrice;
+        double miscalculationFullPrice = DoubleCal.Round(fasteningFullPrice + miscalculationPrice);
 
         double materialCostsIncreasePrice = DoubleCal.Round(miscalculationFullPrice * materialCostsIncreasePercentage);
-        double materialCostsIncreaseFullPrice = miscalculationFullPrice + materialCostsIncreasePrice;
+        double materialCostsIncreaseFullPrice = DoubleCal.Round(miscalculationFullPrice + materialCostsIncreasePrice);
 
-        double vehicleOnConstructionSiteFullPrice = miscalculationFullPrice + vehicleOnConstructionSitePrice;
-        double environmentalTaxFullPrice = vehicleOnConstructionSiteFullPrice + environmentalTaxPrice;
-        double fixedEnergySurchargesFullPrice = environmentalTaxFullPrice + fixedEnergySurchargesPrice;
-        double fixedPackagingContributionsFullPrice = fixedEnergySurchargesFullPrice + fixedPackagingContributionsPrice;
+        double vehicleOnConstructionSiteFullPrice = DoubleCal.Round(miscalculationFullPrice + vehicleOnConstructionSitePrice);
+        double environmentalTaxFullPrice = DoubleCal.Round(vehicleOnConstructionSiteFullPrice + environmentalTaxPrice);
+        double fixedEnergySurchargesFullPrice = DoubleCal.Round(environmentalTaxFullPrice + fixedEnergySurchargesPrice);
+        double fixedPackagingContributionsFullPrice = DoubleCal.Round(fixedEnergySurchargesFullPrice + fixedPackagingContributionsPrice);
 
         double fasteningConstitutngPercentage = DoubleCal.Round(fasteningPrice / miscalculationFullPrice * 100);
         double miscalculationConstitutngPercentage = DoubleCal.Round(miscalculationPrice / miscalculationFullPrice * 100);

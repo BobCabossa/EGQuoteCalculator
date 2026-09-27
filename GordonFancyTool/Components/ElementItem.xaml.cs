@@ -2,18 +2,31 @@
 
 public partial class ElementItem : UserControl
 {
+    public static readonly DependencyProperty ElementItemValueProperty =
+    DependencyProperty.Register(
+        nameof(ElementItemValue),
+        typeof(ElementItemValue),
+        typeof(ElementItem));
+
+    public ElementItemValue ElementItemValue
+    {
+        set => SetValue(ElementItemValueProperty, value);
+        get => (ElementItemValue)GetValue(ElementItemValueProperty);
+    }
+
     public event EventHandler<string> ValuesChanged;
     public Func<double> GetFullPrice;
 
-    public ElementItem(ExcelData excelData, int number, EventHandler<string> ValuesChanged, Func<double> getFullPrice)
+    public ElementItem(ElementItemValue ElementItemValue, EventHandler<string> ValuesChanged, Func<double> getFullPrice)
     {
+        this.ElementItemValue = ElementItemValue;
         InitializeComponent();
 
-        Product.Text = excelData.ProductName;
-        Price.Text = excelData.PurchasePrice;
-        EAN.Text = excelData.EAN;
+        Product.Text = ElementItemValue.ExcelData.ProductName;
+        Price.Text = ElementItemValue.ExcelData.PurchasePrice;
+        EAN.Text = ElementItemValue.ExcelData.EAN;
         
-        Index.Text = number.ToString();
+        Index.Text = ElementItemValue.Number.ToString();
 
         this.ValuesChanged += ValuesChanged;
         GetFullPrice = getFullPrice;
@@ -22,8 +35,16 @@ public partial class ElementItem : UserControl
     public void PriceUpdated(object sender, string e)
     {
         _ = double.TryParse(Price.Text, out double pricePerUnit);
+        ElementItemValue ElementItemValue = this.ElementItemValue;
+
         double? units = Units.Value;
         double? length = Length.Value;
+
+        if (units != null) 
+            ElementItemValue.Units = units.Value;
+
+        else if (length != null)
+            ElementItemValue.Length = length.Value;
 
         if (units == null || length == null) return;
 
