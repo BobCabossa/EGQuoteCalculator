@@ -103,7 +103,7 @@
                             HourlyRate="{Binding ProjectValue.StudentHourlyRate, ElementName=MyControl}"
                             ProjectValue="{Binding ProjectValue, ElementName=MyControl}"
                             CompanyProfitPercentage="{Binding ProjectValue.StudentCompanyProfitPercentage, ElementName=MyControl}"
-                            Show="Show"
+                            Show="Visible"
                             HoursChanged="HoursChanged" />
 
                         <local:ElementsTopRow 

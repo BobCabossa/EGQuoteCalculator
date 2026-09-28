@@ -34,7 +34,7 @@ public partial class ElementsTopRow : UserControl
     public static readonly DependencyProperty ShowProperty =
        DependencyProperty.Register(
            nameof(Show),
-           typeof(string),
+           typeof(Visibility),
            typeof(ElementsTopRow));
 
     public static readonly DependencyProperty ProjectValueProperty =
@@ -70,10 +70,10 @@ public partial class ElementsTopRow : UserControl
         get => (double)GetValue(CompanyProfitPercentageProperty);
     }
 
-    public string Show
+    public Visibility Show
     {
         set => SetValue(ShowProperty, value);
-        get => (string)GetValue(ShowProperty);
+        get => (Visibility)GetValue(ShowProperty);
     }
 
     public ProjectValues ProjectValue
