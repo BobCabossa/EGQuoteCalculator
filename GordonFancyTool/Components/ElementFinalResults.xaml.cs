@@ -21,7 +21,7 @@ public partial class ElementFinalResults : UserControl
         double VATPercentage = projectValues.VAT / 100;
         double VAT = DoubleCal.Round(totalPriceExclusiveVAT * VATPercentage);
 
-        double fullPrice = totalPriceExclusiveVAT + VAT;
+        double fullPrice = DoubleCal.Round(totalPriceExclusiveVAT + VAT);
 
         double staffingContributionsPercentage = DoubleCal.Round(totalHoursPay / totalPriceExclusiveVAT * 100);
         double materialContributionsPercentage = DoubleCal.Round(materialCostsIncrease / totalPriceExclusiveVAT * 100);

@@ -1,23 +1,22 @@
 ﻿namespace GordonFancyTool.Popups;
 
-public partial class NewElementPopup : Window
+public partial class ChangeProjectValuesPopup : Window
 {
-    public NewElementPopup()
+    public ProjectValues ProjectValues { get; private set; }
+
+    public ChangeProjectValuesPopup(ProjectValues projectValues)
     {
+        ProjectValues = projectValues;
         InitializeComponent();
     }
 
-    public string? Result { get; private set; } = "";
-
     private void OkClick(object sender, RoutedEventArgs e)
     {
-        Result = InputTextBox.Text;
         DialogResult = true;
     }
 
     private void CancelClick(object sender, RoutedEventArgs e)
     {
-        Result = null;
         DialogResult = false;
     }
 }

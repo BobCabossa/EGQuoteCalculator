@@ -2,17 +2,19 @@
 
 public partial class ProjectPage : Page
 {
-    private readonly ProjectValues _projectValues = new();
+    private readonly ProjectValues _projectValues;
     private readonly List<ElementValue> elementValues;
 
     public ProjectPage()
     {
+        _projectValues = FileController.LoadProjectValues();
         elementValues = FileController.LoadElements();
         InitializeComponent();
     }
 
     public ProjectPage(ElementValue updatedValues)
     {
+        _projectValues = FileController.LoadProjectValues();
         elementValues = FileController.LoadElements();
         int index = elementValues.FindIndex(e => e.Id == updatedValues.Id);
         if (index > -1)
@@ -88,5 +90,18 @@ public partial class ProjectPage : Page
         }
 
         return null;
+    }
+
+    private void OpenEditProjectValues(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ChangeProjectValuesPopup(_projectValues)
+        {
+            Owner = Window.GetWindow(this)
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            FileController.SaveProjectSettings(dialog.ProjectValues);
+        }
     }
 }

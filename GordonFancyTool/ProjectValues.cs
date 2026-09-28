@@ -2,7 +2,7 @@
 
 public class ProjectValues
 {
-    public double VAT = 25;
+    public double VAT { get; set; } = 25;
 
     public double FasteningPercentage { get; set; } = 1;
     public double MiscalculationPercentage { get; set; } = 10;

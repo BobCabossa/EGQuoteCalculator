@@ -20,5 +20,8 @@
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="0.5" />
         </Style>
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="WhiteSmoke" />
+        </Style>
     </Application.Resources>
 </Application>

@@ -43,13 +43,13 @@
             Grid.Row="2"
             Grid.Column="1"
             Margin="4"
-            Click="Ok_Click"/>
+            Click="OkClick"/>
 
         <Button 
             Content="Cancel"
             Grid.Row="2"
             Grid.Column="3"
             Margin="4"
-            Click="Cancel_Click"/>
+            Click="CancelClick"/>
     </Grid>
 </Window>

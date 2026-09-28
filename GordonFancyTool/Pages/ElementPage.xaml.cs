@@ -1,4 +1,5 @@
 ﻿namespace GordonFancyTool.Pages;
+#pragma warning disable IDE0060 // Remove messages about unused parmenter. As they come from public api's, i can't remove them.
 
 public partial class ElementPage : Page
 {

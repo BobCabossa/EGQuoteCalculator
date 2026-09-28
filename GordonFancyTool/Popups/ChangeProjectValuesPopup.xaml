@@ -1,0 +1,67 @@
+﻿<Window x:Class="GordonFancyTool.Popups.ChangeProjectValuesPopup"
+        x:Name="MyControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GordonFancyTool.Components"
+        mc:Ignorable="d"
+        Height="450" Width="800"
+        Title="ChangeProjectValuesPopup"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" 
+        Topmost="True" 
+        ShowInTaskbar="False">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition MaxHeight="50" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
+            <StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                    <TextBlock FontSize="24">Løn</TextBlock>
+                    <local:ProjectValueChange Title="Elektriker-Faglært" Value="{Binding ProjectValues.NormalHourlyRate, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Elektriker-Lærling" Value="{Binding ProjectValues.StudentHourlyRate, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Elektriker-Lærling Voksen +25år" Value="{Binding ProjectValues.AdultStudentHourlyRate, ElementName=MyControl, Mode=TwoWay}" />
+                    <Grid Margin="4" />
+                    <local:ProjectValueChange Title="Faglært Fortjenst" Value="{Binding ProjectValues.NormalCompanyProfitPercentage, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Lærling Fortjenst" Value="{Binding ProjectValues.StudentCompanyProfitPercentage, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Voksen Lærling Fortjenst" Value="{Binding ProjectValues.AdultStudentCompanyProfitPercentage, ElementName=MyControl, Mode=TwoWay}" />
+                    <Grid Margin="4" />
+                    <local:ProjectValueChange Title="Social-omkost. Fast" Value="{Binding ProjectValues.SocialCost, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Løn-stigning fast" Value="{Binding ProjectValues.SalaryIncrease, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Risiko faktor fast" Value="{Binding ProjectValues.RiskFactor, ElementName=MyControl, Mode=TwoWay}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,5">
+                    <TextBlock FontSize="24">Andet</TextBlock>
+                    <local:ProjectValueChange Title="Befæstigelse" Value="{Binding ProjectValues.FasteningPercentage, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Materiale svind samt fejlberegning" Value="{Binding ProjectValues.MiscalculationPercentage, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Materiale prisstigning" Value="{Binding ProjectValues.MaterialCostsIncreasePercentage, ElementName=MyControl, Mode=TwoWay}" />
+                    <Grid Margin="4" />
+                    <local:ProjectValueChange Title="Fast bil på byggeplads/stedet" Value="{Binding ProjectValues.VehicleOnConstructionSitePrice, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Bortskaffelse af affald" Value="{Binding ProjectValues.EnvironmentalTaxPrice, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Faste energi tillæg" Value="{Binding ProjectValues.FixedEnergySurchargesPrice, ElementName=MyControl, Mode=TwoWay}" />
+                    <local:ProjectValueChange Title="Faste emballagebidrag" Value="{Binding ProjectValues.FixedPackagingContributionsPrice, ElementName=MyControl, Mode=TwoWay}" />
+                </StackPanel>
+
+                <local:ProjectValueChange Title="Moms" Value="{Binding ProjectValues.VAT, ElementName=MyControl, Mode=TwoWay}" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
+            <Button Content="OK"
+                    Width="75"
+                    Margin="2"
+                    Click="OkClick"/>
+
+            <Button Content="Cancel"
+                    Width="75"
+                    Margin="2"
+                    Click="CancelClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

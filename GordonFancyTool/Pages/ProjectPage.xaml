@@ -16,12 +16,14 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Button Click="AddExcelData">Add Excel data</Button>
-
-        <Grid x:Name="items" Grid.Row="1" Grid.Column="1">
+        <Button Click="AddExcelData" Grid.Row="0" Margin="4">Add Excel data</Button>
+        <Button Click="OpenEditProjectValues" Grid.Row="1" Margin="4">Redigere project data</Button>
+        
+        <Grid x:Name="items" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
