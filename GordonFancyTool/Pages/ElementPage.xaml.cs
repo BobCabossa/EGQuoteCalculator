@@ -7,14 +7,14 @@ public partial class ElementPage : Page
 
     private readonly ElementValue _elementValues;
 
-    public ProjectValues projectValues { get; set; }
+    public ProjectValues ProjectValue { get; set; }
     public ObservableCollection<ExcelData> ExcelDatas { get; }
 
     public ElementPage(ProjectValues projectValues, ElementValue elementValue)
     {
         ExcelDatas = FileController.LoadExcelData();
         _elementValues = elementValue;
-        this.projectValues = projectValues;
+        ProjectValue = projectValues;
         InitializeComponent();
         ElementName.Text = elementValue.Title;
         FinalResults.VATValue.Text = projectValues.VAT.ToString();
@@ -31,7 +31,6 @@ public partial class ElementPage : Page
             newItem.Length.Value = item.Length;
             newItem.PriceUpdated(this, "");
         }
-
     }
 
     public double GetTotalPrice() => FinalResults.TotalPriceExclusiveVAT.Value;
@@ -40,6 +39,7 @@ public partial class ElementPage : Page
     {
         Dispatcher.BeginInvoke(() =>
         {
+            Window.GetWindow(this).Title = "Element: " + _elementValues.Title;
             Normal.Hours.Value = _elementValues.NormalHours;
             Student.Hours.Value = _elementValues.StudentHours;
             AdultStudent.Hours.Value = _elementValues.AdultStudentHours;
@@ -130,7 +130,7 @@ public partial class ElementPage : Page
         double totalPartPirce = CalculateTotalPartPrice();
 
         BottomPart.CalculateEverything(totalPartPirce);
-        FinalResults.CalculateResults(TotalHoursPay.Value, BottomPart.MaterialCostsIncrease.Value, projectValues);
+        FinalResults.CalculateResults(TotalHoursPay.Value, BottomPart.MaterialCostsIncrease.Value, ProjectValue);
 
         Normal.CalculateHoursContributions();
         Student.CalculateHoursContributions();
@@ -155,8 +155,8 @@ public partial class ElementPage : Page
             totalPartProfit += itemValue.CompanyProfit.Value;
         }
 
-        TotalPartPirce.Value = totalPartPirce;
-        TotalPartProfit.Value = totalPartProfit;
+        TotalPartPirce.Value = DoubleCal.Round(totalPartPirce);
+        TotalPartProfit.Value = DoubleCal.Round(totalPartProfit);
 
         return totalPartPirce;
     }
@@ -174,7 +174,7 @@ public partial class ElementPage : Page
             totalPartPercentage += itemValue.PercentageOfOffers.Value;
         }
 
-        TotalPartPercentage.Value = totalPartPercentage;
+        TotalPartPercentage.Value = DoubleCal.Round(totalPartPercentage);
     }
 
     private void CalculateStoppageTime()

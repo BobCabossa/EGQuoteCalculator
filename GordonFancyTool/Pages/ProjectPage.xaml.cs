@@ -30,6 +30,7 @@ public partial class ProjectPage : Page
     {
         foreach (var item in elementValues)
         {
+            Window.GetWindow(this).Title = "Projekter";
             CreateElementItem(item);
         }
     }

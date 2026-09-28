@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Background="Red" FontSize="30" VerticalAlignment="Center" Grid.Column="0">Project:</TextBlock>
+            <TextBlock FontSize="30" VerticalAlignment="Center" Grid.Column="0">Project:</TextBlock>
             <TextBlock x:Name="ElementName" FontSize="30" VerticalAlignment="Center" Grid.Column="1">None</TextBlock>
         </Grid>
 
@@ -87,9 +87,9 @@
                             Grid.ColumnSpan="14" 
                             Title="B1.1"
                             Staffing="Elektriker-Faglært"
-                            HourlyRate="{Binding projectValues.NormalHourlyRate, ElementName=MyControl}"
-                            ProjectValue="{Binding projectValues, ElementName=MyControl}"
-                            CompanyProfitPercentage="{Binding projectValues.NormalCompanyProfitPercentage, ElementName=MyControl}"
+                            HourlyRate="{Binding ProjectValue.NormalHourlyRate, ElementName=MyControl}"
+                            ProjectValue="{Binding ProjectValue, ElementName=MyControl}"
+                            CompanyProfitPercentage="{Binding ProjectValue.NormalCompanyProfitPercentage, ElementName=MyControl}"
                             Show="Hidden"
                             HoursChanged="HoursChanged" />
 
@@ -100,9 +100,9 @@
                             Grid.ColumnSpan="14" 
                             Title="B2.1"
                             Staffing="Elektriker-Lærling"
-                            HourlyRate="{Binding projectValues.StudentHourlyRate, ElementName=MyControl}"
-                            ProjectValue="{Binding projectValues, ElementName=MyControl}"
-                            CompanyProfitPercentage="{Binding projectValues.StudentCompanyProfitPercentage, ElementName=MyControl}"
+                            HourlyRate="{Binding ProjectValue.StudentHourlyRate, ElementName=MyControl}"
+                            ProjectValue="{Binding ProjectValue, ElementName=MyControl}"
+                            CompanyProfitPercentage="{Binding ProjectValue.StudentCompanyProfitPercentage, ElementName=MyControl}"
                             Show="Show"
                             HoursChanged="HoursChanged" />
 
@@ -113,9 +113,9 @@
                             Grid.ColumnSpan="14" 
                             Title="B3.1"
                             Staffing="Elektriker-Lærling Voksen +25år"
-                            HourlyRate="{Binding projectValues.AdultStudentHourlyRate, ElementName=MyControl}"
-                            ProjectValue="{Binding projectValues, ElementName=MyControl}"
-                            CompanyProfitPercentage="{Binding projectValues.AdultStudentCompanyProfitPercentage, ElementName=MyControl}"
+                            HourlyRate="{Binding ProjectValue.AdultStudentHourlyRate, ElementName=MyControl}"
+                            ProjectValue="{Binding ProjectValue, ElementName=MyControl}"
+                            CompanyProfitPercentage="{Binding ProjectValue.AdultStudentCompanyProfitPercentage, ElementName=MyControl}"
                             Show="Hidden"
                             HoursChanged="HoursChanged" />
 
@@ -139,7 +139,7 @@
                         <TextBlock Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" Margin="3,0,3,0">timer</TextBlock>
 
                         <TextBlock Grid.Column="7" Grid.Row="5" HorizontalAlignment="Left" Margin="3,0,3,0">Bemanding salg</TextBlock>
-                        <local:CustomTextBlock x:Name="TotalHoursPay" Grid.Column="8" Grid.Row="5" Type="NoneStay" />
+                        <local:CustomTextBlock x:Name="TotalHoursPay" Grid.Column="8" Grid.Row="5" Type="Currency" />
                     </Grid>
                 </Border>
 
@@ -155,7 +155,7 @@
                     <Grid Margin="0, 0, 0, 5" Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250" />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="2.5*" />
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -173,7 +173,7 @@
                         <TextBlock Grid.Column="4">Antal [stk/m]</TextBlock>
                         <TextBlock Grid.Column="5">Avance [%]</TextBlock>
                         <TextBlock Grid.Column="6">EAN nummer</TextBlock>
-                        <TextBlock Grid.Column="7">I alt</TextBlock>
+                        <TextBlock Grid.Column="7" HorizontalAlignment="Right" Margin="0,0,50,0">I alt</TextBlock>
                         <TextBlock Grid.Column="8">Procent udgør af tilbud</TextBlock>
                         <TextBlock Grid.Column="9">EG EL Fortjenest</TextBlock>
                     </Grid>
@@ -187,23 +187,28 @@
 
                     <Grid Margin="0, 0, 0, 5"  Grid.Row="3">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="6*" />
+                            <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250" />
+                            <ColumnDefinition Width="2.5*" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="1" HorizontalAlignment="Right">I alt:</TextBlock>
-                        <local:CustomTextBlock x:Name="TotalPartPirce" Grid.Column="2" Type="Currency" />
-                        <local:CustomTextBlock x:Name="TotalPartPercentage" Grid.Column="3" Type="Percentage" />
-                        <local:CustomTextBlock x:Name="TotalPartProfit" Grid.Column="4" Type="Currency" />
+                        <TextBlock Grid.Column="6" HorizontalAlignment="Right">I alt:</TextBlock>
+                        <local:CustomTextBlock x:Name="TotalPartPirce" Grid.Column="7" Type="Currency" />
+                        <local:CustomTextBlock x:Name="TotalPartPercentage" Grid.Column="8" Type="Percentage" />
+                        <local:CustomTextBlock x:Name="TotalPartProfit" Grid.Column="9" Type="Currency" />
                     </Grid>
                 </Grid>
 
                 <!-- Bottom part -->
                 <Border>
-                    <local:ElementBottom x:Name="BottomPart" ProjectValue="{Binding projectValues, ElementName=MyControl}" />
+                    <local:ElementBottom x:Name="BottomPart" ProjectValue="{Binding ProjectValue, ElementName=MyControl}" />
                 </Border>
 
                 <!-- Final numbers -->
