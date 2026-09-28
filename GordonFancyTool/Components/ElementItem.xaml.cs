@@ -43,7 +43,7 @@ public partial class ElementItem : UserControl
         if (units != null)
             ElementItemValue.Units = units.Value;
 
-        else if (length != null)
+        if (length != null)
             ElementItemValue.Length = length.Value;
 
         if (units == null || length == null) return;
