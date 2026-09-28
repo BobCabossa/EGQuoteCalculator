@@ -17,7 +17,7 @@ public partial class ElementFinalResults : UserControl
         double totalFixedPrices = vehicleOnConstructionSitePrice + environmentalTaxPrice + fixedEnergySurchargesPrice + fixedPackagingContributionsPrice;
 
         double totalPriceExclusiveVAT = totalHoursPay + materialCostsIncrease + totalFixedPrices;
-        
+
         double VATPercentage = projectValues.VAT / 100;
         double VAT = DoubleCal.Round(totalPriceExclusiveVAT * VATPercentage);
 

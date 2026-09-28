@@ -8,10 +8,9 @@
         Height="200" Width="250"
         Title="NewElementPopup"
         WindowStartupLocation="CenterOwner"
-        ResizeMode="NoResize" 
-        Topmost="True" 
+        ResizeMode="NoResize"
         ShowInTaskbar="False">
-    
+
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -23,7 +22,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
+
         <TextBlock 
             Text="Enter a name:" 
             Grid.Row="0"

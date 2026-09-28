@@ -25,7 +25,7 @@ public partial class ElementItem : UserControl
         Product.Text = ElementItemValue.ExcelData.ProductName;
         Price.Text = ElementItemValue.ExcelData.PurchasePrice;
         EAN.Text = ElementItemValue.ExcelData.EAN;
-        
+
         Index.Text = ElementItemValue.Number.ToString();
 
         this.ValuesChanged += ValuesChanged;
@@ -40,7 +40,7 @@ public partial class ElementItem : UserControl
         double? units = Units.Value;
         double? length = Length.Value;
 
-        if (units != null) 
+        if (units != null)
             ElementItemValue.Units = units.Value;
 
         else if (length != null)
@@ -64,7 +64,7 @@ public partial class ElementItem : UserControl
     {
         double totalFullPrice = GetFullPrice.Invoke();
         double percentageOfOffers = DoubleCal.Round(FullPrice.Value / totalFullPrice * 100);
-        
+
         PercentageOfOffers.Value = percentageOfOffers;
     }
 }

@@ -73,7 +73,7 @@ public partial class ProjectPage : Page
         Grid.SetRow(AddElementButton, newIndex);
 
         items.Children.Add(newItem);
-        
+
         FileController.SaveElements(elementValues);
     }
 

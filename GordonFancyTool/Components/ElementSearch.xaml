@@ -15,7 +15,7 @@
                                 ElementName=root,
                                 UpdateSourceTrigger=PropertyChanged}"
                  TextChanged="SearchTextBox_TextChanged" />
-        
+
         <!-- DROPDOWN -->
         <Popup x:Name="SearchPopup"
                IsOpen="{Binding IsDropDownOpen, 

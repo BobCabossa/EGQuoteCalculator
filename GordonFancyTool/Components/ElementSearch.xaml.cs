@@ -1,7 +1,7 @@
 ﻿namespace GordonFancyTool.Components;
 
 public partial class ElementSearch : UserControl
-{    
+{
     public ElementSearch()
     {
         InitializeComponent();

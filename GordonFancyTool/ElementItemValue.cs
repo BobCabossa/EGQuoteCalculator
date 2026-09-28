@@ -3,7 +3,7 @@
 public class ElementItemValue
 {
     public ElementItemValue() { }
-    public ElementItemValue(int number, ExcelData excelData) 
+    public ElementItemValue(int number, ExcelData excelData)
     {
         Number = number;
         ExcelData = excelData;

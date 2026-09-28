@@ -10,7 +10,6 @@
         Title="ChangeProjectValuesPopup"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize" 
-        Topmost="True" 
         ShowInTaskbar="False">
 
     <Grid Margin="5">
