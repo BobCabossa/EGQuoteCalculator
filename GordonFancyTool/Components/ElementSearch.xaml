@@ -10,30 +10,35 @@
 
     <Grid>
         <!-- SEARCH BOX -->
-        <TextBox x:Name="SearchTextBox"
-                 Text="{Binding SearchText,
-                                ElementName=root,
-                                UpdateSourceTrigger=PropertyChanged}"
-                 TextChanged="SearchTextBox_TextChanged" />
+        <TextBox 
+            x:Name="SearchTextBox"
+            Text="{Binding SearchText,
+                   ElementName=root,
+                   UpdateSourceTrigger=PropertyChanged}"
+            TextChanged="SearchTextBox_TextChanged" />
 
         <!-- DROPDOWN -->
-        <Popup x:Name="SearchPopup"
-               IsOpen="{Binding IsDropDownOpen, 
-                       ElementName=root}"
-               PlacementTarget="{Binding ElementName=SearchTextBox}"
-               Placement="Bottom"
-               StaysOpen="False">
+        <Popup 
+            x:Name="SearchPopup"
+            IsOpen="{Binding IsDropDownOpen, 
+                     ElementName=root}"
+            PlacementTarget="{Binding ElementName=SearchTextBox}"
+            Placement="Bottom"
+            StaysOpen="False">
 
-            <Border Width="300"
-                    MaxHeight="250"
-                    Background="White"
-                    BorderBrush="Gray"
-                    BorderThickness="1">
+            <Border 
+                MinWidth="300"
+                MaxHeight="250"
+                Background="White"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                VerticalAlignment="Center">
 
-                <ListBox x:Name="ResultsList"
-                         ItemsSource="{Binding FilteredItems, ElementName=root}"
-                         DisplayMemberPath="ProductName"
-                         MouseLeftButtonUp="ResultsList_MouseLeftButtonUp" />
+                <ListBox 
+                    x:Name="ResultsList"
+                    ItemsSource="{Binding FilteredItems, ElementName=root}"
+                    DisplayMemberPath="ProductName"
+                    MouseLeftButtonUp="ResultsList_MouseLeftButtonUp" />
             </Border>
         </Popup>
     </Grid>
