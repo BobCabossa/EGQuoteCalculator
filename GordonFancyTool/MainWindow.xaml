@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Height="1080" Width="1920" 
         Title="MainWindow" 
-        WindowState="Maximized">
+        WindowState="Maximized"
+        Icon="/assets/appicon.ico">
     
     <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" 
            ScrollViewer.HorizontalScrollBarVisibility="Auto"
