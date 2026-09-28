@@ -10,7 +10,8 @@
         Title="ChangeProjectValuesPopup"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize" 
-        ShowInTaskbar="False">
+        ShowInTaskbar="False"
+        Icon="/Assets/AppIcon.ico">
 
     <Grid Margin="5">
         <Grid.RowDefinitions>

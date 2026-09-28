@@ -10,7 +10,8 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
-        Loaded="PopupLoaded">
+        Loaded="PopupLoaded"
+        Icon="/Assets/AppIcon.ico">
 
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
