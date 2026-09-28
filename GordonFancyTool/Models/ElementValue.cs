@@ -1,4 +1,4 @@
-﻿namespace GordonFancyTool;
+﻿namespace GordonFancyTool.Models;
 
 public class ElementValue
 {

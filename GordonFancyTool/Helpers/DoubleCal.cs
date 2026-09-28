@@ -1,4 +1,4 @@
-﻿namespace GordonFancyTool;
+﻿namespace GordonFancyTool.Helpers;
 
 public static class DoubleCal
 {

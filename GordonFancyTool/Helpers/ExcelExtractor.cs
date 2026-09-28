@@ -1,4 +1,4 @@
-﻿namespace GordonFancyTool.Excel;
+﻿namespace GordonFancyTool.Helpers;
 
 public static class ExcelExtractor
 {

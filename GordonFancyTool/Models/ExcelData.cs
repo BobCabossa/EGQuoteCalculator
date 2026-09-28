@@ -1,4 +1,4 @@
-﻿namespace GordonFancyTool.Excel;
+﻿namespace GordonFancyTool.Models;
 
 public class ExcelData
 {
