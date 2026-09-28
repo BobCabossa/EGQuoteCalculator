@@ -32,12 +32,6 @@ public partial class ElementPage : Page
             newItem.PriceUpdated(this, "");
         }
 
-        Random random = new();
-        foreach (var item in ExcelDatas.Skip(4))
-        {
-            item.PurchasePrice = random.Next(1, 5000).ToString();
-            item.EAN = random.Next(10000, 99999).ToString();
-        }
     }
 
     public double GetTotalPrice() => FinalResults.TotalPriceExclusiveVAT.Value;
