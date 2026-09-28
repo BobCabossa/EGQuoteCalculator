@@ -9,7 +9,8 @@
         Title="NewElementPopup"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        ShowInTaskbar="False">
+        ShowInTaskbar="False"
+        Loaded="PopupLoaded">
 
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
@@ -28,27 +29,27 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Margin="4"/>
+            Margin="4" />
 
         <TextBox 
             x:Name="InputTextBox" 
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Margin="4"/>
+            Margin="4" />
 
         <Button 
             Content="OK"
             Grid.Row="2"
             Grid.Column="1"
             Margin="4"
-            Click="OkClick"/>
+            Click="OkClick" />
 
         <Button 
             Content="Cancel"
             Grid.Row="2"
             Grid.Column="3"
             Margin="4"
-            Click="CancelClick"/>
+            Click="CancelClick" />
     </Grid>
 </Window>

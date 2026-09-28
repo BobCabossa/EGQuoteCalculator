@@ -9,6 +9,11 @@ public partial class NewElementPopup : Window
 
     public string? Result { get; private set; } = "";
 
+    private void PopupLoaded(object sender, RoutedEventArgs e)
+    {
+        _ = InputTextBox.Focus();
+    }
+
     private void OkClick(object sender, RoutedEventArgs e)
     {
         Result = InputTextBox.Text;
