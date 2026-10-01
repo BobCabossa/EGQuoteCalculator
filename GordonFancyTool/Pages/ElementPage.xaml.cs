@@ -78,12 +78,21 @@ public partial class ElementPage : Page
         // Total pay the company gets for their man power.
         double normalSale = Normal.Sale.Value;
         double studentSale = Student.Sale.Value;
+        double adultStudentSale = AdultStudent.Sale.Value;
         double additionalPay = HourlyPayStoppageTimePrice.Value;
 
-        double totalSale = normalSale + studentSale + additionalPay;
+        double totalSale = DoubleCal.Round(normalSale + studentSale + adultStudentSale + additionalPay);
+
+        double normalProfit = Normal.CompanyProfit.Value;
+        double studentProfit = Student.CompanyProfit.Value;
+        double adultStudentProfit = AdultStudent.CompanyProfit.Value;
+        double additionalProfit = HourlyPayStoppageTimeProfit.Value;
+
+        double totalHoursProfit = DoubleCal.Round(normalProfit + studentProfit + adultStudentProfit + additionalProfit);
 
         TotalHoursPay.Value = totalSale;
         TotalHours.Value = hours;
+        TotalHoursProfit.Value = totalHoursProfit;
 
         SomeValuesChanged(sender, newValue);
     }
@@ -130,7 +139,7 @@ public partial class ElementPage : Page
         double totalPartPirce = CalculateTotalPartPrice();
 
         BottomPart.CalculateEverything(totalPartPirce);
-        FinalResults.CalculateResults(TotalHoursPay.Value, BottomPart.MaterialCostsIncrease.Value, ProjectValue);
+        FinalResults.CalculateResults(TotalHoursPay.Value, BottomPart.MaterialCostsIncrease.Value, TotalHoursProfit.Value, TotalPartProfit.Value, ProjectValue);
 
         Normal.CalculateHoursContributions();
         Student.CalculateHoursContributions();

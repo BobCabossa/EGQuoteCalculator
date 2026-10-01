@@ -7,7 +7,7 @@ public partial class ElementFinalResults : UserControl
         InitializeComponent();
     }
 
-    public void CalculateResults(double totalHoursPay, double materialCostsIncrease, ProjectValues projectValues)
+    public void CalculateResults(double totalHoursPay, double materialCostsIncrease, double totalHoursProfit, double totalPartProfit, ProjectValues projectValues)
     {
         double vehicleOnConstructionSitePrice = projectValues.VehicleOnConstructionSitePrice;
         double environmentalTaxPrice = projectValues.EnvironmentalTaxPrice;
@@ -28,6 +28,9 @@ public partial class ElementFinalResults : UserControl
         double fixedPricesContributionsPercentage = DoubleCal.Round(totalFixedPrices / totalPriceExclusiveVAT * 100);
         double totalPercentage = (int)(staffingContributionsPercentage + materialContributionsPercentage + fixedPricesContributionsPercentage);
 
+        double totalProfit = DoubleCal.Round(totalHoursProfit + totalPartProfit);
+        double contributionMarginRatio = DoubleCal.Round(totalProfit / totalPriceExclusiveVAT * 100);
+
         TotalPriceForStaffing.Value = totalHoursPay;
         TotalPriceForMaterial.Value = materialCostsIncrease;
         TotalPriceForFixedPrices.Value = totalFixedPrices;
@@ -40,5 +43,8 @@ public partial class ElementFinalResults : UserControl
         MaterialContributionsPercentage.Value = materialContributionsPercentage;
         FixedPricesContributionsPercentage.Value = fixedPricesContributionsPercentage;
         TotalPercentage.Value = totalPercentage;
+
+        TotalProfit.Value = totalProfit;
+        ContributionMarginRatio.Value = contributionMarginRatio;
     }
 }

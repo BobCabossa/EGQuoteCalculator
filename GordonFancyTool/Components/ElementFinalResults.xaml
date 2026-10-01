@@ -48,5 +48,8 @@
 
         <TextBlock Grid.Row="5" Grid.Column="2">Total pris inklusiv moms :</TextBlock>
         <local:CustomTextBlock Grid.Row="5" Grid.Column="3" x:Name="FullPrice" Type="Currency" />
+
+        <local:CustomTextBlock Grid.Row="4" Grid.Column="6" x:Name="TotalProfit" Type="Currency" />
+        <local:CustomTextBlock Grid.Row="5" Grid.Column="6" x:Name="ContributionMarginRatio" Type="Percentage" />
     </Grid>
 </UserControl>
