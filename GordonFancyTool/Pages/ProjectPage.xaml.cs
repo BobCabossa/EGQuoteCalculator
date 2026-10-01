@@ -35,9 +35,9 @@ public partial class ProjectPage : Page
         }
     }
 
-    private void AddExcelData(object sender, RoutedEventArgs e)
+    private void ImportData(object sender, RoutedEventArgs e)
     {
-        ExcelExtractor.OverrideExcelData();
+        ImportController.StartImporting();
     }
 
     private void OpenElementView(object? sender, string newValue)

@@ -16,8 +16,8 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.RowSpan="2">
-            <Button Click="AddExcelData" Margin="4" MinHeight="65">Tilføj Excel Data</Button>
-            <Button Click="OpenEditProjectValues" Margin="4" MinHeight="65">Redigere project data</Button>
+            <Button Click="ImportData" Margin="4" MinHeight="65">Importere Data</Button>
+            <Button Click="OpenEditProjectValues" Margin="4" MinHeight="65">Redigere Project Data</Button>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="5">

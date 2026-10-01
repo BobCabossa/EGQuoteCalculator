@@ -2,54 +2,19 @@
 
 public static class ExcelExtractor
 {
-    public static void OverrideExcelData()
+    public static List<ExcelData>? LoadExcel(string filePath)
     {
-        string? file = ChooseFile();
-        if (string.IsNullOrEmpty(file))
-            return;
-
-        List<ExcelData>? loadedData = LoadData(file);
-
-        if (loadedData == null) return;
-
-        FileController.SaveExcelData(loadedData);
-        MessageBox.Show("Excel data blev succesfuld indskreven.");
-    }
-
-    private static string? ChooseFile()
-    {
-        var dialog = new OpenFileDialog
+        if (!File.Exists(filePath))
         {
-            Title = "Vælg Excel filen",
-            Filter = "Excel files (*.xlsx;*.xltx)|*.xlsx;*.xltx|All files (*.*)|*.*",
-            Multiselect = false
-        };
-
-        if (dialog.ShowDialog() == true)
-        {
-            return dialog.FileName;
-        }
-
-        return null;
-    }
-
-    private static List<ExcelData>? LoadData(string filePath)
-    {
-        string excelFile = filePath;
-
-        if (!File.Exists(excelFile))
-        {
-            MessageBox.Show("Excel filen kunne ikke finds");
             return null;
         }
 
-        using var workbook = new XLWorkbook(excelFile); // Get ark
+        using var workbook = new XLWorkbook(filePath); // Get ark
         var worksheet = workbook.Worksheet(1);          // Get worksheet 1
 
         var headerRow = worksheet.FirstRowUsed();
         if (headerRow == null)
         {
-            MessageBox.Show("Excel filen er tom");
             return null;
         }
 
@@ -75,6 +40,7 @@ public static class ExcelExtractor
     {
         return headerRow.Cells()
             .First(c => c.GetString() == columnName)
-            .Address.ColumnNumber;
+            .Address
+            .ColumnNumber;
     }
 }

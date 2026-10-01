@@ -14,4 +14,11 @@ public class ExcelData
         this.PurchasePrice = PurchasePrice;
         this.EAN = EAN;
     }
+
+    public ExcelData(ExcelData OldData, ExcelData newData)
+    {
+        ProductName = OldData.ProductName;
+        PurchasePrice = newData.PurchasePrice;
+        EAN = newData.EAN;
+    }
 }

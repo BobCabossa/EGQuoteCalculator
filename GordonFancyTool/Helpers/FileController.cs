@@ -2,9 +2,10 @@
 
 public static class FileController
 {
-    private const string _subFolder = "data";
-    private const string _elementsFile = "elementsValues.json";
-    private const string _projectFile = "projectValues.json";
+    private const string _importFolder = "Import";
+    private const string _dataFolder = "data";
+    private const string _elementsFile = "ElementsValues.json";
+    private const string _projectFile = "ProjectValues.json";
     private const string _excelFile = "ExcelData.json";
 
     private static readonly JsonSerializerOptions _serializerOptions = new()
@@ -12,19 +13,30 @@ public static class FileController
         WriteIndented = true
     };
 
-    private static string GetSubFolder()
+    private static void CreateFolder(string folder)
     {
-        string path = Environment.CurrentDirectory + "\\" + _subFolder + "\\";
+        if (!Directory.Exists(folder))
+            Directory.CreateDirectory(folder);
+    }
 
-        if (Directory.Exists(path))
-            return path;
-
-        Directory.CreateDirectory(path);
+    public static string GetImportFolder()
+    {
+        string path = Path.Combine(AppContext.BaseDirectory, _importFolder);
+        CreateFolder(path);
         return path;
     }
-    private static string GetElementFilePath() => GetSubFolder() + _elementsFile;
-    private static string GetProjectFilePath() => GetSubFolder() + _projectFile;
-    private static string GetExcelFilePath() => GetSubFolder() + _excelFile;
+
+    private static string GetDataFolder()
+    {
+        string path = Path.Combine(AppContext.BaseDirectory, _dataFolder);
+
+        CreateFolder(path);
+        return path;
+    }
+
+    private static string GetElementFilePath() => Path.Combine(GetDataFolder(), _elementsFile);
+    private static string GetProjectFilePath() => Path.Combine(GetDataFolder(), _projectFile);
+    private static string GetExcelFilePath() => Path.Combine(GetDataFolder(), _excelFile);
 
     public static List<ElementValue> LoadElements()
     {
@@ -36,9 +48,14 @@ public static class FileController
         return LoadFile<ProjectValues>(GetProjectFilePath());
     }
 
-    public static ObservableCollection<ExcelData> LoadExcelData()
+    public static ObservableCollection<ExcelData> LoadExcelDataObservableCollection()
     {
         return LoadFile<ObservableCollection<ExcelData>>(GetExcelFilePath());
+    }
+
+    public static List<ExcelData> LoadExcelDataList()
+    {
+        return LoadFile<List<ExcelData>>(GetExcelFilePath());
     }
 
     public static void SaveElements(List<ElementValue> elementValues)

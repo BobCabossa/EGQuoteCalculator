@@ -12,7 +12,7 @@ public partial class ElementPage : Page
 
     public ElementPage(ProjectValues projectValues, ElementValue elementValue)
     {
-        ExcelDatas = FileController.LoadExcelData();
+        ExcelDatas = FileController.LoadExcelDataObservableCollection();
         _elementValues = elementValue;
         ProjectValue = projectValues;
         InitializeComponent();
