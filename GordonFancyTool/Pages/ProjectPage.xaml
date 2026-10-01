@@ -14,21 +14,22 @@
             <ColumnDefinition Width="100" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75" />
-            <RowDefinition Height="75" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
 
-        <Button Click="AddExcelData" Grid.Row="0" Margin="4">Add Excel data</Button>
-        <Button Click="OpenEditProjectValues" Grid.Row="1" Margin="4">Redigere project data</Button>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.RowSpan="2">
+            <Button Click="AddExcelData" Margin="4" MinHeight="65">Tilføj Excel Data</Button>
+            <Button Click="OpenEditProjectValues" Margin="4" MinHeight="65">Redigere project data</Button>
+        </StackPanel>
 
-        <Grid x:Name="items" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="5">
+            <StackPanel>
+                <Grid x:Name="items">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-            <Button x:Name="AddElementButton" Click="AddElement" Margin="2">Add</Button>
-        </Grid>
+                    <Button x:Name="AddElementButton" Click="AddElement" Margin="2">Tilføj</Button>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
