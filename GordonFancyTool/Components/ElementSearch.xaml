@@ -6,7 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="35" d:DesignWidth="300">
+             d:DesignHeight="35" d:DesignWidth="300"
+             d:Background="WhiteSmoke">
 
     <Grid>
         <!-- SEARCH BOX -->

@@ -6,8 +6,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="ComponentLoaded">
+             d:DesignHeight="75" d:DesignWidth="800"
+             Loaded="ComponentLoaded"
+             d:Background="WhiteSmoke">
+    
     <Grid MaxHeight="75">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />

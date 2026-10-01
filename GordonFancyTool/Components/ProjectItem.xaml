@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920">
+             d:DesignHeight="75" d:DesignWidth="1800"
+             d:Background="WhiteSmoke">
+    
     <Grid Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />

@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="ProjectPage"
-      Loaded="PageLoaded">
+      Loaded="PageLoaded"
+      d:Background="WhiteSmoke">
 
     <Grid Margin="4">
         <Grid.ColumnDefinitions>

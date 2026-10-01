@@ -6,7 +6,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="800">
+             d:DesignHeight="40" d:DesignWidth="150"
+             d:Background="WhiteSmoke">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -18,7 +20,9 @@
             Text="{Binding Value, ElementName=CustomText}" 
             HorizontalAlignment="{Binding ValueAlignment, ElementName=CustomText}" 
             Margin="3,0,3,0" 
-            Width="auto" />
+            Width="auto"
+            d:Text="100.01"
+            d:HorizontalAlignment="Right" />
 
         <TextBlock x:Name="TypeBlock" Text="kr." Grid.Column="1" />
 
