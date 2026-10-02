@@ -4,10 +4,10 @@
 public partial class ElementItem : UserControl
 {
     public static readonly DependencyProperty ElementItemValueProperty =
-    DependencyProperty.Register(
-        nameof(ElementItemValue),
-        typeof(ElementItemValue),
-        typeof(ElementItem));
+        DependencyProperty.Register(
+            nameof(ElementItemValue),
+            typeof(ElementItemValue),
+            typeof(ElementItem));
 
     public ElementItemValue ElementItemValue
     {
@@ -18,14 +18,14 @@ public partial class ElementItem : UserControl
     public event EventHandler<string> ValuesChanged;
     public Func<double> GetFullPrice;
 
-    public ElementItem(ElementItemValue ElementItemValue, EventHandler<string> ValuesChanged, Func<double> getFullPrice)
+    public ElementItem(ElementItemValue ElementItemValue, ExcelData excelData, EventHandler<string> ValuesChanged, Func<double> getFullPrice)
     {
         this.ElementItemValue = ElementItemValue;
         InitializeComponent();
 
-        Product.Text = ElementItemValue.ExcelData.ProductName;
-        Price.Text = ElementItemValue.ExcelData.PurchasePrice;
-        EAN.Text = ElementItemValue.ExcelData.EAN;
+        Product.Text = excelData.ProductName;
+        Price.Text = excelData.PurchasePrice;
+        EAN.Text = excelData.EAN;
 
         Index.Text = ElementItemValue.Number.ToString();
 

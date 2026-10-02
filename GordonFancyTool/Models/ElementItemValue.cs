@@ -6,12 +6,12 @@ public class ElementItemValue
     public ElementItemValue(int number, ExcelData excelData)
     {
         Number = number;
-        ExcelData = excelData;
+        ExcelProductName = excelData.ProductName;
     }
 
     public int Number { get; set; }
     public double Length { get; set; }
     public double Units { get; set; }
 
-    public ExcelData ExcelData { get; set; } = new();
+    public string ExcelProductName { get; set; } = string.Empty;
 }

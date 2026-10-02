@@ -10,7 +10,7 @@ public partial class ExcelTimeItem : UserControl
         InitializeComponent();
 
         Title.Text = excelData.ProductName;
-        Time.Value = excelData.MinToInstall;
+        Time.ValueString = excelData.MinToInstall.ToString();
     }
 
     public void TimeUpdated(object sender, string e)

@@ -12,7 +12,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition MaxWidth="50" />
+            <ColumnDefinition MaxWidth="50" MinWidth="20" Width="auto" />
         </Grid.ColumnDefinitions>
 
         <TextBlock 

@@ -100,6 +100,13 @@ public partial class ElementsTopRow : UserControl
         HoursChanged?.Invoke(sender, newValue);
     }
 
+    public void SetMaterialTime(double time)
+    {
+        MaterialTime.Value = time;
+        CalculateHours();
+        CalculateHoursContributions();
+    }
+
     public void CalculateHours()
     {
         double? hours = Hours.Value;
@@ -114,6 +121,9 @@ public partial class ElementsTopRow : UserControl
             return;
         }
 
+        double materialTime = MaterialTime.Value;
+        double totalHours = hours.Value + materialTime;
+
         double companyProfitPercentage = CompanyProfitPercentage;
         double socialCost = SocialCost.Value;
         double salaryIncrease = SalaryIncrease.Value;
@@ -125,7 +135,7 @@ public partial class ElementsTopRow : UserControl
         riskFactor /= 100;
         companyProfitPercentage /= 100;
 
-        double costPerHour = HourlyRate * hours.Value;
+        double costPerHour = HourlyRate * totalHours;
 
         double socialSecurityCosts = DoubleCal.Round(costPerHour * socialCost);
         double amountForSalaryIncrease = DoubleCal.Round((costPerHour + socialSecurityCosts) * salaryIncrease);

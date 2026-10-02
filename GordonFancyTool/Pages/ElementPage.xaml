@@ -45,7 +45,8 @@
                             <ColumnDefinition MinWidth="35" MaxWidth="50" />
                             <ColumnDefinition MinWidth="220" />
                             <ColumnDefinition />
-                            <ColumnDefinition MinWidth="175" />
+                            <ColumnDefinition MinWidth="150" />
+                            <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -70,22 +71,23 @@
                         <TextBlock Grid.Column="1">Bemanding</TextBlock>
                         <TextBlock Grid.Column="2">kr./time</TextBlock>
                         <TextBlock Grid.Column="3">Forventning af tid i [timer]</TextBlock>
-                        <TextBlock Grid.Column="4">Social-omkost. Fast</TextBlock>
-                        <TextBlock Grid.Column="5">Løn-stigning fast</TextBlock>
-                        <TextBlock Grid.Column="6">Risiko faktor fast</TextBlock>
-                        <TextBlock Grid.Column="7">EG El Fortjenst</TextBlock>
-                        <TextBlock Grid.Column="8">Salg uden moms</TextBlock>
-                        <TextBlock Grid.Column="9">Procent udgør af tilbud</TextBlock>
-                        <TextBlock Grid.Column="10">EG El fortjenest</TextBlock>
-                        <TextBlock Grid.Column="11">Beløb for Socialomkostning</TextBlock>
-                        <TextBlock Grid.Column="12">Beløb for lønstigning</TextBlock>
-                        <TextBlock Grid.Column="13">Beløb for risiko sats</TextBlock>
+                        <TextBlock Grid.Column="4">Forventning materialer i [timer]</TextBlock>
+                        <TextBlock Grid.Column="5">Social-omkost. Fast</TextBlock>
+                        <TextBlock Grid.Column="6">Løn-stigning fast</TextBlock>
+                        <TextBlock Grid.Column="7">Risiko faktor fast</TextBlock>
+                        <TextBlock Grid.Column="8">EG El Fortjenst</TextBlock>
+                        <TextBlock Grid.Column="9">Salg uden moms</TextBlock>
+                        <TextBlock Grid.Column="10">Procent udgør af tilbud</TextBlock>
+                        <TextBlock Grid.Column="11">EG El fortjenest</TextBlock>
+                        <TextBlock Grid.Column="12">Beløb for Socialomkostning</TextBlock>
+                        <TextBlock Grid.Column="13">Beløb for lønstigning</TextBlock>
+                        <TextBlock Grid.Column="14">Beløb for risiko sats</TextBlock>
 
                         <local:ElementsTopRow 
                             x:Name="Normal"
                             Margin="1"
-                            Grid.Row="1" 
-                            Grid.ColumnSpan="14" 
+                            Grid.Row="1"
+                            Grid.ColumnSpan="15" 
                             Title="B1.1"
                             Staffing="Elektriker-Faglært"
                             HourlyRate="{Binding ProjectValue.NormalHourlyRate, ElementName=MyControl}"
@@ -98,7 +100,7 @@
                             x:Name="Student"
                             Margin="1"
                             Grid.Row="2" 
-                            Grid.ColumnSpan="14" 
+                            Grid.ColumnSpan="15" 
                             Title="B2.1"
                             Staffing="Elektriker-Lærling"
                             HourlyRate="{Binding ProjectValue.StudentHourlyRate, ElementName=MyControl}"
@@ -111,7 +113,7 @@
                             x:Name="AdultStudent"
                             Margin="1"
                             Grid.Row="3" 
-                            Grid.ColumnSpan="14" 
+                            Grid.ColumnSpan="15" 
                             Title="B3.1"
                             Staffing="Elektriker-Lærling Voksen +25år"
                             HourlyRate="{Binding ProjectValue.AdultStudentHourlyRate, ElementName=MyControl}"
@@ -121,20 +123,20 @@
                             HoursChanged="HoursChanged" />
 
                         <!-- The grid need to be above the text to be rendered correct -->
-                        <Grid Grid.Row="4" Grid.ColumnSpan="14" Background="Gold" />
+                        <Grid Grid.Row="4" Grid.ColumnSpan="15" Background="Gold" />
 
                         <TextBlock Grid.Column="0" Grid.Row="4">B3.X</TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="4">Evt. Ekstra tillægstid (uforudse)</TextBlock>
 
                         <local:CustomTextBlock x:Name="HourlyPayStoppageTimePercentage" Grid.Column="2" Grid.Row="4" Type="Percentage" />
                         <local:CustomTextBlock x:Name="HourlyPayStoppageTime" Grid.Column="3" Grid.Row="4" Type="NoneStay" />
-                        
+
                         <local:CustomTextBlock x:Name="HourlyPayStoppageTimePrice" Grid.Column="8" Grid.Row="4" Type="Currency" />
                         <local:CustomTextBlock x:Name="HourlyPayStoppageTimeContributions" Grid.Column="9" Grid.Row="4" Type="Percentage" />
                         <local:CustomTextBlock x:Name="HourlyPayStoppageTimeProfit" Grid.Column="10" Grid.Row="4" Type="Currency" />
 
                         <!-- The grid need to be above the text to be rendered correct -->
-                        <Grid Grid.Row="5" Grid.ColumnSpan="14" Background="Yellow" />
+                        <Grid Grid.Row="5" Grid.ColumnSpan="15" Background="Yellow" />
 
                         <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Right" Margin="3,0,3,0">Bemanding samlet</TextBlock>
                         <local:CustomTextBlock x:Name="TotalHours" Grid.Column="3" Grid.Row="5" Type="NoneStay" />

@@ -36,7 +36,7 @@ public partial class ProjectValueChange : UserControl
     {
         Dispatcher.BeginInvoke(() =>
         {
-            ValueBox.Value = Value;
+            ValueBox.ValueString = Value.ToString();
         });
     }
 

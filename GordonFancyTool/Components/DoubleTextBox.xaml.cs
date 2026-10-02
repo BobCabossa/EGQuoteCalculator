@@ -4,9 +4,14 @@ namespace GordonFancyTool.Components;
 
 public partial class DoubleTextBox : UserControl
 {
+    public static readonly DependencyProperty ValueStringProperty =
+        DependencyProperty.Register(
+            nameof(ValueString),
+            typeof(string),
+            typeof(DoubleTextBox));
+
     public double? Value
     {
-        set => textBox.Text = value.ToString();
         get
         {
             if (double.TryParse(textBox.Text, out var value))
@@ -15,6 +20,12 @@ public partial class DoubleTextBox : UserControl
             }
             return null;
         }
+    }
+
+    public string ValueString
+    {
+        set => SetValue(ValueStringProperty, value);
+        get => (string)GetValue(ValueStringProperty);
     }
 
     public event EventHandler<string>? ValueChanged;
