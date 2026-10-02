@@ -9,7 +9,6 @@
         Height="450" Width="800"
         Title="ChangeProjectValuesPopup"
         WindowStartupLocation="CenterOwner"
-        ResizeMode="NoResize" 
         ShowInTaskbar="False"
         Icon="/Assets/AppIcon.ico">
 

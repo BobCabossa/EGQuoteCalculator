@@ -19,6 +19,7 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.RowSpan="2">
             <Button Click="ImportData" Margin="4" MinHeight="65">Importere Data</Button>
             <Button Click="OpenEditProjectValues" Margin="4" MinHeight="65">Redigere Project Data</Button>
+            <Button Click="OpenEditTimeOnExcel" Margin="4" MinHeight="65">Set Time Per. Del</Button>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="5">

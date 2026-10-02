@@ -1,22 +1,20 @@
-﻿<UserControl x:Class="GordonFancyTool.Components.ProjectValueChange"
-             x:Name="MyControl"
+﻿<UserControl x:Class="GordonFancyTool.Components.ExcelTimeItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="800"
-             Loaded="ComponentLoaded"
+             d:DesignHeight="450" d:DesignWidth="800"
              d:Background="WhiteSmoke">
 
-    <Grid MaxHeight="75" Margin="5,2,5,2">
+    <Grid Margin="5,2,5,2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
-        <TextBlock Text="{Binding Title, ElementName=MyControl}" />
-        <local:DoubleTextBox Grid.Column="1" HorizontalAlignment="Right" Margin="1" ValueChanged="ValueUpdated" x:Name="ValueBox" />
+        
+        <TextBlock x:Name="Title" />
+        <local:DoubleTextBox HorizontalAlignment="Right" Grid.Column="2" ValueChanged="TimeUpdated" x:Name="Time" />
     </Grid>
 </UserControl>

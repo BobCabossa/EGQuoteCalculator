@@ -105,4 +105,17 @@ public partial class ProjectPage : Page
             FileController.SaveProjectSettings(dialog.ProjectValues);
         }
     }
+
+    private void OpenEditTimeOnExcel(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ExcelTimeChangePopup()
+        {
+            Owner = Window.GetWindow(this)
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+
+        }
+    }
 }
