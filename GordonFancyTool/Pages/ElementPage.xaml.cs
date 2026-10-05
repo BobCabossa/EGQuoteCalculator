@@ -4,7 +4,6 @@
 public partial class ElementPage : Page
 {
     private bool _loading = true;
-    private const string stringValue = "Don'tContinue";
 
     private readonly ElementValue _elementValues;
 
@@ -49,11 +48,11 @@ public partial class ElementPage : Page
         {
             Window.GetWindow(this).Title = "Element: " + _elementValues.Title;
 
-            HoursChanged(sender, "");
             foreach (var item in Items.Children)
             {
-                ItemValueChanged(item, stringValue);
+                ItemValueChanged(item, "");
             }
+            HoursChanged(sender, "");
 
             _loading = false;
         }, DispatcherPriority.Render);
@@ -156,7 +155,7 @@ public partial class ElementPage : Page
         }
         Normal.SetMaterialTime(totalTime);
 
-        if (newValue != stringValue)
+        if (!_loading)
             SomeValuesChanged(sender, newValue);
     }
 
