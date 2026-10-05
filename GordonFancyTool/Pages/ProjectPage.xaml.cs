@@ -3,24 +3,24 @@
 public partial class ProjectPage : Page
 {
     private readonly ProjectValues _projectValues;
-    private readonly List<ElementValue> elementValues;
+    private readonly List<ElementValue> _elementValues;
 
     public ProjectPage()
     {
         _projectValues = FileController.LoadProjectValues();
-        elementValues = FileController.LoadElements();
+        _elementValues = FileController.LoadElements();
         InitializeComponent();
     }
 
     public ProjectPage(ElementValue updatedValues)
     {
         _projectValues = FileController.LoadProjectValues();
-        elementValues = FileController.LoadElements();
-        int index = elementValues.FindIndex(e => e.Id == updatedValues.Id);
+        _elementValues = FileController.LoadElements();
+        int index = _elementValues.FindIndex(e => e.Id == updatedValues.Id);
         if (index > -1)
         {
-            elementValues[index] = updatedValues;
-            FileController.SaveElements(elementValues);
+            _elementValues[index] = updatedValues;
+            FileController.SaveElements(_elementValues);
         }
 
         InitializeComponent();
@@ -28,9 +28,8 @@ public partial class ProjectPage : Page
 
     private void PageLoaded(object sender, RoutedEventArgs e)
     {
-        foreach (var item in elementValues)
+        foreach (var item in _elementValues)
         {
-            Window.GetWindow(this).Title = "Projekter";
             CreateElementItem(item);
         }
     }
@@ -54,13 +53,13 @@ public partial class ProjectPage : Page
 
         ElementValue elementValue = new()
         {
-            Id = items.RowDefinitions.Count,
+            Id = _elementValues.Last().Id + 1,
             Title = newTitle,
         };
 
         CreateElementItem(elementValue);
-        elementValues.Add(elementValue);
-        FileController.SaveElements(elementValues);
+        _elementValues.Add(elementValue);
+        FileController.SaveElements(_elementValues);
     }
 
     private void CreateElementItem(ElementValue newElement)
@@ -69,18 +68,15 @@ public partial class ProjectPage : Page
         int newIndex = items.RowDefinitions.Count - 1;
 
         ProjectItem newItem = new(newElement, OpenElementView);
-
-        Grid.SetRow(newItem, newIndex - 1);
-        Grid.SetRow(AddElementButton, newIndex);
-
+        Grid.SetRow(newItem, newIndex);
         items.Children.Add(newItem);
 
-        FileController.SaveElements(elementValues);
+        FileController.SaveElements(_elementValues);
     }
 
     private string? GetNewElementTitle()
     {
-        var dialog = new NewElementPopup()
+        var dialog = new NewElementPopup("Ny Opgrave", "Indtast et navn:")
         {
             Owner = Window.GetWindow(this)
         };

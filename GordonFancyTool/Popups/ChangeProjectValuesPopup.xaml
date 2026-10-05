@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:GordonFancyTool.Components"
         mc:Ignorable="d"
         Height="450" Width="800"
-        Title="ChangeProjectValuesPopup"
+        Title="Endre Project Værdier"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         Icon="/Assets/AppIcon.ico">

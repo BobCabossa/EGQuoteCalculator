@@ -2,14 +2,14 @@
 
 public partial class ExcelTimeChangePopup : Window
 {
-    private readonly List<ExcelTimeItem> _items;
+    public readonly List<ExcelTimeItem> Items = new();
 
     public ExcelTimeChangePopup()
     {
         List<ExcelData> datas = FileController.LoadExcelDataList();
 
         InitializeComponent();
-        _items = new();
+
         foreach (var item in datas)
         {
             items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -20,7 +20,7 @@ public partial class ExcelTimeChangePopup : Window
 
             Grid.SetRow(newItem, newIndex - 1);
 
-            _items.Add(newItem);
+            Items.Add(newItem);
         }
     }
 

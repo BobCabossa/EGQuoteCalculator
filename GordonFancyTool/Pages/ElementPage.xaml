@@ -186,7 +186,7 @@
                     <Grid x:Name="Items" Grid.Row="1" />
 
                     <local:ElementSearch
-                         Grid.Row="2"
+                        Grid.Row="2"
                         SearchItems="{Binding ExcelDatas, ElementName=MyControl}"
                         ValueSelected="AddItem" />
 

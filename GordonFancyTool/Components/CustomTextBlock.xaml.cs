@@ -9,6 +9,7 @@ public partial class CustomTextBlock : UserControl
         NoneStay,
         Currency,
         Percentage,
+        TimeMin,
     }
 
     public static readonly DependencyProperty ValueProperty =
@@ -75,6 +76,9 @@ public partial class CustomTextBlock : UserControl
                 break;
             case ValueType.Percentage:
                 control.TypeBlock.Text = "%";
+                break;
+            case ValueType.TimeMin:
+                control.TypeBlock.Text = "min";
                 break;
 
             default:

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GordonFancyTool.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="ProjectPage"
+      Title="Projekter"
       Loaded="PageLoaded"
       d:Background="WhiteSmoke">
 
@@ -19,18 +19,13 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.RowSpan="2">
             <Button Click="ImportData" Margin="4" MinHeight="65">Importere Data</Button>
             <Button Click="OpenEditProjectValues" Margin="4" MinHeight="65">Redigere Project Data</Button>
-            <Button Click="OpenEditTimeOnExcel" Margin="4" MinHeight="65">Set Time Per. Del</Button>
+            <Button Click="OpenEditTimeOnExcel" Margin="4" MinHeight="65">Set Tid Per. Del</Button>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="5">
-            <StackPanel>
-                <Grid x:Name="items">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-
-                    <Button x:Name="AddElementButton" Click="AddElement" Margin="2">Tilføj</Button>
-                </Grid>
+            <StackPanel Orientation="Vertical">
+                <Grid x:Name="items" />
+                <Button Click="AddElement" Margin="2">Tilføj</Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

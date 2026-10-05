@@ -15,7 +15,9 @@ public partial class ElementPage : Page
         ExcelDatas = FileController.LoadExcelDataObservableCollection();
         _elementValues = elementValue;
         ProjectValue = projectValues;
+        
         InitializeComponent();
+
         ElementName.Text = elementValue.Title;
         FinalResults.VATValue.Text = projectValues.VAT.ToString();
         HourlyPayStoppageTimePercentage.Value = projectValues.AdditionalStoppageTimePercentage;
