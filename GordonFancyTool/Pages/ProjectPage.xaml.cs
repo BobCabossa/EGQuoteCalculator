@@ -111,7 +111,24 @@ public partial class ProjectPage : Page
 
         if (dialog.ShowDialog() == true)
         {
+            List<ExcelData> data = dialog.Items.Select(i => i.ExcelData).ToList();
 
+            FileController.SaveExcelData(data);
+        }
+    }
+
+    private void OpenCreateCollections(object sender, RoutedEventArgs e)
+    {
+        var dialog = new CreateCollectionsPopup()
+        {
+            Owner = Window.GetWindow(this)
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            List<ExcelCollection> collections = dialog.ExcelCollections;
+
+            FileController.SaveCollections(collections);
         }
     }
 }

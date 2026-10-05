@@ -27,14 +27,6 @@ public partial class ExcelTimeChangePopup : Window
     private void OkClick(object sender, RoutedEventArgs e)
     {
         DialogResult = true;
-
-        List<ExcelData> data = new();
-        foreach (var item in _items)
-        {
-            data.Add(item.ExcelData);
-        }
-
-        FileController.SaveExcelData(data);
     }
 
     private void CancelClick(object sender, RoutedEventArgs e)

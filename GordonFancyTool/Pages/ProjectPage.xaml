@@ -20,6 +20,7 @@
             <Button Click="ImportData" Margin="4" MinHeight="65">Importere Data</Button>
             <Button Click="OpenEditProjectValues" Margin="4" MinHeight="65">Redigere Project Data</Button>
             <Button Click="OpenEditTimeOnExcel" Margin="4" MinHeight="65">Set Tid Per. Del</Button>
+            <Button Click="OpenCreateCollections" Margin="4" MinHeight="65">Lave Samliger</Button>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="5">
