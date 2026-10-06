@@ -17,6 +17,6 @@
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="Title" Margin="2" d:Text="A new task, we need to do." />
         <Button Click="OpenElementView" Grid.Column="2" Margin="2">Åben</Button>
-        <Button Click="OpenElementView" Grid.Column="3" Margin="2">Fjen</Button>
+        <Button Click="DeleteItem" Grid.Column="3" Margin="2">Fjen</Button>
     </Grid>
 </UserControl>
