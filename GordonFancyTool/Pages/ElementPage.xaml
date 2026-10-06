@@ -183,7 +183,7 @@
                         <TextBlock Grid.Column="9">EG EL Fortjenest</TextBlock>
                     </Grid>
 
-                    <Grid x:Name="Items" Grid.Row="1" />
+                    <StackPanel x:Name="Items" Grid.Row="1" />
 
                     <local:ElementSearch
                         Grid.Row="2"

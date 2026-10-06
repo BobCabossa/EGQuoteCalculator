@@ -16,11 +16,17 @@ public partial class ElementItem : UserControl
     }
 
     public event EventHandler<string> ValuesChanged;
+    public event EventHandler<ElementItemValue> OnItemDelete;
     public Func<double> GetFullPrice;
 
-    public ElementItem(ElementItemValue ElementItemValue, ExcelData excelData, EventHandler<string> ValuesChanged, Func<double> getFullPrice)
+    public ElementItem(ElementItemValue ElementItemValue, ExcelData excelData, EventHandler<string> valuesChanged, EventHandler<ElementItemValue> onItemDelete, Func<double> getFullPrice)
     {
         this.ElementItemValue = ElementItemValue;
+
+        ValuesChanged = valuesChanged;
+        OnItemDelete = onItemDelete;
+        GetFullPrice = getFullPrice;
+
         InitializeComponent();
 
         Product.Text = excelData.ProductName;
@@ -28,9 +34,6 @@ public partial class ElementItem : UserControl
         EAN.Text = excelData.EAN;
 
         Index.Text = ElementItemValue.Number.ToString();
-
-        this.ValuesChanged += ValuesChanged;
-        GetFullPrice = getFullPrice;
     }
 
     public void PriceUpdated(object sender, string e)
@@ -67,5 +70,10 @@ public partial class ElementItem : UserControl
         double percentageOfOffers = DoubleCal.Round(FullPrice.Value / totalFullPrice * 100);
 
         PercentageOfOffers.Value = percentageOfOffers;
+    }
+
+    private void OnDeleteItem(object sender, RoutedEventArgs e)
+    {
+        OnItemDelete.Invoke(sender, ElementItemValue);
     }
 }

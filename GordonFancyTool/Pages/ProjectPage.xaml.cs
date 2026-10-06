@@ -134,7 +134,7 @@ public partial class ProjectPage : Page
 
     private void DeleteElement(object? sender, ElementValue elementValue)
     {
-        int index = _elementValues.FindIndex(e => e == elementValue);
+        int index = _elementValues.IndexOf(elementValue);
         if (index == -1)
             return;
 

@@ -57,7 +57,7 @@ public partial class CreateCollectionsPopup : Window
 
     private void OnRemoveItem(object? sender, CollectionItem deleteCollection)
     {
-        int index = ExcelCollections.FindIndex(ec => ec == deleteCollection);
+        int index = ExcelCollections.IndexOf(deleteCollection);
         if (index == -1)
             return;
 

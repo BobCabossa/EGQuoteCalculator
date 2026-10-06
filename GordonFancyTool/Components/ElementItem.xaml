@@ -21,10 +21,11 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Margin="1" x:Name="Index" />
-        <TextBlock Grid.Column="1" Margin="1" x:Name="Product" />
+        <TextBlock Grid.Column="0" Margin="1" x:Name="Index" d:Text="1" />
+        <TextBlock Grid.Column="1" Margin="1" x:Name="Product" d:Text="A very good product to use!" />
         <TextBlock Grid.Column="2" Margin="1" x:Name="Wholesaler">Grosist</TextBlock>
         <TextBlock Grid.Column="3" Margin="1" x:Name="Price" />
         <local:DoubleTextBox Grid.Column="4" Margin="1" ValueChanged="PriceUpdated" x:Name="Units" />
@@ -33,5 +34,6 @@
         <local:CustomTextBlock Grid.Column="7" Margin="1" x:Name="FullPrice" Type="NoneStay" />
         <local:CustomTextBlock Grid.Column="8" Margin="1" x:Name="PercentageOfOffers" Type="NoneStay" />
         <local:CustomTextBlock Grid.Column="9" Margin="1" x:Name="CompanyProfit" Type="NoneStay" />
+        <Button Click="OnDeleteItem" Grid.Column="10" Margin="1">Fjen</Button>
     </Grid>
 </UserControl>

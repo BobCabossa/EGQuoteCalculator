@@ -65,7 +65,7 @@ public partial class CollectionItem : UserControl
         if (sender is not CollectionItemPart collectionPart)
             return;
 
-        int index = _itemParts.FindIndex(e => e.CollectionItem.Name == collectionPart.CollectionItem.Name);
+        int index = _itemParts.IndexOf(collectionPart);
         if (index == -1)
             return;
         

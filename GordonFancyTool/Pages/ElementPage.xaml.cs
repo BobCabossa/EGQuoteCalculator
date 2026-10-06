@@ -113,21 +113,16 @@ public partial class ElementPage : Page
 
     public void AddItem(object? sender, ExcelData excelData)
     {
-        ElementItem item = CreateItem(null, excelData);
+        int newNumber = _elementValues.ElementItemValues.Last().Number + 1;
+        ElementItemValue itemValue = new(newNumber, excelData);
+
+        ElementItem item = CreateItem(itemValue, excelData);
         _elementValues.ElementItemValues.Add(item.ElementItemValue);
     }
 
-    private ElementItem CreateItem(ElementItemValue? itemValue, ExcelData excelData)
+    private ElementItem CreateItem(ElementItemValue itemValue, ExcelData excelData)
     {
-        Items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        int newIndex = Items.RowDefinitions.Count;
-
-        itemValue ??= new(newIndex, excelData);
-
-        ElementItem newItem = new(itemValue, excelData, ItemValueChanged, GetTotalPrice);
-
-        Grid.SetRow(newItem, newIndex - 1);
-
+        ElementItem newItem = new(itemValue, excelData, ItemValueChanged, OnItemDelete, GetTotalPrice);
         Items.Children.Add(newItem);
 
         return newItem;
@@ -242,5 +237,14 @@ public partial class ElementPage : Page
         HourlyPayStoppageTime.Value = additionalWorkTime;
         HourlyPayStoppageTimePrice.Value = additionalPay;
         HourlyPayStoppageTimeProfit.Value = additionalProfit;
+    }
+
+    private void OnItemDelete(object? sender, ElementItemValue e)
+    {
+        int index = _elementValues.ElementItemValues.IndexOf(e);
+        if (index == -1) return;
+
+        _elementValues.ElementItemValues.RemoveAt(index);
+        Items.Children.RemoveAt(index);
     }
 }
