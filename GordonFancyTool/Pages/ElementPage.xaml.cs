@@ -42,18 +42,13 @@ public partial class ElementPage : Page
         }
     }
 
-    public double GetTotalPrice() => FinalResults.TotalPriceExclusiveVAT.Value;
-
     private async void PageLoaded(object sender, RoutedEventArgs e)
     {
         await Dispatcher.BeginInvoke(() =>
         {
             Window.GetWindow(this).Title = "Element: " + _elementValues.Title;
 
-            foreach (var item in Items.Children)
-            {
-                ItemValueChanged(item, "");
-            }
+            CalculateMinutesToInstall();
             HoursChanged(sender, "");
 
             _loading = false;
@@ -72,48 +67,24 @@ public partial class ElementPage : Page
         Normal.CalculateHours();
         Student.CalculateHours();
         AdultStudent.CalculateHours();
+
         CalculateStoppageTime();
-
-        // Total hours their workers need to complete the task.
-        double normal = Normal.Hours.Value ?? 0;
-        double student = Student.Hours.Value ?? 0;
-        double adultStudent = AdultStudent.Hours.Value ?? 0;
-        double additionalTime = HourlyPayStoppageTime.Value;
-
-        double hours = DoubleCal.Round(normal + student + adultStudent + additionalTime);
-
-        // Total pay the company gets for their man power.
-        double normalSale = Normal.Sale.Value;
-        double studentSale = Student.Sale.Value;
-        double adultStudentSale = AdultStudent.Sale.Value;
-        double additionalPay = HourlyPayStoppageTimePrice.Value;
-
-        double totalSale = DoubleCal.Round(normalSale + studentSale + adultStudentSale + additionalPay);
-
-        double normalProfit = Normal.CompanyProfit.Value;
-        double studentProfit = Student.CompanyProfit.Value;
-        double adultStudentProfit = AdultStudent.CompanyProfit.Value;
-        double additionalProfit = HourlyPayStoppageTimeProfit.Value;
-
-        double totalHoursProfit = DoubleCal.Round(normalProfit + studentProfit + adultStudentProfit + additionalProfit);
-
-        TotalHoursPay.Value = totalSale;
-        TotalHours.Value = hours;
-        TotalHoursProfit.Value = totalHoursProfit;
-
-        if (!_loading)
-        {
-            _elementValues.NormalHours = normal;
-            _elementValues.StudentHours = student;
-            _elementValues.AdultStudentHours = adultStudent;
-        }
-
-        SomeValuesChanged(sender, newValue);
+        CalculateTotalHours();
+        ValueChanged();
     }
 
     public void AddItem(object? sender, ExcelData excelData)
     {
-        int newNumber = _elementValues.ElementItemValues.Last().Number + 1;
+        int newNumber;
+        try
+        {
+            newNumber = _elementValues.ElementItemValues.Last().Number + 1;
+        }
+        catch (InvalidOperationException)
+        {
+            newNumber = 1;
+        }
+        
         ElementItemValue itemValue = new(newNumber, excelData);
 
         ElementItem item = CreateItem(itemValue, excelData);
@@ -130,6 +101,7 @@ public partial class ElementPage : Page
 
     private void ItemValueChanged(object? sender, string newValue)
     {
+        // Save update
         if (sender is ElementItem item)
         {
             ElementItemValue? itemValue = _elementValues.ElementItemValues.FirstOrDefault(i => i.Number == item.ElementItemValue.Number);
@@ -139,104 +111,15 @@ public partial class ElementPage : Page
             itemValue.Units = item.ElementItemValue.Units;
         }
 
-        double totalTime = 0;
-        foreach (var elementItem in Items.Children)
-        {
-            if (elementItem is not ElementItem itemValue)
-                continue;
+        // Update UI values
+        CalculateMinutesToInstall();
 
-            ExcelData? excelData = ExcelDatas.FirstOrDefault(e => e.ProductName == itemValue.ElementItemValue.ExcelProductName);
-            if (excelData == null) continue;
-
-            totalTime += excelData.MinToInstall * itemValue.ElementItemValue.Units;
-        }
-        Normal.SetMaterialTime(totalTime);
-
-        if (!_loading)
-            SomeValuesChanged(sender, newValue);
+        SomeValuesChanged(sender, newValue);
     }
 
     private void SomeValuesChanged(object? sender, string newValue)
     {
-        double totalPartPirce = CalculateTotalPartPrice();
-
-        BottomPart.CalculateEverything(totalPartPirce);
-        FinalResults.CalculateResults(TotalHoursPay.Value, BottomPart.MaterialCostsIncrease.Value, TotalHoursProfit.Value, TotalPartProfit.Value, ProjectValue);
-
-        Normal.CalculateHoursContributions();
-        Student.CalculateHoursContributions();
-        AdultStudent.CalculateHoursContributions();
-
-        CalculatePertContributions();
-
-        double StoppageTimeContributions = DoubleCal.Round(HourlyPayStoppageTimePrice.Value * GetTotalPrice() / 100);
-        HourlyPayStoppageTimeContributions.Value = StoppageTimeContributions;
-    }
-
-    private double CalculateTotalPartPrice()
-    {
-        double totalPartPirce = 0;
-        double totalPartProfit = 0;
-        foreach (var item in Items.Children)
-        {
-            if (item is not ElementItem itemValue)
-                continue;
-
-            totalPartPirce += itemValue.FullPrice.Value;
-            totalPartProfit += itemValue.CompanyProfit.Value;
-        }
-
-        TotalPartPirce.Value = DoubleCal.Round(totalPartPirce);
-        TotalPartProfit.Value = DoubleCal.Round(totalPartProfit);
-
-        return totalPartPirce;
-    }
-
-    private void CalculatePertContributions()
-    {
-        double totalPartPercentage = 0;
-        foreach (var item in Items.Children)
-        {
-            if (item is not ElementItem itemValue)
-                continue;
-
-            itemValue.CalculateProcentageOfOffer();
-
-            totalPartPercentage += itemValue.PercentageOfOffers.Value;
-        }
-
-        TotalPartPercentage.Value = DoubleCal.Round(totalPartPercentage);
-    }
-
-    private void CalculateStoppageTime()
-    {
-        double hourlyPayStoppageTimePercentage = HourlyPayStoppageTimePercentage.Value / 100;
-
-        double normalHours = Normal.Hours.Value ?? 0;
-        double studentHours = Student.Hours.Value ?? 0;
-        double adultStudentHours = AdultStudent.Hours.Value ?? 0;
-        double workTime = DoubleCal.Round(normalHours + studentHours + adultStudentHours);
-        double additionalWorkTime = DoubleCal.Round(workTime * hourlyPayStoppageTimePercentage);
-
-        double normalPrice = Normal.Sale.Value;
-        double studentPrice = Student.Sale.Value;
-        double adultStudentPrice = AdultStudent.Sale.Value;
-
-        double normalAdditionalPay = DoubleCal.Round(normalPrice * normalHours * hourlyPayStoppageTimePercentage);
-        double studentAdditionalPay = DoubleCal.Round(studentPrice * studentHours * hourlyPayStoppageTimePercentage);
-        double adultStudentAdditionalPay = DoubleCal.Round(adultStudentPrice * adultStudentHours * hourlyPayStoppageTimePercentage);
-
-        double additionalPay = DoubleCal.Round(normalAdditionalPay + studentAdditionalPay + adultStudentAdditionalPay);
-
-        double normalProfit = DoubleCal.Round(Normal.CompanyProfit.Value * hourlyPayStoppageTimePercentage);
-        double studentProfit = DoubleCal.Round(Student.CompanyProfit.Value * hourlyPayStoppageTimePercentage);
-        double adultStudentProfit = DoubleCal.Round(AdultStudent.CompanyProfit.Value * hourlyPayStoppageTimePercentage);
-
-        double additionalProfit = DoubleCal.Round(normalProfit + studentProfit + adultStudentProfit);
-
-        HourlyPayStoppageTime.Value = additionalWorkTime;
-        HourlyPayStoppageTimePrice.Value = additionalPay;
-        HourlyPayStoppageTimeProfit.Value = additionalProfit;
+        ValueChanged();
     }
 
     private void OnItemDelete(object? sender, ElementItemValue e)

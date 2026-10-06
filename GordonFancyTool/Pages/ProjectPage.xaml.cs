@@ -54,9 +54,19 @@ public partial class ProjectPage : Page
         string? newTitle = GetNewElementTitle();
         if (newTitle == null) return;
 
+        int newId;
+        try
+        {
+            newId = _elementValues.Last().Id + 1;
+        }
+        catch (InvalidOperationException)
+        {
+            newId = 1;
+        }
+
         ElementValue elementValue = new()
         {
-            Id = _elementValues.Last().Id + 1,
+            Id = newId,
             Title = newTitle,
         };
 

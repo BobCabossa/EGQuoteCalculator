@@ -131,9 +131,9 @@
                         <local:CustomTextBlock x:Name="HourlyPayStoppageTimePercentage" Grid.Column="2" Grid.Row="4" Type="Percentage" />
                         <local:CustomTextBlock x:Name="HourlyPayStoppageTime" Grid.Column="3" Grid.Row="4" Type="NoneStay" />
 
-                        <local:CustomTextBlock x:Name="HourlyPayStoppageTimePrice" Grid.Column="8" Grid.Row="4" Type="Currency" />
-                        <local:CustomTextBlock x:Name="HourlyPayStoppageTimeContributions" Grid.Column="9" Grid.Row="4" Type="Percentage" />
-                        <local:CustomTextBlock x:Name="HourlyPayStoppageTimeProfit" Grid.Column="10" Grid.Row="4" Type="Currency" />
+                        <local:CustomTextBlock x:Name="HourlyPayStoppageTimePrice" Grid.Column="9" Grid.Row="4" Type="Currency" />
+                        <local:CustomTextBlock x:Name="HourlyPayStoppageTimeContributions" Grid.Column="10" Grid.Row="4" Type="Percentage" />
+                        <local:CustomTextBlock x:Name="HourlyPayStoppageTimeProfit" Grid.Column="11" Grid.Row="4" Type="Currency" />
 
                         <!-- The grid need to be above the text to be rendered correct -->
                         <Grid Grid.Row="5" Grid.ColumnSpan="15" Background="Yellow" />
@@ -142,9 +142,9 @@
                         <local:CustomTextBlock x:Name="TotalHours" Grid.Column="3" Grid.Row="5" Type="NoneStay" />
                         <TextBlock Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" Margin="3,0,3,0">timer</TextBlock>
 
-                        <TextBlock Grid.Column="7" Grid.Row="5" HorizontalAlignment="Left" Margin="3,0,3,0">Bemanding salg</TextBlock>
-                        <local:CustomTextBlock x:Name="TotalHoursPay" Grid.Column="8" Grid.Row="5" Type="Currency" />
-                        <local:CustomTextBlock x:Name="TotalHoursProfit" Grid.Column="10" Grid.Row="5" Type="Currency" />
+                        <TextBlock Grid.Column="8" Grid.Row="5" HorizontalAlignment="Left" Margin="3,0,3,0">Bemanding salg</TextBlock>
+                        <local:CustomTextBlock x:Name="TotalHoursPay" Grid.Column="9" Grid.Row="5" Type="Currency" />
+                        <local:CustomTextBlock x:Name="TotalHoursProfit" Grid.Column="11" Grid.Row="5" Type="Currency" />
                     </Grid>
                 </Border>
 
@@ -161,6 +161,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250" />
                             <ColumnDefinition Width="2.5*" />
+                            <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />

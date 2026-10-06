@@ -15,6 +15,7 @@ public partial class ElementItem : UserControl
         get => (ElementItemValue)GetValue(ElementItemValueProperty);
     }
 
+    public ExcelData ExcelData { get; private set; }
     public event EventHandler<string> ValuesChanged;
     public event EventHandler<ElementItemValue> OnItemDelete;
     public Func<double> GetFullPrice;
@@ -22,6 +23,7 @@ public partial class ElementItem : UserControl
     public ElementItem(ElementItemValue ElementItemValue, ExcelData excelData, EventHandler<string> valuesChanged, EventHandler<ElementItemValue> onItemDelete, Func<double> getFullPrice)
     {
         this.ElementItemValue = ElementItemValue;
+        ExcelData = excelData;
 
         ValuesChanged = valuesChanged;
         OnItemDelete = onItemDelete;
