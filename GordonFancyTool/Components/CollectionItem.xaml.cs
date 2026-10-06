@@ -3,11 +3,15 @@
 public partial class CollectionItem : UserControl
 {
     public ExcelCollection ExcelCollection { get; private set; }
-    public ObservableCollection<ExcelData> _data { get; private set; }
+    public ObservableCollection<ExcelData> Data { get; private set; }
+    private readonly List<CollectionItemPart> _itemParts = new();
 
-    public CollectionItem(ExcelCollection collection, ObservableCollection<ExcelData> excelDatas)
+    public event EventHandler<CollectionItem> DeleteItem;
+
+    public CollectionItem(ExcelCollection collection, ObservableCollection<ExcelData> excelDatas, EventHandler<CollectionItem> deleteItem)
     {
-        _data = excelDatas;
+        DeleteItem = deleteItem;
+        Data = excelDatas;
         ExcelCollection = collection;
         InitializeComponent();
 
@@ -15,6 +19,8 @@ public partial class CollectionItem : UserControl
         {
             CreateItem(excelName);
         }
+
+        CollectionsTitle.Text = collection.Title;
     }
 
     public void UpdateCollection()
@@ -46,11 +52,12 @@ public partial class CollectionItem : UserControl
 
     private void CreateItem(ExcelCollectionItem collectionItem)
     {
-        ExcelData? excelData = _data.FirstOrDefault(e => e.ProductName == collectionItem.Name);
+        ExcelData? excelData = Data.FirstOrDefault(e => e.ProductName == collectionItem.Name);
         if (excelData == null) return;
 
         CollectionItemPart newPart = new(excelData, collectionItem, OnRemovePart);
         Items.Children.Add(newPart);
+        _itemParts.Add(newPart);
     }
 
     private void OnRemovePart(object? sender, string e)
@@ -58,6 +65,30 @@ public partial class CollectionItem : UserControl
         if (sender is not CollectionItemPart collectionPart)
             return;
 
-        // remove it...
+        int index = _itemParts.FindIndex(e => e.CollectionItem.Name == collectionPart.CollectionItem.Name);
+        if (index == -1)
+            return;
+        
+        Items.Children.RemoveAt(index);
+        _itemParts.RemoveAt(index);
+    }
+
+    public void OnRemoveItem(object sender, RoutedEventArgs e)
+    {
+        DeleteItem.Invoke(sender, this);
+    }
+
+    private void OnChangeTitle(object? sender, RoutedEventArgs e)
+    {
+        var dialog = new NewElementPopup("Endre navn", "Indtast et navn:", ExcelCollection.Title)
+        {
+            Owner = Window.GetWindow(this)
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            ExcelCollection.Title = dialog.Result ?? "";
+            CollectionsTitle.Text = dialog.Result ?? "";
+        }
     }
 }

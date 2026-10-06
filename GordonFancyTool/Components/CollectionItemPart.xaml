@@ -7,17 +7,17 @@
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
              d:DesignHeight="55" d:DesignWidth="800">
-    <Border BorderThickness="0,0,0,1">
-        <Grid Margin="0,5">
+    <Border BorderThickness="0,0,0,1" Margin="2" Padding="2" >
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" MinWidth="180" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding _data.ProductName, ElementName=MyControl}" Grid.Column="0" d:Text="texting" Margin="2,0" />
-            <local:CustomTextBlock Value="{Binding _data.MinToInstall, ElementName=MyControl}" Type="TimeMin" Grid.Column="1" Margin="2,0" />
+            <TextBlock Text="{Binding Data.ProductName, ElementName=MyControl}" Grid.Column="0" d:Text="texting" Margin="2,0" />
+            <local:CustomTextBlock Value="{Binding Data.MinToInstall, ElementName=MyControl}" Type="TimeMin" Grid.Column="1" Margin="2,0" />
             <local:DoubleTextBox ValueChanged="ValueUpdated" x:Name="ValueBox" Grid.Column="2" Margin="2,0" />
             <Button Grid.Column="3" Click="RemoveClick" Margin="2,0">Fjen</Button>
         </Grid>

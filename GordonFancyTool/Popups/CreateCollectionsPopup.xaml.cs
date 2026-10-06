@@ -2,17 +2,17 @@
 
 public partial class CreateCollectionsPopup : Window
 {
-    private ObservableCollection<ExcelData> _data;
-    public List<ExcelCollection> ExcelCollections { get; private set; } = new();
+    private readonly ObservableCollection<ExcelData> _data;
+    public List<CollectionItem> ExcelCollections { get; private set; } = new();
 
     public CreateCollectionsPopup()
     {
         _data = FileController.LoadExcelDataObservableCollection();
-        ExcelCollections = FileController.LoadCollection();
+        List<ExcelCollection> Collections = FileController.LoadCollection();
 
         InitializeComponent();
 
-        foreach (ExcelCollection collection in ExcelCollections)
+        foreach (ExcelCollection collection in Collections)
         {
             CreateItem(collection);
         }
@@ -22,7 +22,7 @@ public partial class CreateCollectionsPopup : Window
     {
         foreach (var item in ExcelCollections)
         {
-
+            item.UpdateCollection();
         }
 
         DialogResult = true;
@@ -43,22 +43,25 @@ public partial class CreateCollectionsPopup : Window
         if (dialog.ShowDialog() == false) return;
 
         string? title = dialog.Result;
-        if (title == null) return;
 
-        ExcelCollection newCollection = new(title);
-        ExcelCollections.Add(newCollection);
+        ExcelCollection newCollection = new(title ?? "");
         CreateItem(newCollection);
     }
 
     private void CreateItem(ExcelCollection collection)
     {
-        items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        int newIndex = items.RowDefinitions.Count - 1;
-
-        CollectionItem newItem = new(collection, _data);
-
-        Grid.SetRow(newItem, newIndex);
-
+        CollectionItem newItem = new(collection, _data, OnRemoveItem);
         items.Children.Add(newItem);
+        ExcelCollections.Add(newItem);
+    }
+
+    private void OnRemoveItem(object? sender, CollectionItem deleteCollection)
+    {
+        int index = ExcelCollections.FindIndex(ec => ec == deleteCollection);
+        if (index == -1)
+            return;
+
+        ExcelCollections.RemoveAt(index);
+        items.Children.RemoveAt(index);
     }
 }

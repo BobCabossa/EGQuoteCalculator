@@ -126,7 +126,7 @@ public partial class ProjectPage : Page
 
         if (dialog.ShowDialog() == true)
         {
-            List<ExcelCollection> collections = dialog.ExcelCollections;
+            List<ExcelCollection> collections = dialog.ExcelCollections.Select(ec => ec.ExcelCollection).ToList();
 
             FileController.SaveCollections(collections);
         }

@@ -19,7 +19,7 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
             <StackPanel Orientation="Vertical">
-                <Grid x:Name="items" />
+                <StackPanel x:Name="items" />
                 <Button Click="AddCollection">Tilføj</Button>
             </StackPanel>
         </ScrollViewer>

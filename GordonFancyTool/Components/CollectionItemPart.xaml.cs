@@ -2,16 +2,16 @@
 
 public partial class CollectionItemPart : UserControl
 {
-    public ExcelData _data { get; }
+    public ExcelData Data { get; }
     public ExcelCollectionItem CollectionItem;
 
-    public event EventHandler<string> _deletePart;
+    public event EventHandler<string> DeletePart;
 
     public CollectionItemPart(ExcelData data, ExcelCollectionItem collectionItem, EventHandler<string> deletePart)
     {
         CollectionItem = collectionItem;
-        _deletePart = deletePart;
-        _data = data;
+        DeletePart = deletePart;
+        Data = data;
         InitializeComponent();
 
         ValueBox.ValueString = collectionItem.Quantity.ToString();
@@ -24,6 +24,6 @@ public partial class CollectionItemPart : UserControl
 
     private void RemoveClick(object sender, RoutedEventArgs e)
     {
-        _deletePart.Invoke(this, Name);
+        DeletePart.Invoke(this, Name);
     }
 }
