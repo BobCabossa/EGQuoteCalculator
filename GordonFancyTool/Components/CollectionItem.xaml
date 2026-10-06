@@ -19,7 +19,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.ColumnSpan="2" x:Name="CollectionsTitle" d:Text="Some title" Margin="3,3,73,3" />
+            <TextBlock Grid.ColumnSpan="2" x:Name="CollectionsTitle" d:Text="Some title" Margin="3,3,159,2" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Margin="3">
                 <Button MinWidth="65" Click="OnChangeTitle" Margin="1,0">Endre navn</Button>
                 <Button MinWidth="65" Click="OnRemoveItem" Margin="1,0">Fjern</Button>

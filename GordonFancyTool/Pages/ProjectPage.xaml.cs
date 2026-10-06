@@ -2,6 +2,8 @@
 
 public partial class ProjectPage : Page
 {
+    private bool pageLoaded = false;
+
     private readonly ProjectValues _projectValues;
     private readonly List<ElementValue> _elementValues;
 
@@ -32,6 +34,7 @@ public partial class ProjectPage : Page
         {
             CreateElementItem(item);
         }
+        pageLoaded = true;
     }
 
     private void ImportData(object sender, RoutedEventArgs e)
@@ -64,14 +67,11 @@ public partial class ProjectPage : Page
 
     private void CreateElementItem(ElementValue newElement)
     {
-        items.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        int newIndex = items.RowDefinitions.Count - 1;
-
-        ProjectItem newItem = new(newElement, OpenElementView);
-        Grid.SetRow(newItem, newIndex);
+        ProjectItem newItem = new(newElement, OpenElementView, DeleteElement);
         items.Children.Add(newItem);
 
-        FileController.SaveElements(_elementValues);
+        if (pageLoaded)
+            FileController.SaveElements(_elementValues);
     }
 
     private string? GetNewElementTitle()
@@ -130,5 +130,16 @@ public partial class ProjectPage : Page
 
             FileController.SaveCollections(collections);
         }
+    }
+
+    private void DeleteElement(object? sender, ElementValue elementValue)
+    {
+        int index = _elementValues.FindIndex(e => e == elementValue);
+        if (index == -1)
+            return;
+
+        _elementValues.RemoveAt(index);
+        items.Children.RemoveAt(index);
+        FileController.SaveElements(_elementValues);
     }
 }
