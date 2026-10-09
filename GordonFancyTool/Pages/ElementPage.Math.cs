@@ -4,6 +4,22 @@ public partial class ElementPage : Page
 {
     public double GetTotalPrice() => FinalResults.TotalPriceExclusiveVAT.Value;
 
+    private void SetUpdatedValues()
+    {
+        if (_loading) return;
+
+        double normal = Normal.Hours.Value ?? 0;
+        double student = Student.Hours.Value ?? 0;
+        double adultStudent = AdultStudent.Hours.Value ?? 0;
+
+        _elementValues.NormalHours = DoubleCal.Round(normal + Normal.MaterialTime.Value);
+        _elementValues.StudentHours = DoubleCal.Round(student + Student.MaterialTime.Value);
+        _elementValues.AdultStudentHours = DoubleCal.Round(adultStudent + AdultStudent.MaterialTime.Value);
+
+        _elementValues.TotalPriceExclusiveVAT = FinalResults.TotalPriceExclusiveVAT.Value;
+        _elementValues.TotalProfit = FinalResults.TotalProfit.Value;
+    }
+
     private void ValueChanged()
     {
         double totalPartPirce = CalculateTotalPartPrice();
@@ -19,6 +35,8 @@ public partial class ElementPage : Page
 
         double StoppageTimeContributions = DoubleCal.Round(HourlyPayStoppageTimePrice.Value / GetTotalPrice() * 100);
         HourlyPayStoppageTimeContributions.Value = StoppageTimeContributions;
+
+        SetUpdatedValues();
     }
 
     private void CalculateTotalHours()
@@ -50,12 +68,7 @@ public partial class ElementPage : Page
         TotalHours.Value = hours;
         TotalHoursProfit.Value = totalHoursProfit;
 
-        if (!_loading)
-        {
-            _elementValues.NormalHours = normal;
-            _elementValues.StudentHours = student;
-            _elementValues.AdultStudentHours = adultStudent;
-        }
+        SetUpdatedValues();
     }
 
     private double CalculateTotalPartPrice()
@@ -100,6 +113,7 @@ public partial class ElementPage : Page
         double normalHours = Normal.Hours.Value ?? 0;
         double studentHours = Student.Hours.Value ?? 0;
         double adultStudentHours = AdultStudent.Hours.Value ?? 0;
+
         double workTime = DoubleCal.Round(normalHours + studentHours + adultStudentHours);
         double additionalWorkTime = DoubleCal.Round(workTime * hourlyPayStoppageTimePercentage);
 
@@ -113,9 +127,13 @@ public partial class ElementPage : Page
 
         double additionalPay = DoubleCal.Round(normalAdditionalPay + studentAdditionalPay + adultStudentAdditionalPay);
 
-        double normalProfit = DoubleCal.Round(Normal.CompanyProfit.Value * hourlyPayStoppageTimePercentage);
-        double studentProfit = DoubleCal.Round(Student.CompanyProfit.Value * hourlyPayStoppageTimePercentage);
-        double adultStudentProfit = DoubleCal.Round(AdultStudent.CompanyProfit.Value * hourlyPayStoppageTimePercentage);
+        double normalCompanyProfit = Normal.CompanyProfit.Value;
+        double studentCompanyProfit = Student.CompanyProfit.Value;
+        double adultStudentCompanyProfit = AdultStudent.CompanyProfit.Value;
+
+        double normalProfit = DoubleCal.Round(normalCompanyProfit * hourlyPayStoppageTimePercentage);
+        double studentProfit = DoubleCal.Round(studentCompanyProfit * hourlyPayStoppageTimePercentage);
+        double adultStudentProfit = DoubleCal.Round(adultStudentCompanyProfit * hourlyPayStoppageTimePercentage);
 
         double additionalProfit = DoubleCal.Round(normalProfit + studentProfit + adultStudentProfit);
 

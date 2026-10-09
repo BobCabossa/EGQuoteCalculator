@@ -42,16 +42,17 @@ public partial class ElementItem : UserControl
     public void PriceUpdated(object sender, string e)
     {
         _ = double.TryParse(Price.Text, out double pricePerUnit);
-        ElementItemValue ElementItemValue = this.ElementItemValue;
+        ElementItemValue elementItemValue = ElementItemValue;
 
         double? units = Units.Value;
         double? length = Length.Value;
 
+        // Updates item values!!!
         if (units != null)
-            ElementItemValue.Units = units.Value;
+            elementItemValue.Units = units.Value;
 
         if (length != null)
-            ElementItemValue.Length = length.Value;
+            elementItemValue.Length = length.Value;
 
         if (units == null || length == null) return;
 
