@@ -34,6 +34,7 @@ public partial class ElementItem : UserControl
         Product.Text = excelData.ProductName;
         Price.Text = excelData.PurchasePrice;
         EAN.Text = excelData.EAN;
+        MinToInstall.Text = excelData.MinToInstall.ToString();
 
         Index.Text = ElementItemValue.Number.ToString();
     }
