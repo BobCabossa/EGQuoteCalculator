@@ -14,9 +14,21 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="0.75*" />
         </Grid.ColumnDefinitions>
+        
         <TextBlock x:Name="Title" Margin="2" d:Text="A new task, we need to do." />
-        <Button Click="OpenElementView" Grid.Column="2" Margin="2">Åben</Button>
-        <Button Click="DeleteItem" Grid.Column="3" Margin="2">Fjen</Button>
+        <local:CustomTextBlock Grid.Column="1" Type="Currency" x:Name="PriceExclusiveVAT" />
+        <local:CustomTextBlock Grid.Column="2" Type="Currency" x:Name="Profit" />
+        <local:CustomTextBlock Grid.Column="3" Type="Percentage" x:Name="ContributionMarginRatio" />
+        <local:CustomTextBlock Grid.Column="4" Type="NoneStay" x:Name="NormalStaffingTime" />
+        <local:CustomTextBlock Grid.Column="5" Type="NoneStay" x:Name="ApprenticeStaffingTime" />
+        <Button Click="OpenElementView" Grid.Column="6" Margin="2">Åben</Button>
+        <Button Click="OpenElementView" Grid.Column="7" Margin="2">Redigere</Button>
+        <Button Click="DeleteItem" Grid.Column="8" Margin="2">Fjen</Button>
     </Grid>
 </UserControl>

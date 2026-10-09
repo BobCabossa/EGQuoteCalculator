@@ -25,7 +25,33 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Margin="5">
             <StackPanel Orientation="Vertical">
-                <StackPanel x:Name="items" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="0.75*" />
+                        <ColumnDefinition Width="0.75*" />
+                        <ColumnDefinition Width="0.75*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock FontSize="45">Project Oversigt</TextBlock>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Tilbud</TextBlock>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Indtægt</TextBlock>
+                    <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">Dæknings-grad</TextBlock>
+                    <TextBlock Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">Bemanding Elektriker Timer</TextBlock>
+                    <TextBlock Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">Bemanding Lærling Timer</TextBlock>
+
+                </Grid>
+                <StackPanel x:Name="items" Grid.Row="1" />
                 <Button Click="AddElement" Margin="2">Tilføj</Button>
             </StackPanel>
         </ScrollViewer>

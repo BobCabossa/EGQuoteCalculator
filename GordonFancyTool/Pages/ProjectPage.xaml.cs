@@ -77,7 +77,7 @@ public partial class ProjectPage : Page
 
     private void CreateElementItem(ElementValue newElement)
     {
-        ProjectItem newItem = new(newElement, OpenElementView, DeleteElement);
+        ProjectItem newItem = new(newElement, OpenElementView, EditElementTitle, DeleteElement);
         items.Children.Add(newItem);
 
         if (pageLoaded)
@@ -151,5 +151,28 @@ public partial class ProjectPage : Page
         _elementValues.RemoveAt(index);
         items.Children.RemoveAt(index);
         FileController.SaveElements(_elementValues);
+    }
+
+    private void EditElementTitle(object? sender, ElementValue elementValue)
+    {
+        int index = _elementValues.IndexOf(elementValue);
+        if (index == -1)
+            return;
+
+        var dialog = new NewElementPopup("Redigere Opgrave", "Indtast et navn:", elementValue.Title)
+        {
+            Owner = Window.GetWindow(this)
+        };
+
+        if (dialog.ShowDialog() == false) 
+            return;
+
+        string result = dialog.Result ?? "";
+        _elementValues[index].Title = result;
+
+        if (sender is not ProjectItem item)
+            return;
+
+        item.Title.Text = result;
     }
 }
