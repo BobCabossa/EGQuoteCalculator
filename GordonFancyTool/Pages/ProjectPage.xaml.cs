@@ -30,6 +30,7 @@ public partial class ProjectPage : Page
 
     private void PageLoaded(object sender, RoutedEventArgs e)
     {
+        Title = "Project Oversigt";
         foreach (var item in _elementValues)
         {
             CreateElementItem(item);
