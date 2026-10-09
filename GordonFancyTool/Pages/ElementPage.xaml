@@ -170,18 +170,20 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0"></TextBlock>
                         <TextBlock Grid.Column="1">Materialer</TextBlock>
                         <TextBlock Grid.Column="2">Grosist</TextBlock>
                         <TextBlock Grid.Column="3">Kostpris</TextBlock>
-                        <TextBlock Grid.Column="4">Antal [stk/m]</TextBlock>
-                        <TextBlock Grid.Column="5">Avance [%]</TextBlock>
-                        <TextBlock Grid.Column="6">EAN nummer</TextBlock>
-                        <TextBlock Grid.Column="7" HorizontalAlignment="Right" Margin="0,0,50,0">I alt</TextBlock>
-                        <TextBlock Grid.Column="8">Procent udgør af tilbud</TextBlock>
-                        <TextBlock Grid.Column="9">EG EL Fortjenest</TextBlock>
+                        <TextBlock Grid.Column="4">Min til at installere</TextBlock>
+                        <TextBlock Grid.Column="5">Antal [stk/m]</TextBlock>
+                        <TextBlock Grid.Column="6">Avance [%]</TextBlock>
+                        <TextBlock Grid.Column="7">EAN nummer</TextBlock>
+                        <TextBlock Grid.Column="8" HorizontalAlignment="Right" Margin="0,0,50,0">I alt</TextBlock>
+                        <TextBlock Grid.Column="9">Procent udgør af tilbud</TextBlock>
+                        <TextBlock Grid.Column="10">EG EL Fortjenest</TextBlock>
                     </Grid>
 
                     <StackPanel x:Name="Items" Grid.Row="1" />

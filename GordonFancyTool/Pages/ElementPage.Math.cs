@@ -15,7 +15,7 @@ public partial class ElementPage : Page
         Student.CalculateHoursContributions();
         AdultStudent.CalculateHoursContributions();
 
-        CalculatePertContributions();
+        CalculatePartContributions();
 
         double StoppageTimeContributions = DoubleCal.Round(HourlyPayStoppageTimePrice.Value / GetTotalPrice() * 100);
         HourlyPayStoppageTimeContributions.Value = StoppageTimeContributions;
@@ -77,7 +77,7 @@ public partial class ElementPage : Page
         return totalPartPirce;
     }
 
-    private void CalculatePertContributions()
+    private void CalculatePartContributions()
     {
         double totalPartPercentage = 0;
         foreach (var item in Items.Children)

@@ -102,7 +102,7 @@ public partial class ElementsTopRow : UserControl
 
     public void SetMaterialTime(double time)
     {
-        MaterialTime.Value = time;
+        MaterialTime.Value = DoubleCal.Round(time / 60);
         CalculateHours();
         CalculateHoursContributions();
     }
