@@ -55,7 +55,7 @@ public static class ImportController
 
         foreach (ExcelData data in newExcel)
         {
-            ExcelData? excel = oldExcel.FirstOrDefault(e => e.ProductName == data.ProductName);
+            ExcelData? excel = oldExcel.FirstOrDefault(e => e.Name == data.Name);
 
             if (excel == null)
             {

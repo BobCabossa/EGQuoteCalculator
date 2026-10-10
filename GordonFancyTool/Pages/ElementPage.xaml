@@ -157,6 +157,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
+                    <!-- Titles of the item values -->
                     <Grid Margin="0, 0, 0, 5" Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250" />
@@ -186,12 +187,14 @@
                         <TextBlock Grid.Column="10">EG EL Fortjenest</TextBlock>
                     </Grid>
 
+                    <!-- Material items -->
                     <StackPanel x:Name="Items" Grid.Row="1" />
 
+                    <!-- Search items -->
                     <local:ElementSearch
                         Grid.Row="2"
-                        SearchItems="{Binding ExcelDatas, ElementName=MyControl}"
-                        ValueSelected="AddItem" />
+                        ValueSelected="AddItem"
+                        Margin="2" />
 
                     <Grid Margin="0, 0, 0, 5"  Grid.Row="3">
                         <Grid.ColumnDefinitions>

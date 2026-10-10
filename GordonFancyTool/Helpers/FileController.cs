@@ -42,11 +42,13 @@ public static class FileController
     private static string GetCollectionsPath() => Path.Combine(GetDataFolder(), _collections);
 
     // Load
-    public static List<ElementValue> LoadElements() =>          LoadFile<List<ElementValue>>(GetElementFilePath());
-    public static ProjectValues LoadProjectValues() =>          LoadFile<ProjectValues>(GetProjectFilePath());
-    public static ObservableCollection<ExcelData> LoadExcelDataObservableCollection() => LoadFile<ObservableCollection<ExcelData>>(GetExcelFilePath());
-    public static List<ExcelData> LoadExcelDataList() =>        LoadFile<List<ExcelData>>(GetExcelFilePath());
-    public static List<ExcelCollection> LoadCollection() =>     LoadFile<List<ExcelCollection>>(GetCollectionsPath());
+    public static ProjectValues LoadProjectValues() =>              LoadFile<ProjectValues>(GetProjectFilePath());
+    public static List<ElementValue> LoadElements() =>              LoadFile<List<ElementValue>>(GetElementFilePath());
+    public static List<ExcelData> LoadExcelDataList() =>            LoadFile<List<ExcelData>>(GetExcelFilePath());
+    public static List<ExcelCollection> LoadCollectionList() =>     LoadFile<List<ExcelCollection>>(GetCollectionsPath());
+
+    public static ObservableCollection<ExcelData> LoadExcelDataObservableCollection() =>        LoadFile<ObservableCollection<ExcelData>>(GetExcelFilePath());
+    public static ObservableCollection<ExcelCollection> LoadCollectionObservableCollection() => LoadFile<ObservableCollection<ExcelCollection>>(GetCollectionsPath());
 
     // Save
     public static void SaveElements(List<ElementValue> elementValues) =>        SaveFile(GetElementFilePath(), elementValues);

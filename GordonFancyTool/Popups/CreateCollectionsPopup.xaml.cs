@@ -8,7 +8,7 @@ public partial class CreateCollectionsPopup : Window
     public CreateCollectionsPopup()
     {
         _data = FileController.LoadExcelDataObservableCollection();
-        List<ExcelCollection> Collections = FileController.LoadCollection();
+        List<ExcelCollection> Collections = FileController.LoadCollectionList();
 
         InitializeComponent();
 

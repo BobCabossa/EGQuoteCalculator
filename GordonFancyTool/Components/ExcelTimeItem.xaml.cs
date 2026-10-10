@@ -9,7 +9,7 @@ public partial class ExcelTimeItem : UserControl
         ExcelData = excelData;
         InitializeComponent();
 
-        Title.Text = excelData.ProductName;
+        Title.Text = excelData.Name;
         Time.ValueString = excelData.MinToInstall.ToString();
     }
 

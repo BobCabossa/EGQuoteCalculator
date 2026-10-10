@@ -38,7 +38,7 @@
                 <ListBox 
                     x:Name="ResultsList"
                     ItemsSource="{Binding FilteredItems, ElementName=root}"
-                    DisplayMemberPath="ProductName"
+                    DisplayMemberPath="Name"
                     MouseLeftButtonUp="ResultsList_MouseLeftButtonUp" />
             </Border>
         </Popup>

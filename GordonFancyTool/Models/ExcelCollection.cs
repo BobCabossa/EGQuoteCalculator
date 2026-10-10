@@ -1,14 +1,13 @@
 ﻿namespace GordonFancyTool.Models;
 
-public class ExcelCollection
+public class ExcelCollection : SearchModel
 {
-    public string Title { get; set; } = string.Empty;
     public List<ExcelCollectionItem> Items { get; set; } = new();
 
     public ExcelCollection() { }
 
     public ExcelCollection(string title)
     {
-        Title = title;
+        Name = title;
     }
 }

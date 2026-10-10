@@ -2,24 +2,9 @@
 
 public partial class ElementSearch : UserControl
 {
-    public ElementSearch()
-    {
-        InitializeComponent();
-    }
+    public ObservableCollection<SearchModel> FilteredItems { get; } = new();
 
-    public ObservableCollection<ExcelData> FilteredItems { get; } = new();
-
-    public ObservableCollection<ExcelData>? SearchItems
-    {
-        get => (ObservableCollection<ExcelData>?)GetValue(SearchItemsProperty);
-        set => SetValue(SearchItemsProperty, value);
-    }
-
-    public static readonly DependencyProperty SearchItemsProperty =
-        DependencyProperty.Register(
-            nameof(SearchItems),
-            typeof(ObservableCollection<ExcelData>),
-            typeof(ElementSearch));
+    public ObservableCollection<SearchModel> SearchItems { get; set; } = new();
 
     public string SearchText
     {
@@ -47,7 +32,25 @@ public partial class ElementSearch : UserControl
             typeof(ElementSearch),
             new PropertyMetadata(false));
 
-    public event EventHandler<ExcelData>? ValueSelected;
+    public event EventHandler<SearchModel>? ValueSelected;
+
+    public ElementSearch()
+    {
+        ObservableCollection<ExcelData> ExcelDatas = FileController.LoadExcelDataObservableCollection();
+        ObservableCollection<ExcelCollection> ExcelCollections = FileController.LoadCollectionObservableCollection();
+
+        foreach (var item in ExcelDatas)
+        {
+            SearchItems.Add(item);
+        }
+
+        foreach (var item in ExcelCollections)
+        {
+            SearchItems.Add(item);
+        }
+
+        InitializeComponent();
+    }
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -69,10 +72,10 @@ public partial class ElementSearch : UserControl
             return;
         }
 
-        List<ExcelData> filteredItems = [];
+        List<SearchModel> filteredItems = [];
         foreach (var item in SearchItems)
         {
-            if (item.ProductName.Contains(search, StringComparison.OrdinalIgnoreCase))
+            if (item.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
             {
                 filteredItems.Add(item);
             }
@@ -80,7 +83,22 @@ public partial class ElementSearch : UserControl
 
         if (filteredItems.Count > 0)
         {
-            IOrderedEnumerable<ExcelData> sorted = filteredItems.OrderByDescending(x => x.PurchasePrice);
+            List<ExcelData> moreSorting = new();
+            foreach (var item in filteredItems)
+            {
+                if (item is ExcelCollection)
+                {
+                    FilteredItems.Add(item);
+                }
+                else if (item is ExcelData excelData)
+                {
+                    moreSorting.Add(excelData);
+                }
+            }
+
+
+            IOrderedEnumerable<SearchModel> sorted = moreSorting.OrderByDescending(x => x.PurchasePrice);
+
             foreach (var item in sorted)
             {
                 FilteredItems.Add(item);

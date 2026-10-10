@@ -20,7 +20,7 @@ public partial class CollectionItem : UserControl
             CreateItem(excelName);
         }
 
-        CollectionsTitle.Text = collection.Title;
+        CollectionsTitle.Text = collection.Name;
     }
 
     public void UpdateCollection()
@@ -43,16 +43,16 @@ public partial class CollectionItem : UserControl
         }
     }
 
-    public void AddItem(object? sender, ExcelData excelData)
+    public void AddItem(object? sender, SearchModel excelData)
     {
-        ExcelCollectionItem collectionItem = new(excelData.ProductName);
+        ExcelCollectionItem collectionItem = new(excelData.Name);
         ExcelCollection.Items.Add(collectionItem);
         CreateItem(collectionItem);
     }
 
     private void CreateItem(ExcelCollectionItem collectionItem)
     {
-        ExcelData? excelData = Data.FirstOrDefault(e => e.ProductName == collectionItem.Name);
+        ExcelData? excelData = Data.FirstOrDefault(e => e.Name == collectionItem.Name);
         if (excelData == null) return;
 
         CollectionItemPart newPart = new(excelData, collectionItem, OnRemovePart);
@@ -80,14 +80,14 @@ public partial class CollectionItem : UserControl
 
     private void OnChangeTitle(object? sender, RoutedEventArgs e)
     {
-        var dialog = new NewElementPopup("Endre navn", "Indtast et navn:", ExcelCollection.Title)
+        var dialog = new NewElementPopup("Endre navn", "Indtast et navn:", ExcelCollection.Name)
         {
             Owner = Window.GetWindow(this)
         };
 
         if (dialog.ShowDialog() == true)
         {
-            ExcelCollection.Title = dialog.Result ?? "";
+            ExcelCollection.Name = dialog.Result ?? "";
             CollectionsTitle.Text = dialog.Result ?? "";
         }
     }

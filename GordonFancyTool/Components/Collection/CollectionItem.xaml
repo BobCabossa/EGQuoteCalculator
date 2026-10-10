@@ -29,7 +29,6 @@
                 <StackPanel x:Name="Items" />
                 <local:ElementSearch
                     Margin="0,5"
-                    SearchItems="{Binding Data, ElementName=MyControl}"
                     ValueSelected="AddItem" />
             </StackPanel>
         </Grid>

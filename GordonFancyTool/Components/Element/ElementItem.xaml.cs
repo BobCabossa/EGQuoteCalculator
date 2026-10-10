@@ -31,7 +31,7 @@ public partial class ElementItem : UserControl
 
         InitializeComponent();
 
-        Product.Text = excelData.ProductName;
+        Product.Text = excelData.Name;
         Price.Text = excelData.PurchasePrice;
         EAN.Text = excelData.EAN;
         MinToInstall.Text = excelData.MinToInstall.ToString();

@@ -4,6 +4,7 @@ public partial class ElementPage : Page
 {
     public double GetTotalPrice() => FinalResults.TotalPriceExclusiveVAT.Value;
 
+    // To save the users input and some value so we don't have to do them in project page
     private void SetUpdatedValues()
     {
         if (_loading) return;
@@ -20,6 +21,7 @@ public partial class ElementPage : Page
         _elementValues.TotalProfit = FinalResults.TotalProfit.Value;
     }
 
+    // Value somewhere changed and everything need to update their values
     private void ValueChanged()
     {
         double totalPartPirce = CalculateTotalPartPrice();
@@ -39,6 +41,7 @@ public partial class ElementPage : Page
         SetUpdatedValues();
     }
 
+    // Time below
     private void CalculateTotalHours()
     {
         // Total hours their workers need to complete the task.
@@ -69,41 +72,6 @@ public partial class ElementPage : Page
         TotalHoursProfit.Value = totalHoursProfit;
 
         SetUpdatedValues();
-    }
-
-    private double CalculateTotalPartPrice()
-    {
-        double totalPartPirce = 0;
-        double totalPartProfit = 0;
-        foreach (var item in Items.Children)
-        {
-            if (item is not ElementItem itemValue)
-                continue;
-
-            totalPartPirce += itemValue.FullPrice.Value;
-            totalPartProfit += itemValue.CompanyProfit.Value;
-        }
-
-        TotalPartPirce.Value = DoubleCal.Round(totalPartPirce);
-        TotalPartProfit.Value = DoubleCal.Round(totalPartProfit);
-
-        return totalPartPirce;
-    }
-
-    private void CalculatePartContributions()
-    {
-        double totalPartPercentage = 0;
-        foreach (var item in Items.Children)
-        {
-            if (item is not ElementItem itemValue)
-                continue;
-
-            itemValue.CalculateProcentageOfOffer();
-
-            totalPartPercentage += itemValue.PercentageOfOffers.Value;
-        }
-
-        TotalPartPercentage.Value = DoubleCal.Round(totalPartPercentage);
     }
 
     private void CalculateStoppageTime()
@@ -140,6 +108,42 @@ public partial class ElementPage : Page
         HourlyPayStoppageTime.Value = additionalWorkTime;
         HourlyPayStoppageTimePrice.Value = additionalPay;
         HourlyPayStoppageTimeProfit.Value = additionalProfit;
+    }
+
+    // Parts below
+    private double CalculateTotalPartPrice()
+    {
+        double totalPartPirce = 0;
+        double totalPartProfit = 0;
+        foreach (var item in Items.Children)
+        {
+            if (item is not ElementItem itemValue)
+                continue;
+
+            totalPartPirce += itemValue.FullPrice.Value;
+            totalPartProfit += itemValue.CompanyProfit.Value;
+        }
+
+        TotalPartPirce.Value = DoubleCal.Round(totalPartPirce);
+        TotalPartProfit.Value = DoubleCal.Round(totalPartProfit);
+
+        return totalPartPirce;
+    }
+
+    private void CalculatePartContributions()
+    {
+        double totalPartPercentage = 0;
+        foreach (var item in Items.Children)
+        {
+            if (item is not ElementItem itemValue)
+                continue;
+
+            itemValue.CalculateProcentageOfOffer();
+
+            totalPartPercentage += itemValue.PercentageOfOffers.Value;
+        }
+
+        TotalPartPercentage.Value = DoubleCal.Round(totalPartPercentage);
     }
 
     private void CalculateMinutesToInstall()

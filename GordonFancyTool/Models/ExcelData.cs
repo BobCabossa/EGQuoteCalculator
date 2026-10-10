@@ -1,9 +1,8 @@
 ﻿namespace GordonFancyTool.Models;
 
-public class ExcelData
+public class ExcelData : SearchModel
 {
     // This comes from the imported files.
-    public string ProductName { get; set; } = string.Empty;
     public string PurchasePrice { get; set; } = string.Empty;
     public string EAN { get; set; } = string.Empty;
 
@@ -14,14 +13,14 @@ public class ExcelData
 
     public ExcelData(string ProductName, string PurchasePrice, string EAN)
     {
-        this.ProductName = ProductName;
+        this.Name = ProductName;
         this.PurchasePrice = PurchasePrice;
         this.EAN = EAN;
     }
 
     public ExcelData(ExcelData OldData, ExcelData newData)
     {
-        ProductName = OldData.ProductName;
+        Name = OldData.Name;
         MinToInstall = OldData.MinToInstall;
 
         PurchasePrice = newData.PurchasePrice;

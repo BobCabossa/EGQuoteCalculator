@@ -8,14 +8,14 @@ public partial class ElementPage : Page
     private readonly ElementValue _elementValues;
 
     public ProjectValues ProjectValue { get; set; }
-    public ObservableCollection<ExcelData> ExcelDatas { get; }
 
     public ElementPage(ProjectValues projectValues, ElementValue elementValue)
     {
-        ExcelDatas = FileController.LoadExcelDataObservableCollection();
+        List<ExcelData> excelDatas = FileController.LoadExcelDataList();
+        List<ExcelCollection> excelCollections = FileController.LoadCollectionList();
         _elementValues = elementValue;
         ProjectValue = projectValues;
-        
+
         InitializeComponent();
 
         ElementName.Text = elementValue.Title;
@@ -32,10 +32,25 @@ public partial class ElementPage : Page
 
         foreach (var item in elementValue.ElementItemValues)
         {
-            ExcelData? excelData = ExcelDatas.FirstOrDefault(e => e.ProductName == item.ExcelProductName);
-            if (excelData == null) continue;
+            ElementItem? newItem = null;
 
-            ElementItem newItem = CreateItem(item, excelData);
+            if (item.ItemType == ElementItemValue.ElementItemType.Single)
+            {
+                ExcelData? excelData = excelDatas.FirstOrDefault(e => e.Name == item.ExcelProductName);
+                if (excelData == null) continue;
+
+                newItem = CreateItem(item, excelData);
+            }
+            else if (item.ItemType == ElementItemValue.ElementItemType.Collection)
+            {
+                ExcelCollection? excelCollection = excelCollections.FirstOrDefault(e => e.Name == item.ExcelProductName);
+                if (excelCollection == null) continue;
+
+                //newItem = CreateItemCollection(item, excelCollection);
+            }
+
+            if (newItem == null) continue;
+
             newItem.Units.ValueString = item.Units.ToString();
             newItem.Length.ValueString = item.Length.ToString();
             newItem.PriceUpdated(this, "");
@@ -73,7 +88,7 @@ public partial class ElementPage : Page
         ValueChanged();
     }
 
-    public void AddItem(object? sender, ExcelData excelData)
+    public void AddItem(object? sender, SearchModel data)
     {
         int newNumber;
         try
@@ -84,16 +99,44 @@ public partial class ElementPage : Page
         {
             newNumber = 1;
         }
-        
+
+        if (data is ExcelData excelData)
+        {
+            AddSingleItem(newNumber, excelData);
+        }
+        else if (data is ExcelCollection excelCollection)
+        {
+            AddCollectionItem(newNumber, excelCollection);
+        }
+    }
+
+    private void AddSingleItem(int newNumber, ExcelData excelData)
+    {
         ElementItemValue itemValue = new(newNumber, excelData);
 
-        ElementItem item = CreateItem(itemValue, excelData);
-        _elementValues.ElementItemValues.Add(item.ElementItemValue);
+        _ = CreateItem(itemValue, excelData);
+        _elementValues.ElementItemValues.Add(itemValue);
+    }
+
+    private void AddCollectionItem(int newNumber, ExcelCollection excelCollection)
+    {
+        ElementItemValue itemValue = new(newNumber, excelCollection);
+
+        _ = CreateItem(itemValue, excelCollection);
+        _elementValues.ElementItemValues.Add(itemValue);
     }
 
     private ElementItem CreateItem(ElementItemValue itemValue, ExcelData excelData)
     {
         ElementItem newItem = new(itemValue, excelData, ItemValueChanged, OnItemDelete, GetTotalPrice);
+        Items.Children.Add(newItem);
+
+        return newItem;
+    }
+
+    private ElementCollectionItem CreateItem(ElementItemValue itemValue, ExcelCollection excelCollection)
+    {
+        ElementCollectionItem newItem = new();
         Items.Children.Add(newItem);
 
         return newItem;
