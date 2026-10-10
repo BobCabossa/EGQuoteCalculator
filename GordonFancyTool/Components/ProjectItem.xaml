@@ -10,7 +10,7 @@
     
     <Grid Margin="2">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="2*" />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
@@ -28,7 +28,7 @@
         <local:CustomTextBlock Grid.Column="4" Type="NoneStay" x:Name="NormalStaffingTime" />
         <local:CustomTextBlock Grid.Column="5" Type="NoneStay" x:Name="ApprenticeStaffingTime" />
         <Button Click="OpenElementView" Grid.Column="6" Margin="2">Åben</Button>
-        <Button Click="OpenElementView" Grid.Column="7" Margin="2">Redigere</Button>
+        <Button Click="EditItem" Grid.Column="7" Margin="2">Redigere</Button>
         <Button Click="DeleteItem" Grid.Column="8" Margin="2">Fjen</Button>
     </Grid>
 </UserControl>
