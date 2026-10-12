@@ -112,7 +112,7 @@ public partial class ElementSearch : UserControl
     }
     private void ResultsList_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
-        if (ResultsList.SelectedItem is ExcelData item)
+        if (ResultsList.SelectedItem is SearchModel item)
         {
             SelectItem(item);
         }
@@ -120,13 +120,13 @@ public partial class ElementSearch : UserControl
 
     private void ResultsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-        if (ResultsList.SelectedItem is ExcelData item)
+        if (ResultsList.SelectedItem is SearchModel item)
         {
             SelectItem(item);
         }
     }
 
-    private void SelectItem(ExcelData item)
+    private void SelectItem(SearchModel item)
     {
         if (item == null)
             return;

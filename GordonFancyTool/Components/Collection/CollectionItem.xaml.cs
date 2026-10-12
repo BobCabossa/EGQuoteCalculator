@@ -45,7 +45,7 @@ public partial class CollectionItem : UserControl
 
     public void AddItem(object? sender, SearchModel excelData)
     {
-        ExcelCollectionItem collectionItem = new(excelData.Name);
+        ExcelCollectionItem collectionItem = new(excelData);
         ExcelCollection.Items.Add(collectionItem);
         CreateItem(collectionItem);
     }
@@ -71,6 +71,7 @@ public partial class CollectionItem : UserControl
         
         Items.Children.RemoveAt(index);
         _itemParts.RemoveAt(index);
+        ExcelCollection.Items.RemoveAt(index);
     }
 
     public void OnRemoveItem(object sender, RoutedEventArgs e)

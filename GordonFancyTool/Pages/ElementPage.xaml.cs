@@ -3,16 +3,24 @@
 
 public partial class ElementPage : Page
 {
+    public class ElementPageLists(List<ExcelData> excelDatas, List<ExcelCollection> excelCollections)
+    {
+        public List<ExcelData> ExcelDatas { get; private set; } = excelDatas;
+        public List<ExcelCollection> ExcelCollections { get; private set; } = excelCollections;
+    }
+
     private bool _loading = true;
 
     private readonly ElementValue _elementValues;
-
+    private readonly ElementPageLists PageLists;
     public ProjectValues ProjectValue { get; set; }
 
     public ElementPage(ProjectValues projectValues, ElementValue elementValue)
     {
-        List<ExcelData> excelDatas = FileController.LoadExcelDataList();
-        List<ExcelCollection> excelCollections = FileController.LoadCollectionList();
+        PageLists = new(
+            FileController.LoadExcelDataList(),
+            FileController.LoadCollectionList());
+
         _elementValues = elementValue;
         ProjectValue = projectValues;
 
@@ -32,28 +40,22 @@ public partial class ElementPage : Page
 
         foreach (var item in elementValue.ElementItemValues)
         {
-            ElementItem? newItem = null;
-
             if (item.ItemType == ElementItemValue.ElementItemType.Single)
             {
-                ExcelData? excelData = excelDatas.FirstOrDefault(e => e.Name == item.ExcelProductName);
+                ExcelData? excelData = PageLists.ExcelDatas.FirstOrDefault(e => e.Name == item.ExcelProductName);
                 if (excelData == null) continue;
 
-                newItem = CreateItem(item, excelData);
+                ElementItem newItem = CreateItem(item, excelData);
+                newItem.PriceUpdated(this, "");
             }
             else if (item.ItemType == ElementItemValue.ElementItemType.Collection)
             {
-                ExcelCollection? excelCollection = excelCollections.FirstOrDefault(e => e.Name == item.ExcelProductName);
+                ExcelCollection? excelCollection = PageLists.ExcelCollections.FirstOrDefault(e => e.Name == item.ExcelProductName);
                 if (excelCollection == null) continue;
 
-                //newItem = CreateItemCollection(item, excelCollection);
+                ElementCollectionItem newItem = CreateItem(item, excelCollection);
+                newItem.PriceUpdated(this, "");
             }
-
-            if (newItem == null) continue;
-
-            newItem.Units.ValueString = item.Units.ToString();
-            newItem.Length.ValueString = item.Length.ToString();
-            newItem.PriceUpdated(this, "");
         }
     }
 
@@ -136,7 +138,7 @@ public partial class ElementPage : Page
 
     private ElementCollectionItem CreateItem(ElementItemValue itemValue, ExcelCollection excelCollection)
     {
-        ElementCollectionItem newItem = new();
+        ElementCollectionItem newItem = new(itemValue, excelCollection, PageLists, OnItemDelete);
         Items.Children.Add(newItem);
 
         return newItem;

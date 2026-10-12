@@ -21,8 +21,7 @@
         <!-- DROPDOWN -->
         <Popup 
             x:Name="SearchPopup"
-            IsOpen="{Binding IsDropDownOpen, 
-                     ElementName=root}"
+            IsOpen="{Binding IsDropDownOpen, ElementName=root}"
             PlacementTarget="{Binding ElementName=SearchTextBox}"
             Placement="Bottom"
             StaysOpen="False">

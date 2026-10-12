@@ -20,9 +20,9 @@ public partial class ElementItem : UserControl
     public event EventHandler<ElementItemValue> OnItemDelete;
     public Func<double> GetFullPrice;
 
-    public ElementItem(ElementItemValue ElementItemValue, ExcelData excelData, EventHandler<string> valuesChanged, EventHandler<ElementItemValue> onItemDelete, Func<double> getFullPrice)
+    public ElementItem(ElementItemValue elementItemValue, ExcelData excelData, EventHandler<string> valuesChanged, EventHandler<ElementItemValue> onItemDelete, Func<double> getFullPrice)
     {
-        this.ElementItemValue = ElementItemValue;
+        ElementItemValue = elementItemValue;
         ExcelData = excelData;
 
         ValuesChanged = valuesChanged;
@@ -36,7 +36,10 @@ public partial class ElementItem : UserControl
         EAN.Text = excelData.EAN;
         MinToInstall.Text = excelData.MinToInstall.ToString();
 
-        Index.Text = ElementItemValue.Number.ToString();
+        Units.ValueString = elementItemValue.Units.ToString();
+        Length.ValueString = elementItemValue.Length.ToString();
+
+        Index.Text = elementItemValue.Number.ToString();
     }
 
     public void PriceUpdated(object sender, string e)
