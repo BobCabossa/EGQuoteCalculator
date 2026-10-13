@@ -54,7 +54,8 @@ public partial class ElementPage : Page
                 if (excelCollection == null) continue;
 
                 ElementCollectionItem newItem = CreateItem(item, excelCollection);
-                newItem.PriceUpdated(this, "");
+                newItem.UpdateItemsQuantityAndPrices(item.CollectionQuantity);
+                newItem.PriceUpdated();
             }
         }
     }
@@ -74,6 +75,7 @@ public partial class ElementPage : Page
 
     public void BackToProject(object sender, RoutedEventArgs e)
     {
+        UpdateLocalElementItems();
         ProjectPage projectPage = new(_elementValues);
 
         NavigationService.Navigate(projectPage);
@@ -138,7 +140,7 @@ public partial class ElementPage : Page
 
     private ElementCollectionItem CreateItem(ElementItemValue itemValue, ExcelCollection excelCollection)
     {
-        ElementCollectionItem newItem = new(itemValue, excelCollection, PageLists, OnItemDelete);
+        ElementCollectionItem newItem = new(itemValue, excelCollection, PageLists, ItemValueChanged, OnItemDelete, GetTotalPrice);
         Items.Children.Add(newItem);
 
         return newItem;
@@ -146,24 +148,9 @@ public partial class ElementPage : Page
 
     private void ItemValueChanged(object? sender, string newValue)
     {
-        // Save update
-        if (sender is ElementItem item)
-        {
-            ElementItemValue? itemValue = _elementValues.ElementItemValues.FirstOrDefault(i => i.Number == item.ElementItemValue.Number);
-            if (itemValue == null) return;
-
-            itemValue.Length = item.ElementItemValue.Length;
-            itemValue.Units = item.ElementItemValue.Units;
-        }
-
         // Update UI values
         CalculateMinutesToInstall();
 
-        SomeValuesChanged(sender, newValue);
-    }
-
-    private void SomeValuesChanged(object? sender, string newValue)
-    {
         ValueChanged();
     }
 
@@ -174,5 +161,27 @@ public partial class ElementPage : Page
 
         _elementValues.ElementItemValues.RemoveAt(index);
         Items.Children.RemoveAt(index);
+    }
+
+    private void UpdateLocalElementItems()
+    {
+        foreach (var child in Items.Children)
+        {
+            if (child is ElementItem item)
+            {
+                ElementItemValue? itemValue = _elementValues.ElementItemValues.FirstOrDefault(i => i.Number == item.ElementItemValue.Number);
+                if (itemValue == null) return;
+
+                itemValue.Length = item.ElementItemValue.Length;
+                itemValue.Units = item.ElementItemValue.Units;
+            }
+            else if (child is ElementCollectionItem collectionItem)
+            {
+                ElementItemValue? itemValue = _elementValues.ElementItemValues.FirstOrDefault(i => i.Number == collectionItem.ElementItemValue.Number);
+                if (itemValue == null) return;
+
+                itemValue.CollectionQuantity = collectionItem.ElementItemValue.CollectionQuantity;
+            }
+        }
     }
 }

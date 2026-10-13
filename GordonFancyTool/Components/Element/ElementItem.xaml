@@ -16,13 +16,13 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition MinWidth="155" />
+            <ColumnDefinition MinWidth="155" />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition  MaxWidth="90"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="0" Margin="1" x:Name="Index" d:Text="1" />

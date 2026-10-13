@@ -117,11 +117,17 @@ public partial class ElementPage : Page
         double totalPartProfit = 0;
         foreach (var item in Items.Children)
         {
-            if (item is not ElementItem itemValue)
-                continue;
 
-            totalPartPirce += itemValue.FullPrice.Value;
-            totalPartProfit += itemValue.CompanyProfit.Value;
+            if (item is ElementItem itemValue)
+            {
+                totalPartPirce += itemValue.FullPrice.Value;
+                totalPartProfit += itemValue.CompanyProfit.Value;
+            }
+            else if (item is ElementCollectionItem collectionItem)
+            {
+                totalPartPirce += collectionItem.FullPrice.Value;
+                totalPartProfit += collectionItem.CompanyProfit.Value;
+            }
         }
 
         TotalPartPirce.Value = DoubleCal.Round(totalPartPirce);
@@ -135,12 +141,17 @@ public partial class ElementPage : Page
         double totalPartPercentage = 0;
         foreach (var item in Items.Children)
         {
-            if (item is not ElementItem itemValue)
-                continue;
-
-            itemValue.CalculateProcentageOfOffer();
-
-            totalPartPercentage += itemValue.PercentageOfOffers.Value;
+            if (item is ElementItem itemValue)
+            {
+                itemValue.CalculateProcentageOfOffer();
+                totalPartPercentage += itemValue.PercentageOfOffers.Value;
+            }
+            else if (item is ElementCollectionItem collectionItem)
+            {
+                collectionItem.CalculateProcentageOfOfferOfChilrens();
+                collectionItem.CalculateProcentageOfOffer();
+                totalPartPercentage += collectionItem.PercentageOfOffers.Value;
+            }
         }
 
         TotalPartPercentage.Value = DoubleCal.Round(totalPartPercentage);

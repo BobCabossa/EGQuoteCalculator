@@ -28,6 +28,8 @@ public class ElementItemValue
     public double Length { get; set; }
     public double Units { get; set; }
 
+    public double CollectionQuantity { get; set; }
+
     public string ExcelProductName { get; set; } = string.Empty;
     public ElementItemType ItemType { get; set; } = ElementItemType.None;
 }

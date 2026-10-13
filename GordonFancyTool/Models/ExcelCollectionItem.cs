@@ -11,6 +11,7 @@ public class ExcelCollectionItem
 
     public string Name { get; set; } = string.Empty;
     public double Quantity { get; set; } = 0;
+    public double Length { get; set; } = 0;
     public CollectionItemType ItemType { get; set; } = CollectionItemType.None;
 
     public ExcelCollectionItem() { }
