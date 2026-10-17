@@ -40,19 +40,27 @@ public partial class ElementPage : Page
 
         foreach (var item in elementValue.ElementItemValues)
         {
-            if (item.ItemType == ElementItemValue.ElementItemType.Single)
+            SearchModel? searchModel = item.ItemType switch
             {
-                ExcelData? excelData = PageLists.ExcelDatas.FirstOrDefault(e => e.Name == item.ExcelProductName);
-                if (excelData == null) continue;
+                ElementItemValue.ElementItemType.Single => PageLists.ExcelDatas.FirstOrDefault(e => e.Name == item.ExcelProductName),
+                ElementItemValue.ElementItemType.Collection => PageLists.ExcelCollections.FirstOrDefault(e => e.Name == item.ExcelProductName),
+                _ => null, // Defualt
+            };
 
+            if (searchModel == null)
+            {
+                ElementUnknownItem unknownItem = new(item.ExcelProductName, RemoveUnknown);
+                Items.Children.Add(unknownItem);
+                continue;
+            }
+
+            if (item.ItemType == ElementItemValue.ElementItemType.Single && searchModel is ExcelData excelData)
+            {
                 ElementItem newItem = CreateItem(item, excelData);
                 newItem.PriceUpdated(this, "");
             }
-            else if (item.ItemType == ElementItemValue.ElementItemType.Collection)
+            else if (item.ItemType == ElementItemValue.ElementItemType.Collection && searchModel is ExcelCollection excelCollection)
             {
-                ExcelCollection? excelCollection = PageLists.ExcelCollections.FirstOrDefault(e => e.Name == item.ExcelProductName);
-                if (excelCollection == null) continue;
-
                 ElementCollectionItem newItem = CreateItem(item, excelCollection);
                 newItem.UpdateItemsQuantityAndPrices(item.CollectionQuantity);
                 newItem.PriceUpdated();
@@ -157,6 +165,15 @@ public partial class ElementPage : Page
     private void OnItemDelete(object? sender, ElementItemValue e)
     {
         int index = _elementValues.ElementItemValues.IndexOf(e);
+        if (index == -1) return;
+
+        _elementValues.ElementItemValues.RemoveAt(index);
+        Items.Children.RemoveAt(index);
+    }
+
+    private void RemoveUnknown(object? sender, string name)
+    {
+        int index = _elementValues.ElementItemValues.FindIndex(e => e.ExcelProductName == name);
         if (index == -1) return;
 
         _elementValues.ElementItemValues.RemoveAt(index);
