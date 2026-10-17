@@ -9,7 +9,7 @@
              d:DesignHeight="55" d:DesignWidth="800"
              d:Background="WhiteSmoke">
     
-    <Border BorderThickness="0,0,0,1" Margin="2" Padding="2" >
+    <Border BorderThickness="0,0,0,0.5" Margin="2" >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />

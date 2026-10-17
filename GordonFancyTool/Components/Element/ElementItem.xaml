@@ -8,34 +8,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="1900"
              d:Background="WhiteSmoke">
-    
-    <Grid Margin="0, 1, 0, 1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250"/>
-            <ColumnDefinition Width="2.5*" />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition MinWidth="155" />
-            <ColumnDefinition MinWidth="155" />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition  MaxWidth="90"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Margin="1" x:Name="Index" d:Text="1" />
-        <TextBlock Grid.Column="1" Margin="1" x:Name="Product" d:Text="A very good product to use!" />
-        <TextBlock Grid.Column="2" Margin="1" x:Name="Wholesaler">Grosist</TextBlock>
-        <TextBlock Grid.Column="3" Margin="1" x:Name="Price" />
-        <TextBlock Grid.Column="4" Margin="1" x:Name="MinToInstall" />
-        <local:DoubleTextBox Grid.Column="5" Margin="1" ValueChanged="PriceUpdated" x:Name="Units" />
-        <local:DoubleTextBox Grid.Column="6" Margin="1" ValueChanged="PriceUpdated" x:Name="Length" />
-        <TextBlock Grid.Column="7" Margin="1" x:Name="EAN" />
-        <local:CustomTextBlock Grid.Column="8" Margin="1" x:Name="FullPrice" Type="NoneStay" />
-        <local:CustomTextBlock Grid.Column="9" Margin="1" x:Name="PercentageOfOffers" Type="NoneStay" />
-        <local:CustomTextBlock Grid.Column="10" Margin="1" x:Name="CompanyProfit" Type="NoneStay" />
-        <Button Click="OnDeleteItem" Grid.Column="11" Margin="1">Fjen</Button>
-    </Grid>
+    <Border BorderThickness="0,0,0,0.5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250"/>
+                <ColumnDefinition Width="2.5*" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition MinWidth="155" />
+                <ColumnDefinition MinWidth="155" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition  MaxWidth="90"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Margin="1" x:Name="Index" d:Text="1" />
+            <TextBlock Grid.Column="1" Margin="1" x:Name="Product" d:Text="A very good product to use!" />
+            <TextBlock Grid.Column="2" Margin="1" x:Name="Wholesaler">Grosist</TextBlock>
+            <TextBlock Grid.Column="3" Margin="1" x:Name="Price" />
+            <TextBlock Grid.Column="4" Margin="1" x:Name="MinToInstall" />
+            <local:DoubleTextBox Grid.Column="5" Margin="1" ValueChanged="PriceUpdated" x:Name="Units" />
+            <local:DoubleTextBox Grid.Column="6" Margin="1" ValueChanged="PriceUpdated" x:Name="Length" />
+            <TextBlock Grid.Column="7" Margin="1" x:Name="EAN" />
+            <local:CustomTextBlock Grid.Column="8" Margin="1" x:Name="FullPrice" Type="NoneStay" />
+            <local:CustomTextBlock Grid.Column="9" Margin="1" x:Name="PercentageOfOffers" Type="NoneStay" />
+            <local:CustomTextBlock Grid.Column="10" Margin="1" x:Name="CompanyProfit" Type="NoneStay" />
+            <Button Click="OnDeleteItem" Grid.Column="11" Margin="1">Fjen</Button>
+        </Grid>
+    </Border>
 </UserControl>

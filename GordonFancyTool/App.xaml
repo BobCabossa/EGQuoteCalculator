@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:GordonFancyTool"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!-- Default values, they can be overridden. -->
+        <!-- These values are the most commonly used in the program. -->
+        
         <Style TargetType="TextBlock">
             <Setter Property="TextWrapping" Value="WrapWithOverflow" />
             <Setter Property="FontSize" Value="15" />
@@ -19,9 +22,11 @@
         <Style TargetType="Border">
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="Padding" Value="2" />
         </Style>
         <Style TargetType="Window">
             <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="ShowInTaskbar" Value="False" />
         </Style>
     </Application.Resources>
 </Application>

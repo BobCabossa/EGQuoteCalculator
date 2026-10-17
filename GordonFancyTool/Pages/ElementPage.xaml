@@ -153,41 +153,42 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
-                            <RowDefinition Height="auto"/>
+                            <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
                         <!-- Titles of the item values -->
-                        <Grid Margin="0, 0, 0, 5" Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250"/>
-                                <ColumnDefinition Width="2.5*" />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition MinWidth="155" />
-                                <ColumnDefinition MinWidth="155" />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition MaxWidth="90" />
-                            </Grid.ColumnDefinitions>
+                        <Border BorderThickness="0,0,0,0.5" Grid.Row="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250"/>
+                                    <ColumnDefinition Width="2.5*" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition MinWidth="155" />
+                                    <ColumnDefinition MinWidth="155" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition MaxWidth="90" />
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0"></TextBlock>
-                            <TextBlock Grid.Column="1">Materialer</TextBlock>
-                            <TextBlock Grid.Column="2">Grosist</TextBlock>
-                            <TextBlock Grid.Column="3">Kostpris</TextBlock>
-                            <TextBlock Grid.Column="4">Min til at installere</TextBlock>
-                            <TextBlock Grid.Column="5">Antal [stk/m]</TextBlock>
-                            <TextBlock Grid.Column="6">Avance [%]</TextBlock>
-                            <TextBlock Grid.Column="7">EAN nummer</TextBlock>
-                            <TextBlock Grid.Column="8" HorizontalAlignment="Right" Margin="0,0,50,0">I alt</TextBlock>
-                            <TextBlock Grid.Column="9">Procent udgør af tilbud</TextBlock>
-                            <TextBlock Grid.Column="10">EG EL Fortjenest</TextBlock>
-                        </Grid>
-
+                                <TextBlock Grid.Column="0"></TextBlock>
+                                <TextBlock Grid.Column="1">Materialer</TextBlock>
+                                <TextBlock Grid.Column="2">Grosist</TextBlock>
+                                <TextBlock Grid.Column="3">Kostpris</TextBlock>
+                                <TextBlock Grid.Column="4">Min til at installere</TextBlock>
+                                <TextBlock Grid.Column="5">Antal [stk/m]</TextBlock>
+                                <TextBlock Grid.Column="6">Avance [%]</TextBlock>
+                                <TextBlock Grid.Column="7">EAN nummer</TextBlock>
+                                <TextBlock Grid.Column="8" HorizontalAlignment="Right" Margin="0,0,50,0">I alt</TextBlock>
+                                <TextBlock Grid.Column="9">Procent udgør af tilbud</TextBlock>
+                                <TextBlock Grid.Column="10">EG EL Fortjenest</TextBlock>
+                            </Grid>
+                        </Border>
                         <!-- Material items -->
                         <StackPanel x:Name="Items" Grid.Row="1" />
 

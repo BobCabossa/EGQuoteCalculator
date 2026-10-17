@@ -8,38 +8,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="110" d:DesignWidth="800"
              d:Background="WhiteSmoke">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
 
-        <!-- Top row (Title and basic info) -->
-        <TextBlock Text="{Binding ExcelCollection.Name, ElementName=MyControl}" x:Name="Title" Grid.Row="0" Margin="2,2,517,2" d:Text="Title" />
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" Margin="2" x:Name="QuantityChange">
-            <TextBlock Text="Mængde:" Margin="5,0" VerticalAlignment="Center" />
-            <local:DoubleTextBox HorizontalAlignment="Center" ValueChanged="QuantityChanged" x:Name="QuantityChangeField" />
-        </StackPanel>
-        <Button Click="RemoveClick" x:Name="RemoveButton" HorizontalAlignment="Right" Content="Fjern" Margin="2" MinWidth="75" />
-        
-        <!-- Middle (Price for everything, just numbers for everything) -->
-        <Grid Grid.Row="1" x:Name="Prices">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+    <Border BorderThickness="0,0,0,0.5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-            <local:CustomTextBlock Grid.Column="1" Margin="1" x:Name="TotalMinToInstall" Type="NoneStay" />
-            <local:CustomTextBlock Grid.Column="2" Margin="1" x:Name="FullPrice" Type="NoneStay" />
-            <local:CustomTextBlock Grid.Column="3" Margin="1" x:Name="PercentageOfOffers" Type="NoneStay" />
-            <local:CustomTextBlock Grid.Column="4" Margin="1" x:Name="CompanyProfit" Type="NoneStay" />
+            <!-- Top row (Title and basic info) -->
+            <TextBlock Text="{Binding ExcelCollection.Name, ElementName=MyControl}" x:Name="Title" Grid.Row="0" Margin="2,2,517,2" d:Text="Title" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" Margin="2" x:Name="QuantityChange">
+                <TextBlock Text="Mængde:" Margin="5,0" VerticalAlignment="Center" />
+                <local:DoubleTextBox HorizontalAlignment="Center" ValueChanged="QuantityChanged" x:Name="QuantityChangeField" />
+            </StackPanel>
+            <Button Click="RemoveClick" x:Name="RemoveButton" HorizontalAlignment="Right" Content="Fjern" Margin="2" MinWidth="75" />
+
+            <!-- Middle (Price for everything, just numbers for everything) -->
+            <Grid Grid.Row="1" x:Name="Prices">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <local:CustomTextBlock Grid.Column="1" Margin="1" x:Name="TotalMinToInstall" Type="NoneStay" />
+                <local:CustomTextBlock Grid.Column="2" Margin="1" x:Name="FullPrice" Type="NoneStay" />
+                <local:CustomTextBlock Grid.Column="3" Margin="1" x:Name="PercentageOfOffers" Type="NoneStay" />
+                <local:CustomTextBlock Grid.Column="4" Margin="1" x:Name="CompanyProfit" Type="NoneStay" />
+            </Grid>
+
+            <Border Grid.Row="1" BorderThickness="0,0,0,0.5" />
+
+            <!-- Bottom only the items -->
+            <StackPanel Margin="30,0,0,0" x:Name="Items" Grid.Row="2" />
         </Grid>
-
-        <!-- Bottom only the items -->
-        <StackPanel Margin="30,0,0,0" x:Name="Items" Grid.Row="2" />
-    </Grid>
+    </Border>
 </UserControl>
