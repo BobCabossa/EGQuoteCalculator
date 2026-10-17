@@ -13,7 +13,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition MaxWidth="180" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -159,7 +159,7 @@
                         </Grid.RowDefinitions>
 
                         <!-- Titles of the item values -->
-                        <Border BorderThickness="0,0,0,0.5" Grid.Row="0">
+                        <Border BorderThickness="0,0,0,0.5" Grid.Row="0" Margin="0,5">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto" MinWidth="35" MaxWidth="250"/>
@@ -189,14 +189,15 @@
                                 <TextBlock Grid.Column="10">EG EL Fortjenest</TextBlock>
                             </Grid>
                         </Border>
+                        
                         <!-- Material items -->
-                        <StackPanel x:Name="Items" Grid.Row="1" />
+                        <StackPanel x:Name="Items" Grid.Row="1" Margin="0,5" />
 
                         <!-- Search items -->
                         <local:ElementSearch
-                        Grid.Row="2"
-                        ValueSelected="AddItem"
-                        Margin="2" />
+                            Grid.Row="2"
+                            ValueSelected="AddItem"
+                            Margin="2" />
 
                         <Grid Margin="0, 0, 0, 5"  Grid.Row="3">
                             <Grid.ColumnDefinitions>
@@ -221,12 +222,12 @@
                 </Border>
 
                 <!-- Bottom part -->
-                <Border Margin="0,2">
+                <Border Margin="0,2" Padding="3">
                     <local:ElementBottom x:Name="BottomPart" ProjectValue="{Binding ProjectValue, ElementName=MyControl}" />
                 </Border>
 
                 <!-- Final numbers -->
-                <Border Margin="0,2">
+                <Border Margin="0,2" Padding="3">
                     <local:ElementFinalResults x:Name="FinalResults" />
                 </Border>
             </StackPanel>

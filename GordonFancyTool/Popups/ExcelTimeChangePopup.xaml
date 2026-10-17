@@ -8,7 +8,6 @@
         Height="450" Width="800"
         Title="Endre Excel Tid" 
         WindowStartupLocation="CenterOwner"
-        ShowInTaskbar="False"
         Icon="/Assets/AppIcon.ico"> 
 
     <Grid Margin="5">
