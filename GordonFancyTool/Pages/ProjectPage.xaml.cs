@@ -38,11 +38,6 @@ public partial class ProjectPage : Page
         pageLoaded = true;
     }
 
-    private void ImportData(object sender, RoutedEventArgs e)
-    {
-        ImportController.StartImporting();
-    }
-
     private void OpenElementView(object? sender, string newValue)
     {
         if (sender is not ProjectItem item) return;
@@ -98,6 +93,15 @@ public partial class ProjectPage : Page
         }
 
         return null;
+    }
+
+    private void ImportData(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ImportingPopup()
+        {
+            Owner = Window.GetWindow(this)
+        };
+        dialog.ShowDialog();
     }
 
     private void OpenEditProjectValues(object sender, RoutedEventArgs e)

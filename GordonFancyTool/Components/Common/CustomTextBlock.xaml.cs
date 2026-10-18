@@ -31,8 +31,8 @@ public partial class CustomTextBlock : UserControl
             typeof(ValueType),
             typeof(CustomTextBlock),
             new PropertyMetadata(
-            ValueType.Default,
-            OnValueTypeChanged));
+                ValueType.Default,
+                OnValueTypeChanged));
 
     public double Value
     {
