@@ -30,7 +30,7 @@ public partial class CollectionItemPart : UserControl
         CollectionItem.Length = LengthValueBox.Value ?? 0;
     }
 
-    private void RemoveClick(object sender, RoutedEventArgs e)
+    private void RemoveClick(object sender, string e)
     {
         DeletePart.Invoke(this, Name);
     }

@@ -18,7 +18,7 @@
 
             <TextBlock Grid.ColumnSpan="2">Ukendt materiale:</TextBlock>
             <TextBlock Grid.Column="1" x:Name="UnknownItemName" d:Text="This is a material used in something." />
-            <Button Click="RemoveUnknown" Content="Fjern" Grid.Column="11" />
+            <local:ButtonRemove BtnClicked="RemoveUnknown" Grid.Column="11" />
         </Grid>
     </Border>
 </UserControl>

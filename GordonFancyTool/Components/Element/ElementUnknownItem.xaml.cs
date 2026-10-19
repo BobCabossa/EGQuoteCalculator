@@ -12,7 +12,7 @@ public partial class ElementUnknownItem : UserControl
         UnknownItemName.Text = unknownItemName;
     }
 
-    private void RemoveUnknown(object sender, RoutedEventArgs e)
+    public void RemoveUnknown(object sender, string e)
     {
         OnItemDelete.Invoke(sender, UnknownItemName.Text);
     }

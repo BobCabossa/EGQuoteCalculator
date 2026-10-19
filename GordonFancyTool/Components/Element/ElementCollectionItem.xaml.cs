@@ -164,7 +164,7 @@ public partial class ElementCollectionItem : UserControl
         PercentageOfOffers.Value = percentageOfOffers;
     }
 
-    private void RemoveClick(object sender, RoutedEventArgs e)
+    public void RemoveClick(object sender, string e)
     {
         DeleteItem.Invoke(this, ElementItemValue);
     }

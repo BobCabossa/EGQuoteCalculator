@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GordonFancyTool.Components"
         mc:Ignorable="d"
-        Height="200" Width="250"
+        Height="200" Width="300"
         Title="Ny Opgrave"
         WindowStartupLocation="CenterOwner"
         Loaded="PopupLoaded"
@@ -39,15 +39,16 @@
             Grid.ColumnSpan="3"
             Margin="4" />
 
-        <Button 
-            Content="OK"
+        <local:ButtonConfirm 
+            Text="Ok"
             Grid.Row="2"
             Grid.Column="1"
             Margin="4"
-            Click="OkClick" />
+            BtnClicked="OkClick"
+            />
 
         <Button 
-            Content="Cancel"
+            Content="Annullere"
             Grid.Row="2"
             Grid.Column="3"
             Margin="4"

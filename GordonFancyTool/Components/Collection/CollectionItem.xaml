@@ -22,8 +22,8 @@
 
             <TextBlock Grid.ColumnSpan="2" x:Name="CollectionsTitle" d:Text="Some title" Margin="3,3,159,3" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Margin="3">
-                <Button MinWidth="65" Click="OnChangeTitle" Margin="1,0">Endre navn</Button>
-                <Button MinWidth="65" Click="OnRemoveItem" Margin="1,0">Fjern</Button>
+                <local:ButtonEdit MinWidth="65" BtnClicked="OnChangeTitle" Margin="1,0" Text="Endre navn" />
+                <local:ButtonRemove MinWidth="65" BtnClicked="OnRemoveItem" Margin="1,0" />
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="1">

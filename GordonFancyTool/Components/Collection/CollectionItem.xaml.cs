@@ -74,12 +74,12 @@ public partial class CollectionItem : UserControl
         ExcelCollection.Items.RemoveAt(index);
     }
 
-    public void OnRemoveItem(object sender, RoutedEventArgs e)
+    public void OnRemoveItem(object sender, string e)
     {
         DeleteItem.Invoke(sender, this);
     }
 
-    private void OnChangeTitle(object? sender, RoutedEventArgs e)
+    public void OnChangeTitle(object? sender, string e)
     {
         var dialog = new NewElementPopup("Endre navn", "Indtast et navn:", ExcelCollection.Name)
         {

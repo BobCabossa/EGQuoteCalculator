@@ -18,7 +18,7 @@ public partial class CreateCollectionsPopup : Window
         }
     }
 
-    private void OkClick(object sender, RoutedEventArgs e)
+    private void OkClick(object sender, string e)
     {
         foreach (var item in ExcelCollections)
         {

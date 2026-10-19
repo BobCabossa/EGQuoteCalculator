@@ -16,7 +16,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="{Binding Title, ElementName=MyControl}" />
+        <TextBlock Text="{Binding Title, ElementName=MyControl}" d:Text="Best title of 2026! i can find something else." />
         <local:DoubleTextBox Grid.Column="1" HorizontalAlignment="Right" Margin="1" ValueChanged="ValueUpdated" x:Name="ValueBox" />
     </Grid>
 </UserControl>

@@ -23,7 +23,10 @@
 
         <Grid Grid.ColumnSpan="2" Background="LightGray" />
 
-        <Button Click="BackToProject" Margin="3">Tilbage/Gem</Button>
+        <local:ButtonConfirm
+            Text="Tilbage/Gem"
+            BtnClicked="BackToProject"
+            Margin="3" />
 
         <!-- Element name -->
         <Grid Grid.Column="1" Margin="3">

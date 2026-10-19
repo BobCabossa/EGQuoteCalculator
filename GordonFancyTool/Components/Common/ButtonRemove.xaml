@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="GordonFancyTool.Components.ButtonRemove"
+             x:Name="MyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GordonFancyTool.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100">
+
+    <Button
+        Click="ButtonClick"
+        Background="#c82323">
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Text, ElementName=MyControl}" d:Text="Fjern" VerticalAlignment="Center"/>
+            <Image 
+                Source="/Assets/bin.png" 
+                VerticalAlignment="Center" 
+                Width="30"
+                Height="30"
+                Stretch="Uniform" />
+        </StackPanel>
+    </Button>
+</UserControl>

@@ -6,14 +6,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GordonFancyTool.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="100"
+             d:DesignHeight="50" d:DesignWidth="150"
              d:Background="WhiteSmoke">
-    
-    <Grid>
-        <TextBox x:Name="textBox"
-            PreviewTextInput="DoubleTextBox_PreviewTextInput"
-            DataObject.Pasting="DoubleTextBox_Pasting"
-            TextChanged="TextBox_TextChanged"
-            Text="{Binding ValueString, ElementName=MyControl, Mode=TwoWay}" />
-    </Grid>
+
+    <TextBox x:Name="textBox"
+        PreviewTextInput="DoubleTextBox_PreviewTextInput"
+        DataObject.Pasting="DoubleTextBox_Pasting"
+        TextChanged="TextBox_TextChanged"
+        Text="{Binding ValueString, ElementName=MyControl, Mode=TwoWay}" />
 </UserControl>

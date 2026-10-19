@@ -51,12 +51,12 @@
         </ScrollViewer>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
-            <Button Content="OK"
+            <local:ButtonConfirm
                     Width="75"
                     Margin="2"
-                    Click="OkClick"/>
+                    BtnClicked="OkClick"/>
 
-            <Button Content="Cancel"
+            <Button Content="Annullere"
                     Width="75"
                     Margin="2"
                     Click="CancelClick"/>

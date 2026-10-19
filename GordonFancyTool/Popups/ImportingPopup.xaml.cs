@@ -46,7 +46,7 @@ public partial class ImportingPopup : Window
         DoneText.Visibility = Visibility.Visible;
     }
 
-    private void ClickOk(object sender, RoutedEventArgs e)
+    private void ClickOk(object sender, string e)
     {
         DialogResult = true;
     }

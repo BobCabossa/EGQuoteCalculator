@@ -10,7 +10,7 @@ public partial class ChangeProjectValuesPopup : Window
         InitializeComponent();
     }
 
-    private void OkClick(object sender, RoutedEventArgs e)
+    private void OkClick(object sender, string e)
     {
         DialogResult = true;
     }

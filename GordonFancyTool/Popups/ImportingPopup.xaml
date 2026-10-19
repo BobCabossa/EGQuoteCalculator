@@ -4,14 +4,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GordonFancyTool.Popups"
+        xmlns:local="clr-namespace:GordonFancyTool.Components"
         mc:Ignorable="d"
-        Height="150" Width="150"
+        Height="175" Width="175"
         Title="Importer Data"
         WindowStartupLocation="CenterOwner"
         Icon="/Assets/AppIcon.ico">
     
-    <Grid>
+    <Grid Margin="5">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="{Binding ActionsDone, ElementName=MyControl}" d:Text="100" />
             <TextBlock Text="/" />
@@ -21,21 +21,22 @@
         <TextBlock x:Name="DoneText" Text="Færdig" HorizontalAlignment="Center" Margin="0,10,0,1" Visibility="Hidden" d:Visibility="Visible" />
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button
+            <local:ButtonConfirm
                 x:Name="OkButton"
-                Content="Ok" 
                 MinWidth="50"
                 MaxWidth="150"
                 Width="auto"
-                Click="ClickOk" 
-                IsEnabled="False" />
-            
+                BtnClicked="ClickOk" 
+                IsEnabled="False"
+                Margin="1,0" />
+
             <Button 
-                Content="Stop" 
+                Content="Annullere" 
                 MinWidth="50"
                 MaxWidth="150"
                 Width="auto"
-                Click="ClickCancel" />
+                Click="ClickCancel"
+                Margin="1,0" />
         </StackPanel>
     </Grid>
 </Window>

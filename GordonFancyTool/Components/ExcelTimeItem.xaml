@@ -13,8 +13,8 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
-        <TextBlock x:Name="Title" />
+
+        <TextBlock x:Name="Title" d:Text="Something like this can be the title" />
         <local:DoubleTextBox HorizontalAlignment="Right" Grid.Column="2" ValueChanged="TimeUpdated" x:Name="Time" />
     </Grid>
 </UserControl>

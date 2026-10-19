@@ -81,7 +81,7 @@ public partial class ElementPage : Page
         }, DispatcherPriority.Render);
     }
 
-    public void BackToProject(object sender, RoutedEventArgs e)
+    public void BackToProject(object sender, string e)
     {
         UpdateLocalElementItems();
         ProjectPage projectPage = new(_elementValues);

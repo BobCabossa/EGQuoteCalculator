@@ -29,12 +29,12 @@ public partial class ProjectItem : UserControl
         OnOpenElement.Invoke(this, "");
     }
 
-    private void EditItem(object sender, RoutedEventArgs e)
+    public void EditItem(object sender, string e)
     {
         OnEditItem.Invoke(this, ElementValue);
     }
 
-    private void DeleteItem(object sender, RoutedEventArgs e)
+    public void DeleteItem(object sender, string e)
     {
         OnDeleteItem.Invoke(sender, ElementValue);
     }

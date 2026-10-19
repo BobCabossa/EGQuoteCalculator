@@ -79,7 +79,7 @@ public partial class ElementItem : UserControl
         PercentageOfOffers.Value = percentageOfOffers;
     }
 
-    private void OnDeleteItem(object sender, RoutedEventArgs e)
+    public void OnDeleteItem(object sender, string e)
     {
         OnItemDelete.Invoke(sender, ElementItemValue);
     }

@@ -23,7 +23,8 @@
                 <TextBlock Text="Mængde:" Margin="5,0" VerticalAlignment="Center" />
                 <local:DoubleTextBox HorizontalAlignment="Center" ValueChanged="QuantityChanged" x:Name="QuantityChangeField" />
             </StackPanel>
-            <Button Click="RemoveClick" x:Name="RemoveButton" HorizontalAlignment="Right" Content="Fjern" Margin="2" MinWidth="75" />
+
+            <local:ButtonRemove BtnClicked="RemoveClick" x:Name="RemoveButton" HorizontalAlignment="Right" Margin="2" MinWidth="75" />
 
             <!-- Middle (Price for everything, just numbers for everything) -->
             <Grid Grid.Row="1" x:Name="Prices">

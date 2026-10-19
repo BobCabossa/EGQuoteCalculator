@@ -31,7 +31,7 @@ public partial class NewElementPopup : Window
         _ = InputTextBox.Focus();
     }
 
-    private void OkClick(object sender, RoutedEventArgs e)
+    private void OkClick(object sender, string e)
     {
         Result = InputTextBox.Text;
         DialogResult = true;
