@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GordonFancyTool.Pages"
+      xmlns:local="clr-namespace:GordonFancyTool.Components"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Projekter"
@@ -51,8 +51,12 @@
                     <TextBlock Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">Bemanding Lærling Timer</TextBlock>
 
                 </Grid>
+                
                 <StackPanel x:Name="items" Grid.Row="1" />
+                
                 <Button Click="AddElement" Margin="2">Tilføj</Button>
+
+                <local:ProjectFinalResults x:Name="FinalResults" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

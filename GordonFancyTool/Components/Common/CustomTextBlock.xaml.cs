@@ -36,7 +36,7 @@ public partial class CustomTextBlock : UserControl
 
     public double Value
     {
-        set => SetValue(ValueProperty, value);
+        set => SetValue(ValueProperty, DoubleCal.Round(value));
         get => (double)GetValue(ValueProperty);
     }
 

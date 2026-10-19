@@ -102,7 +102,7 @@ public partial class ElementsTopRow : UserControl
 
     public void SetMaterialTime(double time)
     {
-        MaterialTime.Value = DoubleCal.Round(time / 60);
+        MaterialTime.Value = time / 60;
         CalculateHours();
         CalculateHoursContributions();
     }
@@ -137,13 +137,13 @@ public partial class ElementsTopRow : UserControl
 
         double costPerHour = HourlyRate * totalHours;
 
-        double socialSecurityCosts = DoubleCal.Round(costPerHour * socialCost);
-        double amountForSalaryIncrease = DoubleCal.Round((costPerHour + socialSecurityCosts) * salaryIncrease);
-        double amountForRiskRate = DoubleCal.Round((costPerHour + socialSecurityCosts + amountForSalaryIncrease) * riskFactor);
+        double socialSecurityCosts = costPerHour * socialCost;
+        double amountForSalaryIncrease = (costPerHour + socialSecurityCosts) * salaryIncrease;
+        double amountForRiskRate = (costPerHour + socialSecurityCosts + amountForSalaryIncrease) * riskFactor;
 
-        double companyProfit = DoubleCal.Round((costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate) * companyProfitPercentage);
+        double companyProfit = (costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate) * companyProfitPercentage;
 
-        double sale = DoubleCal.Round(costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate + companyProfit);
+        double sale = costPerHour + socialSecurityCosts + amountForSalaryIncrease + amountForRiskRate + companyProfit;
 
         SocialSecurityCosts.Value = socialSecurityCosts;
         AmountForSalaryIncrease.Value = amountForSalaryIncrease;
@@ -156,7 +156,7 @@ public partial class ElementsTopRow : UserControl
     {
         double fullPrice = GetFullPrice?.Invoke() ?? 0;
 
-        double percentageOfOffers = DoubleCal.Round(Sale.Value / fullPrice * 100);
+        double percentageOfOffers = Sale.Value / fullPrice * 100;
         PercentageOfOffers.Value = percentageOfOffers;
     }
 }

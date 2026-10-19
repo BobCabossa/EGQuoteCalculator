@@ -31,12 +31,12 @@ public partial class ElementCollectionItemPart : UserControl
         double units = DoubleCal.TryParse(Units.Text);
         double length = DoubleCal.TryParse(Length.Text);
 
-        units = DoubleCal.Round(units * CollectionQuantity);
-        length = DoubleCal.Round(length * CollectionQuantity);
+        units = units * CollectionQuantity;
+        length = length * CollectionQuantity;
 
         double priceForUnits = pricePerUnit * units;
-        double fullPrice = DoubleCal.Round(priceForUnits + (priceForUnits * length / 100));
-        double profit = DoubleCal.Round(fullPrice - priceForUnits);
+        double fullPrice = priceForUnits + (priceForUnits * length / 100);
+        double profit = fullPrice - priceForUnits;
 
         FullPrice.Value = fullPrice;
         CompanyProfit.Value = profit;
@@ -47,7 +47,7 @@ public partial class ElementCollectionItemPart : UserControl
     public void CalculateProcentageOfOffer()
     {
         double totalFullPrice = GetFullPrice.Invoke();
-        double percentageOfOffers = DoubleCal.Round(FullPrice.Value / totalFullPrice * 100);
+        double percentageOfOffers = FullPrice.Value / totalFullPrice * 100;
 
         PercentageOfOffers.Value = percentageOfOffers;
     }

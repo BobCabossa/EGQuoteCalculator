@@ -79,9 +79,9 @@ public partial class ElementCollectionItem : UserControl
     {
         (double fullPrice, double companyProfit, double totalMinToInstall) = GetPricesForItems();
 
-        TotalMinToInstall.Value = DoubleCal.Round(totalMinToInstall);
-        FullPrice.Value = DoubleCal.Round(fullPrice);
-        CompanyProfit.Value = DoubleCal.Round(companyProfit);
+        TotalMinToInstall.Value = totalMinToInstall;
+        FullPrice.Value = fullPrice;
+        CompanyProfit.Value = companyProfit;
     }
 
     public void UpdateItemsQuantityAndPrices(double newQuantity)
@@ -159,7 +159,7 @@ public partial class ElementCollectionItem : UserControl
     public void CalculateProcentageOfOffer()
     {
         double totalFullPrice = GetFullPrice.Invoke();
-        double percentageOfOffers = DoubleCal.Round(FullPrice.Value / totalFullPrice * 100);
+        double percentageOfOffers = FullPrice.Value / totalFullPrice * 100;
 
         PercentageOfOffers.Value = percentageOfOffers;
     }

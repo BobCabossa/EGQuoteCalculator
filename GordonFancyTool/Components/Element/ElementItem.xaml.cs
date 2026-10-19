@@ -60,8 +60,8 @@ public partial class ElementItem : UserControl
         if (units == null || length == null) return;
 
         double priceForUnits = pricePerUnit * units.Value;
-        double fullPrice = DoubleCal.Round(priceForUnits + (priceForUnits * length.Value / 100));
-        double profit = DoubleCal.Round(fullPrice - priceForUnits);
+        double fullPrice = priceForUnits + (priceForUnits * length.Value / 100);
+        double profit = fullPrice - priceForUnits;
 
         FullPrice.Value = fullPrice;
         CompanyProfit.Value = profit;
@@ -74,7 +74,7 @@ public partial class ElementItem : UserControl
     public void CalculateProcentageOfOffer()
     {
         double totalFullPrice = GetFullPrice.Invoke();
-        double percentageOfOffers = DoubleCal.Round(FullPrice.Value / totalFullPrice * 100);
+        double percentageOfOffers = FullPrice.Value / totalFullPrice * 100;
 
         PercentageOfOffers.Value = percentageOfOffers;
     }

@@ -14,22 +14,22 @@ public partial class ElementFinalResults : UserControl
         double fixedEnergySurchargesPrice = projectValues.FixedEnergySurchargesPrice;
         double fixedPackagingContributionsPrice = projectValues.FixedPackagingContributionsPrice;
 
-        double totalFixedPrices = DoubleCal.Round(vehicleOnConstructionSitePrice + environmentalTaxPrice + fixedEnergySurchargesPrice + fixedPackagingContributionsPrice);
+        double totalFixedPrices = vehicleOnConstructionSitePrice + environmentalTaxPrice + fixedEnergySurchargesPrice + fixedPackagingContributionsPrice;
 
-        double totalPriceExclusiveVAT = DoubleCal.Round(totalHoursPay + materialCostsIncrease + totalFixedPrices);
+        double totalPriceExclusiveVAT = totalHoursPay + materialCostsIncrease + totalFixedPrices;
 
         double VATPercentage = projectValues.VAT / 100;
-        double VAT = DoubleCal.Round(totalPriceExclusiveVAT * VATPercentage);
+        double VAT = totalPriceExclusiveVAT * VATPercentage;
 
-        double fullPrice = DoubleCal.Round(totalPriceExclusiveVAT + VAT);
+        double fullPrice = totalPriceExclusiveVAT + VAT;
 
-        double staffingContributionsPercentage = DoubleCal.Round(totalHoursPay / totalPriceExclusiveVAT * 100);
-        double materialContributionsPercentage = DoubleCal.Round(materialCostsIncrease / totalPriceExclusiveVAT * 100);
-        double fixedPricesContributionsPercentage = DoubleCal.Round(totalFixedPrices / totalPriceExclusiveVAT * 100);
+        double staffingContributionsPercentage = totalHoursPay / totalPriceExclusiveVAT * 100;
+        double materialContributionsPercentage = materialCostsIncrease / totalPriceExclusiveVAT * 100;
+        double fixedPricesContributionsPercentage = totalFixedPrices / totalPriceExclusiveVAT * 100;
         double totalPercentage = (int)(staffingContributionsPercentage + materialContributionsPercentage + fixedPricesContributionsPercentage);
 
-        double totalProfit = DoubleCal.Round(totalHoursProfit + totalPartProfit);
-        double contributionMarginRatio = DoubleCal.Round(totalProfit / totalPriceExclusiveVAT * 100);
+        double totalProfit = totalHoursProfit + totalPartProfit;
+        double contributionMarginRatio = totalProfit / totalPriceExclusiveVAT * 100;
 
         TotalPriceForStaffing.Value = totalHoursPay;
         TotalPriceForMaterial.Value = materialCostsIncrease;

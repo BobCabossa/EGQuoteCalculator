@@ -35,6 +35,7 @@ public partial class ProjectPage : Page
         {
             CreateElementItem(item);
         }
+        FinalResults.CalculateResult(_projectValues.VAT, items);
         pageLoaded = true;
     }
 

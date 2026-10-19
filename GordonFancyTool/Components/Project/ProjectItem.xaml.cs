@@ -19,9 +19,9 @@ public partial class ProjectItem : UserControl
         Title.Text = elementValue.Title;
         PriceExclusiveVAT.Value = elementValue.TotalPriceExclusiveVAT;
         Profit.Value = elementValue.TotalProfit;
-        ContributionMarginRatio.Value = DoubleCal.Round(elementValue.TotalProfit / elementValue.TotalPriceExclusiveVAT * 100);
+        ContributionMarginRatio.Value = elementValue.TotalProfit / elementValue.TotalPriceExclusiveVAT * 100;
         NormalStaffingTime.Value = elementValue.NormalHours;
-        ApprenticeStaffingTime.Value = DoubleCal.Round(elementValue.StudentHours + elementValue.AdultStudentHours);
+        ApprenticeStaffingTime.Value = elementValue.StudentHours + elementValue.AdultStudentHours;
     }
 
     private void OpenElementView(object sender, RoutedEventArgs e)
