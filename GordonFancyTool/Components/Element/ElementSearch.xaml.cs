@@ -139,4 +139,20 @@ public partial class ElementSearch : UserControl
         SearchTextBox.Focus();
         SearchTextBox.CaretIndex = SearchTextBox.Text.Length;
     }
+
+    public void UpdateItem(ExcelCollection updateExcelCollection)
+    {
+        SearchModel? searchModel = SearchItems.FirstOrDefault(s =>
+        {
+            if (s is not ExcelCollection excelCollection)
+                return false;
+            
+            return excelCollection.Index == updateExcelCollection.Index;
+        });
+
+        if (searchModel == null)
+            return;
+
+        searchModel.Name = updateExcelCollection.Name;
+    }
 }

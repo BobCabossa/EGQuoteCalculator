@@ -29,6 +29,7 @@
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <StackPanel x:Name="Items" />
                 <local:ElementSearch
+                    x:Name="SearchBar"
                     Margin="0,5"
                     ValueSelected="AddItem" />
             </StackPanel>

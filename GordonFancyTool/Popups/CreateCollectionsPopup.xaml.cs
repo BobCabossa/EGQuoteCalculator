@@ -18,7 +18,7 @@ public partial class CreateCollectionsPopup : Window
         }
     }
 
-    private void OkClick(object sender, string e)
+    public void OkClick(object sender, string e)
     {
         foreach (var item in ExcelCollections)
         {
@@ -43,16 +43,37 @@ public partial class CreateCollectionsPopup : Window
         if (dialog.ShowDialog() == false) return;
 
         string? title = dialog.Result;
+        int newIndex;
+        try
+        {
+            newIndex = ExcelCollections.Last().ExcelCollection.Index + 1;
+        }
+        catch (InvalidOperationException)
+        {
+            newIndex = 1;
+        }
 
-        ExcelCollection newCollection = new(title ?? "");
+        ExcelCollection newCollection = new(newIndex, title ?? "");
         CreateItem(newCollection);
     }
 
     private void CreateItem(ExcelCollection collection)
     {
-        CollectionItem newItem = new(collection, _data, OnRemoveItem);
+        CollectionItem newItem = new(collection, _data, OnRemoveItem, OnItemNameChanged);
         items.Children.Add(newItem);
         ExcelCollections.Add(newItem);
+    }
+
+    private void OnItemNameChanged(object? sender, CollectionItem itemChanged)
+    {
+        int itemIndex = ExcelCollections.IndexOf(itemChanged);
+        if (itemIndex == -1)
+            return;
+
+        foreach (var item in ExcelCollections)
+        {
+            item.AnotherCollectionNameUpdated(itemChanged);
+        }
     }
 
     private void OnRemoveItem(object? sender, CollectionItem deleteCollection)

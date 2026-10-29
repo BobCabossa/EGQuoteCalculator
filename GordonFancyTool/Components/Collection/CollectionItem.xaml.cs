@@ -6,10 +6,12 @@ public partial class CollectionItem : UserControl
     public ObservableCollection<ExcelData> Data { get; private set; }
     private readonly List<CollectionItemPart> _itemParts = new();
 
+    public event EventHandler<CollectionItem> ItemNameUpdated;
     public event EventHandler<CollectionItem> DeleteItem;
 
-    public CollectionItem(ExcelCollection collection, ObservableCollection<ExcelData> excelDatas, EventHandler<CollectionItem> deleteItem)
+    public CollectionItem(ExcelCollection collection, ObservableCollection<ExcelData> excelDatas, EventHandler<CollectionItem> deleteItem, EventHandler<CollectionItem> itemNameUpdated)
     {
+        ItemNameUpdated = itemNameUpdated;
         DeleteItem = deleteItem;
         Data = excelDatas;
         ExcelCollection = collection;
@@ -40,6 +42,24 @@ public partial class CollectionItem : UserControl
 
             // Else add as a new part
             ExcelCollection.Items.Add(itemPart.CollectionItem);
+        }
+    }
+
+    public void AnotherCollectionNameUpdated(CollectionItem itemChanged)
+    {
+        SearchBar.UpdateItem(itemChanged.ExcelCollection);
+        if (ExcelCollection == itemChanged.ExcelCollection)
+        {
+            ExcelCollection.Name = itemChanged.ExcelCollection.Name;
+            CollectionsTitle.Text = itemChanged.ExcelCollection.Name;
+        }
+
+        foreach (var item in Items.Children)
+        {
+            if (item is not CollectionItem collectionItem)
+                continue;
+
+            collectionItem.AnotherCollectionNameUpdated(itemChanged);
         }
     }
 
@@ -86,10 +106,12 @@ public partial class CollectionItem : UserControl
             Owner = Window.GetWindow(this)
         };
 
-        if (dialog.ShowDialog() == true)
-        {
-            ExcelCollection.Name = dialog.Result ?? "";
-            CollectionsTitle.Text = dialog.Result ?? "";
-        }
+        if (dialog.ShowDialog() == false)
+            return;
+
+        ExcelCollection.Name = dialog.Result ?? "";
+        CollectionsTitle.Text = dialog.Result ?? "";
+
+        ItemNameUpdated.Invoke(sender, this);
     }
 }
