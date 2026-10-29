@@ -20,8 +20,8 @@ public partial class ProjectItem : UserControl
         PriceExclusiveVAT.Value = elementValue.TotalPriceExclusiveVAT;
         Profit.Value = elementValue.TotalProfit;
         ContributionMarginRatio.Value = elementValue.TotalProfit / elementValue.TotalPriceExclusiveVAT * 100;
-        NormalStaffingTime.Value = elementValue.NormalHours;
-        ApprenticeStaffingTime.Value = elementValue.StudentHours + elementValue.AdultStudentHours;
+        NormalStaffingTime.Value = elementValue.NormalHours + elementValue.NormalMaterialHours;
+        ApprenticeStaffingTime.Value = elementValue.StudentHours + elementValue.AdultStudentHours + elementValue.StudentsMaterialHours;
     }
 
     private void OpenElementView(object sender, RoutedEventArgs e)

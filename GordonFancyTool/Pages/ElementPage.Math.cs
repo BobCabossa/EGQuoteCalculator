@@ -13,9 +13,12 @@ public partial class ElementPage : Page
         double student = Student.Hours.Value ?? 0;
         double adultStudent = AdultStudent.Hours.Value ?? 0;
 
-        _elementValues.NormalHours = normal + Normal.MaterialTime.Value;
-        _elementValues.StudentHours = student + Student.MaterialTime.Value;
-        _elementValues.AdultStudentHours = adultStudent + AdultStudent.MaterialTime.Value;
+        _elementValues.NormalHours = normal;
+        _elementValues.StudentHours = student;
+        _elementValues.AdultStudentHours = adultStudent;
+
+        _elementValues.NormalMaterialHours = Normal.MaterialTime.Value;
+        _elementValues.StudentsMaterialHours = Student.MaterialTime.Value + AdultStudent.MaterialTime.Value;
 
         _elementValues.TotalPriceExclusiveVAT = FinalResults.TotalPriceExclusiveVAT.Value;
         _elementValues.TotalProfit = FinalResults.TotalProfit.Value;

@@ -8,6 +8,9 @@ public class ElementValue
     public double StudentHours { get; set; }
     public double AdultStudentHours { get; set; }
 
+    public double NormalMaterialHours { get; set; }
+    public double StudentsMaterialHours { get; set; }
+
     public double TotalPriceExclusiveVAT { get; set; }
     public double TotalProfit { get; set; }
 

@@ -22,8 +22,8 @@ public partial class ProjectFinalResults : UserControl
             if (item is not ProjectItem projectItem)
                 continue;
 
-            priceExclusiveVAT += projectItem.PriceExclusiveVAT.Value;
-            profit += projectItem.Profit.Value;
+            priceExclusiveVAT += projectItem.ElementValue.TotalPriceExclusiveVAT;
+            profit += projectItem.ElementValue.TotalProfit;
             normalStaffingTime += projectItem.NormalStaffingTime.Value;
             apprenticeStaffingTime += projectItem.ApprenticeStaffingTime.Value;
 
